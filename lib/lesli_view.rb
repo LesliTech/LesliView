@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lesli_view/version"
-require "view_component/engine"
+require "view_component"
+
+require "lesli_view/version"
 require "lesli_view/engine"
 
 

@@ -1,0 +1,25 @@
+<section class="lesli-toolbar mb-5">
+    <div class="field is-grouped">
+        <div class="control is-expanded has-icons-right has-icons-left">
+            <%= text_field_tag(:search, initial_value, 
+                placeholder: search_placeholder,
+                class: "input is-shadowless",
+                data: { action: "input->toolbar#search" } 
+            )%>
+            <span class="icon is-small is-left has-text-grey-light">
+                <span class="material-icons">
+                    search
+                </span>
+            </span>
+            <span class="icon is-right">
+                <a class="delete" data-action="click->toolbar#clearSearch"></a>
+            </span>
+        </div>
+        <%= content %> 
+        <% if pagination %>
+            <div class="select">
+                <%= select_tag :pagination, options_for_select([10, 20]), class: "select" %>
+            </div>
+        <% end %>
+    </div>
+</section>

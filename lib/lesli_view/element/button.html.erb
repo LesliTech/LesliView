@@ -1,0 +1,12 @@
+<button class="<%= button_classes %>" data-action="click->button#click">
+    <% if icon %>
+        <span class="icon <%= 'is-small' if small %>">
+            <span class="material-icons"><%= icon %></span>
+        </span>
+    <% end %>
+    <% unless icon_only?(content.present?) %>
+        <span>
+            <%= content %>
+        </span>
+    <% end %>
+</button>

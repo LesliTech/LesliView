@@ -1,39 +1,96 @@
-# LesliView
 
-TODO: Delete this and the text below, and describe your gem
+<div align="center">
+    <img width="100" alt="LesliView logo" src="./docs/view-logo.svg" />
+    <h3 align="center">View elements & components for The Lesli Framework.</h3>
+</div>
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lesli_view`. To experiment with that code, run `bin/console` for an interactive prompt.
+<br />
+<hr/>
 
-## Installation
+<p align="center" class="is-flex is-justify-content-center">
+    <a target="blank" href="https://rubygems.org/gems/lesli">
+        <img height="22" alt="Gem Version" src="https://badge.fury.io/rb/lesli.svg"/>
+    </a>
+    <a class="mx-2" href="https://codecov.io/github/LesliTech/Lesli"> 
+        <img height="22" src="https://codecov.io/github/LesliTech/Lesli/graph/badge.svg?token=2O12NENK5Y"/> 
+    </a>
+    <a href="https://codecov.io/github/LesliTech/LesliBabel"> 
+        <img height="22" src="https://sonarcloud.io/api/project_badges/measure?project=LesliTech_LesliBabel&metric=sqale_rating"/> 
+    </a>
+</p>
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+<hr/>
+<br />
 
-Install the gem and add to the application's Gemfile by executing:
+### Quick start
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+```shell
+# Add LesliAdmin engine gem
+bundle add lesli_view
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```ruby
+# single component
+<%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
+    Reload
+<% end %>
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+# index.html.erb
+<%= render LesliView::Layout::Container.new("shield-sessions") do %>
+    <%= render LesliView::Element::Header.new(title: "Sessions", back: true) do %>
+        <%= render(LesliView::Element::Button.new(icon: "add", solid:true)) do %>
+            Add new
+        <% end %>
+        <%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
+            Reload
+        <% end %>
+    <% end %>
+    <%= render LesliView::Element::Toolbar.new() %>
+    <%= render(LesliView::Element::Table.new(
+        columns: columns,
+        records: @sessions[:records]
+    )) %>
+<% end %> 
+```
 
-## Usage
 
-TODO: Write usage instructions here
+### Documentation
+* [website](https://www.lesli.dev/)
+* [database](./docs/database.md)
+* [documentation](https://www.lesli.dev/gems/view/)
 
-## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Get in touch with Lesli
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+* [Email: hello@lesli.tech](hello@lesli.tech)
+* [Website: https://www.lesli.tech](https://www.lesli.tech)
+* [Twitter: @LesliTech](https://twitter.com/LesliTech)
 
-## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lesli_view. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/lesli_view/blob/main/CODE_OF_CONDUCT.md).
+### License
+-------
+Copyright (c) 2025, Lesli Technologies, S. A.
 
-## License
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
-## Code of Conduct
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
 
-Everyone interacting in the LesliView project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/lesli_view/blob/main/CODE_OF_CONDUCT.md).
+<hr />
+<br />
+
+<p align="center">
+    <img width="200" alt="Lesli logo" src="https://cdn.lesli.tech/lesli/brand/app-logo.svg" />
+    <h4 align="center">Ruby on Rails SaaS Development Framework.</h4>
+</p>
+

@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-=begin 
-
 Lesli
 
 Copyright (c) 2025, Lesli Technologies, S. A.
@@ -30,17 +26,3 @@ Building a better future, one line of code at a time.
 
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
-=end
-
-module LesliView
-    module Element
-        class Header < ViewComponent::Base
-            attr_reader :title, :back
-
-            def initialize(title: nil, back: nil)
-                @title = title
-                @back = back
-            end
-        end
-    end
-end

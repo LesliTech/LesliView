@@ -30,13 +30,6 @@ bundle add lesli_view
 ```
 
 ```ruby
-# single component
-<%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
-    Reload
-<% end %>
-```
-
-```ruby
 # index.html.erb
 <%= render LesliView::Layout::Container.new("shield-sessions") do %>
     <%= render LesliView::Element::Header.new(title: "Sessions", back: true) do %>
@@ -55,6 +48,12 @@ bundle add lesli_view
 <% end %> 
 ```
 
+```erb
+# single component
+<%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
+    Reload
+<% end %>
+```
 
 ### Documentation
 * [website](https://www.lesli.dev/)

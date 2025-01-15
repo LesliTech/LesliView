@@ -29,8 +29,8 @@
 bundle add lesli_view
 ```
 
-```ruby
-# index.html.erb
+```erb
+<%# index.html.erb %>
 <%= render LesliView::Layout::Container.new("shield-sessions") do %>
     <%= render LesliView::Element::Header.new(title: "Sessions", back: true) do %>
         <%= render(LesliView::Element::Button.new(icon: "add", solid:true)) do %>

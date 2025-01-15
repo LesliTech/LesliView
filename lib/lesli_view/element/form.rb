@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin 
 
 Lesli
@@ -31,14 +33,19 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliView
-    class Engine < ::Rails::Engine
-        isolate_namespace LesliView
+    module Element
+        class Form < ViewComponent::Base
+            attr_reader :flat, :title, :editable
 
-        initializer "lesli_view" do |app|
+            def initialize(flat: false, title: nil, editable: true)
+                @flat = flat
+                @title = title
+                @editable = editable
+            end
 
-            # autoloading sass style sheet files
-            app.config.assets.precompile += %w[lesli_view/lesli_view.scss]
-
+            def form_with_tag_options
+                { onsubmit: 'event.preventDefault(); submitForm();' }.map { |key, value| "#{key}=\"#{value}\"" }.join(' ').html_safe
+            end
         end
     end
 end

@@ -37,7 +37,7 @@ module LesliView
         class Header < ViewComponent::Base
             attr_reader :title, :back
 
-            def initialize(title: nil, back: nil)
+            def initialize(title, back: nil)
                 @title = title
                 @back = back
             end

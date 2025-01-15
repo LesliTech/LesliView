@@ -17,6 +17,7 @@ require "lesli_view/element/header"
 require "lesli_view/element/table"
 require "lesli_view/element/button"
 require "lesli_view/element/toolbar"
+require "lesli_view/element/form"
 
 module LesliView
     class Error < StandardError; end

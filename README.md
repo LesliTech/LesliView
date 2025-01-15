@@ -49,7 +49,7 @@ bundle add lesli_view
 ```
 
 ```erb
-# single component
+<%# single component %>
 <%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
     Reload
 <% end %>

@@ -33,7 +33,7 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliView
-    module Element
+    module Elements
         class Button < ViewComponent::Base
             attr_reader :icon, :loading, :solid, :info, :success, :warning, :danger, :small
 

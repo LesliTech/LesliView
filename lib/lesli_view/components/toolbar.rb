@@ -33,18 +33,14 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliView
-    module Element
-        class Form < ViewComponent::Base
-            attr_reader :flat, :title, :editable
-
-            def initialize(flat: false, title: nil, editable: true)
-                @flat = flat
-                @title = title
-                @editable = editable
-            end
-
-            def form_with_tag_options
-                { onsubmit: 'event.preventDefault(); submitForm();' }.map { |key, value| "#{key}=\"#{value}\"" }.join(' ').html_safe
+    module Components
+        class Toolbar < ViewComponent::Base
+            attr_reader :search_placeholder, :initial_value, :pagination
+        
+            def initialize(search_placeholder = "Search...", initial_value: nil, pagination: true)
+                @search_placeholder = search_placeholder
+                @initial_value = initial_value
+                @pagination = pagination
             end
         end
     end

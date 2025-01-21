@@ -12,12 +12,19 @@ require "lesli_view/engine"
 require "lesli_view/layout/container"
 
 
+# loading components
+require "lesli_view/components/header"
+require "lesli_view/components/toolbar"
+
+
 # loading elements
-require "lesli_view/element/header"
-require "lesli_view/element/table"
-require "lesli_view/element/button"
-require "lesli_view/element/toolbar"
-require "lesli_view/element/form"
+require "lesli_view/elements/table"
+require "lesli_view/elements/button"
+
+
+# loading forms
+require "lesli_view/forms/builder"
+require "lesli_view/forms/helper"
 
 module LesliView
     class Error < StandardError; end

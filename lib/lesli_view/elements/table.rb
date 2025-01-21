@@ -33,7 +33,7 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliView
-    module Element
+    module Elements
         class Table < ViewComponent::Base
             attr_reader :id, :class_name, :pagination, :loading, :headless, :columns, :records, :link
 

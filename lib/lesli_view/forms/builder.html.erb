@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-=begin 
+<%#
 
 Lesli
 
@@ -30,17 +28,19 @@ Building a better future, one line of code at a time.
 
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
-=end
+%>
 
-module LesliView
-    module Element
-        class Header < ViewComponent::Base
-            attr_reader :title, :back
-
-            def initialize(title, back: nil)
-                @title = title
-                @back = back
-            end
-        end
-    end
-end
+<%= form_with(
+    model: model, 
+    url: url, 
+    method: method, 
+    **@options, 
+    builder: LesliView::Forms::Helper
+) do |form| %>
+    <% @form = form %>
+    <%#= capture(form) { content } %>
+    <fieldset>
+        <legend><%= @title %></legend>
+        <%= content %>
+    </fieldset>
+<% end %>

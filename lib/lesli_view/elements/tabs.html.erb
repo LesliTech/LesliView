@@ -1,0 +1,29 @@
+<div class="lesli-tabs">
+    <div class="tabs">
+        <ul>
+            <% tabs.each do |tab| %>
+                <li class="<%= 'is-active' if active?(tab.tab_id) %>">
+                    <a href="#" data-tab="<%= tab.tab_id %>">
+                        <% if tab.icon %>
+                            <span class="icon is-small">
+                                <span class="material-icons">
+                                    <%= tab.icon %>
+                                </span>
+                            </span>
+                        <% end %>
+                        <span><%= tab.title %></span>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="tab-items">
+        <% tabs.each do |tab| %>
+            <div
+                class="tab-pane <%= 'is-active' if active?(tab.tab_id) %>"
+                data-tab="<%= tab.tab_id %>">
+                <%= tab.content %>
+            </div>
+        <% end %>
+    </div>
+</div>

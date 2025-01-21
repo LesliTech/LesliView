@@ -20,6 +20,7 @@ require "lesli_view/components/toolbar"
 # loading elements
 require "lesli_view/elements/table"
 require "lesli_view/elements/button"
+require "lesli_view/elements/tabs"
 
 
 # loading forms

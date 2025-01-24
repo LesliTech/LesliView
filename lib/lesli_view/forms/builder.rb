@@ -30,6 +30,15 @@ Building a better future, one line of code at a time.
 
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
+
+<%= render LesliView::Forms::Builder.new(model: @account, url: account_path(@account), method: :put) do |builder| %>
+    <%#= builder.form.label :name %>
+    <%#= builder.form.text_field :name %>
+    <%= builder.form.field(:name, label: "Company name") %>
+    <%= builder.form.field(:email) %>
+    <%= builder.form.submit("Save account") %>
+<% end %>
+
 =end
 
 module LesliView

@@ -1,9 +1,23 @@
+<style>
+.tab-item {
+    display: none; /* Hide all tab panes by default */
+  }
+  
+  .tab-item:target {
+    display: block; /* Show the tab pane that matches the URL fragment */
+  }
+  
+  .tabs li a[href*="#"]:target {
+    font-weight: bold; /* Style the active tab link */
+    background-color: red;
+  }
+</style>
 <div class="lesli-tabs">
     <div class="tabs">
         <ul>
-            <% tabs.each do |tab| %>
-                <li class="<%= 'is-active' if active?(tab.tab_id) %>">
-                    <a href="#" data-tab="<%= tab.tab_id %>">
+            <% tabs.each_with_index do |tab, index| %>
+                <li>
+                    <a href="#<%= tab.tab_id || "tab-#{index}" %>" data-turbo="false">
                         <% if tab.icon %>
                             <span class="icon is-small">
                                 <span class="material-icons">
@@ -18,10 +32,15 @@
         </ul>
     </div>
     <div class="tab-items">
-        <% tabs.each do |tab| %>
+        <% tabs.each_with_index do |tab, index| %>
+            <% 
+                pp index
+                pp tab.tab_id || "tab-#{index}"
+                pp "--------------------------"
+            %>
             <div
-                class="tab-pane <%= 'is-active' if active?(tab.tab_id) %>"
-                data-tab="<%= tab.tab_id %>">
+                id="<%= tab.tab_id || "tab-#{index}" %>"
+                class="tab-item p-5">
                 <%= tab %>
             </div>
         <% end %>

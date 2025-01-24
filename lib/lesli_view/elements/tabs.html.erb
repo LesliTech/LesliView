@@ -33,11 +33,6 @@
     </div>
     <div class="tab-items">
         <% tabs.each_with_index do |tab, index| %>
-            <% 
-                pp index
-                pp tab.tab_id || "tab-#{index}"
-                pp "--------------------------"
-            %>
             <div
                 id="<%= tab.tab_id || "tab-#{index}" %>"
                 class="tab-item p-5">

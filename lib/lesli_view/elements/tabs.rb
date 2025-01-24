@@ -27,7 +27,7 @@ module LesliView
             class TabComponent < ViewComponent::Base
                 attr_reader :tab_id, :title, :icon
 
-                def initialize(tab_id=nil, title: nil, icon: nil)
+                def initialize(tab_id:nil, title: nil, icon: nil)
 
                     @tab_id = nil
 

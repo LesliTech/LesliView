@@ -1,4 +1,6 @@
-<%#
+# frozen_string_literal: true
+
+=begin 
 
 Lesli
 
@@ -28,19 +30,36 @@ Building a better future, one line of code at a time.
 
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
-%>
 
-<%= form_with(
-    model: model, 
-    url: url, 
-    method: method, 
-    **@options, 
-    builder: LesliView::Forms::Helper
-) do |form| %>
-    <% @form = form %>
-    <%#= capture(form) { content } %>
-    <fieldset>
-        <legend><%= @title %></legend>
-        <%= content %>
-    </fieldset>
+<%= render LesliView::Forms::Builder.new(model: @account, url: account_path(@account), method: :put) do |builder| %>
+    <%#= builder.form.label :name %>
+    <%#= builder.form.text_field :name %>
+    <%= builder.form.field(:name, label: "Company name") %>
+    <%= builder.form.field(:email) %>
+    <%= builder.form.submit("Save account") %>
 <% end %>
+
+=end
+
+module LesliView
+    module Forms
+        class Custom < ViewComponent::Base
+
+            attr_reader :model, :url, :method, :form, :title
+
+            def initialize(model:, url:, method: :post, title: nil, **options)
+                
+                options[:html] ||= {}
+                options[:html][:class] = Array(options[:html][:class]) << "lesli-form box"
+
+                @url = url
+                @model = model
+                @title = title
+                @method = method
+                @options = options
+
+                @form = nil
+            end
+        end
+    end
+end

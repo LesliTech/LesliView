@@ -25,7 +25,7 @@ require "lesli_view/elements/tabs"
 
 # loading forms
 require "lesli_view/forms/builder"
-require "lesli_view/forms/helper"
+require "lesli_view/forms/custom"
 
 module LesliView
     class Error < StandardError; end

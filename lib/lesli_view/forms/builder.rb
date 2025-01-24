@@ -30,35 +30,50 @@ Building a better future, one line of code at a time.
 
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
-
-<%= render LesliView::Forms::Builder.new(model: @account, url: account_path(@account), method: :put) do |builder| %>
-    <%#= builder.form.label :name %>
-    <%#= builder.form.text_field :name %>
-    <%= builder.form.field(:name, label: "Company name") %>
-    <%= builder.form.field(:email) %>
-    <%= builder.form.submit("Save account") %>
-<% end %>
-
 =end
-
 module LesliView
     module Forms
-        class Builder < ViewComponent::Base
+        class Builder < ActionView::Helpers::FormBuilder
 
-            attr_reader :model, :url, :method, :form, :title
+            def field(attribute, label:nil)
+                label_html = label(attribute, label) 
+                text_field_html = text_field(attribute)
 
-            def initialize(model:, url:, method: :post, title: nil, **options)
-                
-                options[:html] ||= {}
-                options[:html][:class] = Array(options[:html][:class]) << "lesli-form box"
+                @template.content_tag(:div, class: 'lesli-field mb-3') do
+                    @template.content_tag(:div, class: 'field') do
+                        @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
+                        @template.content_tag(:div, class: 'field-body') do
+                            @template.content_tag(:div, class: 'field') do
+                                @template.content_tag(:div, text_field_html, class: 'control')
+                            end
+                        end
+                    end
+                end
+            end
 
-                @url = url
-                @model = model
-                @title = title
-                @method = method
-                @options = options
+            # Custom label method
+            def label(method, text = nil, options = {})
+                super(method, text, options.merge(class: 'label'))
+            end
 
-                @form = nil
+            # Custom text_field method
+            def text_field(method, options = {})
+                value = @object.send(method) # Get the value from the model's attribute
+                super(method, options.merge(value: value, class: 'input')) # Pass value to the text_field helper
+            end
+
+            def button(value = nil, options = {})
+                value ||= "Save"
+
+                # Render the ViewComponent
+                @template.render(LesliView::Elements::Button.new(icon: 'save')) do
+                    value
+                end
+            end
+
+            # Optional: customize submit button
+            def submit(value = nil, options = {})
+                super(value, options.merge(class: 'button is-primary'))
             end
         end
     end

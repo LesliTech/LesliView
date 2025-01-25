@@ -21,6 +21,7 @@ require "lesli_view/components/toolbar"
 require "lesli_view/elements/table"
 require "lesli_view/elements/button"
 require "lesli_view/elements/tabs"
+require "lesli_view/elements/avatar"
 
 
 # loading forms

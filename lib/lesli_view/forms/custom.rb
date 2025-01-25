@@ -39,6 +39,12 @@ Building a better future, one line of code at a time.
     <%= builder.form.submit("Save account") %>
 <% end %>
 
+<%= render LesliView::Forms::Custom.new(model: @account, url: account_path(@account), method: :put) do |builder| %>
+    <%= builder.form.field(:name, label: "Company name") %>
+    <%= builder.form.field(:email) %>
+    <%= builder.form.submit("Save account") %>
+<% end %>
+
 =end
 
 module LesliView

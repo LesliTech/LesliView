@@ -35,9 +35,14 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Button < ViewComponent::Base
-            attr_reader :icon, :loading, :solid, :info, :success, :warning, :danger, :small
+            attr_reader :label, :icon, :loading, :solid, :info, :success, :warning, :danger, :small
 
-            def initialize(icon: nil, loading: false, solid: false, info: false, success: false, warning: false, danger: false, small: false)
+            # Adds two numbers together.
+            # @param [Integer] a The first number.
+            # @param [Integer] b The second number.
+            # @return [Integer] The sum of the two numbers.
+            def initialize(label=nil, icon: nil, loading: false, solid: false, info: false, success: false, warning: false, danger: false, small: false)
+                @label = label
                 @icon = icon
                 @loading = loading
                 @solid = solid
@@ -64,8 +69,8 @@ module LesliView
                 "is-primary"
             end
 
-            def icon_only?(content_present)
-                icon && !content_present
+            def icon_only?
+                icon && !label
             end
         end  
     end

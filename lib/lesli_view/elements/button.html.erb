@@ -4,9 +4,9 @@
             <span class="material-icons"><%= icon %></span>
         </span>
     <% end %>
-    <% unless icon_only?(content.present?) %>
+    <% unless icon_only? %>
         <span>
-            <%= content %>
+            <%= label %>
         </span>
     <% end %>
 </button>

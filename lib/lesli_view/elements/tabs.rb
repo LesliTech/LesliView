@@ -16,12 +16,10 @@ module LesliView
         class Tabs < ViewComponent::Base
             renders_many :tabs, "TabComponent"
 
+            attr_reader :active_tab
+
             def initialize(active_tab: nil)
                 @active_tab = active_tab
-            end
-
-            def active?(tab_id)
-                tab_id == @active_tab
             end
 
             class TabComponent < ViewComponent::Base
@@ -39,12 +37,16 @@ module LesliView
                         .gsub(/\s+/, '-')                   # replace spaces or spaces with single dash
                     end
 
-                    if tab_id 
+                    if id 
                         @tab_id = id
                     end 
 
                     @title = title
                     @icon = icon
+                end
+
+                def set_tab_id(tab_id, index)
+                    @tab_id = tab_id || "tab-#{index}"
                 end
 
                 def call

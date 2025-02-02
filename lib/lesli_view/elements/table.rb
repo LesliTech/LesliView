@@ -37,7 +37,7 @@ module LesliView
 
             renders_many :rows, "TableRow"
 
-            def initialize(columns:nil, records:nil, id: nil, class_name: "is-striped", pagination: nil, loading: false, headless: false, link: nil)
+            def initialize(columns: nil, records: nil, id: nil, class_name: "is-striped", pagination: nil, loading: false, headless: false, link: nil)
                 @id = id
                 @class_name = class_name
                 @pagination = pagination
@@ -57,19 +57,25 @@ module LesliView
             end
 
             class TableRow < ViewComponent::Base
-                renders_many :posts, "TableData"
+                renders_many :cells, "TableData"
+
                 def call
-                    content_tag :tr do
-                        content
-                    end
+                    # safe_joins ensure multiple <td> elements render correctly
+                    content_tag(:tr, safe_join(cells))
                 end
 
                 class TableData < ViewComponent::Base
+                    attr_reader :css_class
+
+                    def initialize(css_class: "")
+                        @css_class = css_class
+                    end
+                    
                     def call
-                        content_tag :td, content
+                        content_tag :td, content, class: css_class
                     end
                 end
             end
-        end  
+        end
     end
 end

@@ -35,7 +35,9 @@ module LesliView
         class Table < ViewComponent::Base
             attr_reader :id, :class_name, :pagination, :loading, :headless, :columns, :records, :link
 
-            def initialize(id: nil, class_name: "is-striped", pagination: nil, loading: false, headless: false, columns:, records:, link: nil)
+            renders_many :rows, "TableRow"
+
+            def initialize(columns:nil, records:nil, id: nil, class_name: "is-striped", pagination: nil, loading: false, headless: false, link: nil)
                 @id = id
                 @class_name = class_name
                 @pagination = pagination
@@ -52,6 +54,21 @@ module LesliView
 
             def table_body_class(column)
                 column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : ""
+            end
+
+            class TableRow < ViewComponent::Base
+                renders_many :posts, "TableData"
+                def call
+                    content_tag :tr do
+                        content
+                    end
+                end
+
+                class TableData < ViewComponent::Base
+                    def call
+                        content_tag :td, content
+                    end
+                end
             end
         end  
     end

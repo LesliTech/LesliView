@@ -25,18 +25,23 @@
             </thead>
         <% end %>
         <tbody>
-            <% records.each_with_index do |record, i| %>
-                <tr>
-                    <% columns.each do |column| %>
-                        <td class="<%= table_body_class(column) %>">
-                            <% if link %>
-                                <%= link_to(record[column[:field]] || "", link.call(record), class: "link", data: { turbo_frame: '_top' }) %>
-                            <% else %>
-                                <%= record[column[:field]] %>
-                            <% end %>
-                        </td>
-                    <% end %>
-                </tr>
+            <% if records %>
+                <% records.each_with_index do |record, i| %>
+                    <tr>
+                        <% columns.each do |column| %>
+                            <td class="<%= table_body_class(column) %>">
+                                <% if link %>
+                                    <%= link_to(record[column[:field]] || "", link.call(record), class: "link", data: { turbo_frame: '_top' }) %>
+                                <% else %>
+                                    <%= record[column[:field]] %>
+                                <% end %>
+                            </td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            <% end %>
+            <% rows.each do |row| %>
+                <%= row %>
             <% end %>
         </tbody>
     </table>

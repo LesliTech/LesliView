@@ -35,21 +35,20 @@ module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
 
-            def field_select_enum(attribute, choices, options = {}, html_options = {}, label: nil, horizontal: false)
-                field_select(attribute, choices.map {|k, v| [k.humanize.capitalize, v]}, options, html_options, label: label, horizontal: horizontal)
-            end
+            def field_select(attribute, choices, options = {}, html_options = {}, label: nil, horizontal: false, humanize:true)
 
-            def field_select(attribute, choices, options = {}, html_options = {}, label:nil, horizontal:false)
-
-                # Set a default class for styling the select control
-                html_options[:class] ||= 'select'
+                choices = choices.map {|k, v| [k.humanize.capitalize, v]} if humanize
 
                 # Get the value from the model's attribute
-                value = @object.send(attribute) 
+                value = @object.send(attribute)
 
-                label_html = label(attribute, label) 
+                # Generate the label HTML
+                label_html = label(attribute, label)
+
+                # Create the select HTML
                 select_html = select(attribute, choices, options, html_options.merge(value: value))
 
+                # Use field_wrapper to generate the final field layout
                 field_wrapper(
                     label_html: label_html,
                     control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
@@ -87,7 +86,7 @@ module LesliView
             end
 
             def submit(value = nil, options = {}, horizontal:false)
-                submit_html = super(value, options.merge(class: 'button is-primary'))
+                submit_html = super(value, options.merge(class: 'button is-primary is-outlined'))
                 field_wrapper(control_html:submit_html, horizontal:horizontal)
             end
 
@@ -117,8 +116,8 @@ module LesliView
                 super(attribute, label:label, horizontal:true)
             end
 
-            def field_select(attribute, choices, options = {}, html_options = {}, label:nil)
-                super(attribute, choices, options = {}, html_options = {}, label:nil, horizontal:true)
+            def field_select(attribute, choices, options = {}, html_options = {}, label:nil, humanize:true)
+                super(attribute, choices, options = {}, html_options = {}, label:nil, humanize:humanize, horizontal:true)
             end 
 
             def submit(value = nil, options = {})

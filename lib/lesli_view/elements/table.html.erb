@@ -10,14 +10,14 @@
                             data-action="click->table#sort" 
                             data-field="<%= column[:field] %>">
                             <% if column[:sort] %>
-                            <span class="icon-text">
-                                <span><%= render_head_slot(column) %></span>
-                                <span class="icon">
-                                    <span class="material-icons"><%= column[:field] == @current_sort ? (current_sort_dir(column) == "asc" ? "arrow_upward" : "arrow_downward") : "sort" %></span>
+                                <span class="icon-text">
+                                    <span><%= column[:label] %></span>
+                                    <span class="icon">
+                                        <span class="material-icons"><%= column[:field] == @current_sort ? (current_sort_dir(column) == "asc" ? "arrow_upward" : "arrow_downward") : "sort" %></span>
+                                    </span>
                                 </span>
-                            </span>
                             <% else %>
-                                <%= render_head_slot(column) %>
+                                <%= column[:label] %>
                             <% end %>
                         </th>
                     <% end %>

@@ -1,9 +1,12 @@
 <section class="lesli-element-header is-flex">
     <div class="lesli-element-header-title is-flex is-align-items-center">
         <% if back %>
-            <button class="button is-info is-outlined mr-4" onclick="history.back()">
+            <%= link_to(
+                back || request.referer || root_path, 
+                class: "button is-info is-outlined mr-4",
+                data: { turbo_frame: '_top' }) do %>
                 <span class="material-icons">arrow_back</span>
-            </button>
+            <% end %>
         <% end %>
         <% if title.present? %>
             <h1 class="subtitle is-size-3"><%= title %></h1>

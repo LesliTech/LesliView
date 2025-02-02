@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-=begin 
+=begin
 
 Lesli
 
@@ -54,23 +52,6 @@ module LesliView
 
             def table_body_class(column)
                 column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : ""
-            end
-
-            def current_sort_dir(column)
-                @current_sort_dir ||= {}
-                @current_sort_dir[column[:field]] || "asc"
-            end
-
-            def toggle_sort_dir(column)
-                current_sort_dir(column) == "asc" ? "desc" : "asc"
-            end
-
-            def render_head_slot(column)
-                content_for?(:"head_#{column[:field]}") ? content_for(:"head_#{column[:field]}") : column[:label]
-            end
-
-            def detail_active?(record)
-                record[:detail_active]
             end
         end  
     end

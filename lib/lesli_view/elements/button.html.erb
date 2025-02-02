@@ -1,12 +1,16 @@
-<button class="<%= button_classes %>" data-action="click->button#click">
+<% tag_name = url.present? ? :a : :button %>
+<%= content_tag(
+    tag_name, 
+    href: (url if url), 
+    class: button_classes, 
+    data: { }.merge(url.present? ? { turbo_frame: "_top" } : {})
+    ) do %>
     <% if icon %>
         <span class="icon <%= 'is-small' if small %>">
             <span class="material-icons"><%= icon %></span>
         </span>
     <% end %>
     <% unless icon_only? %>
-        <span>
-            <%= label %>
-        </span>
+        <span><%= label %></span>
     <% end %>
-</button>
+<% end %>

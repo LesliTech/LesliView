@@ -35,6 +35,28 @@ module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
 
+            def field_select_enum(attribute, choices, options = {}, html_options = {}, label: nil, horizontal: false)
+                field_select(attribute, choices.map {|k, v| [k.humanize.capitalize, v]}, options, html_options, label: label, horizontal: horizontal)
+            end
+
+            def field_select(attribute, choices, options = {}, html_options = {}, label:nil, horizontal:false)
+
+                # Set a default class for styling the select control
+                html_options[:class] ||= 'select'
+
+                # Get the value from the model's attribute
+                value = @object.send(attribute) 
+
+                label_html = label(attribute, label) 
+                select_html = select(attribute, choices, options, html_options.merge(value: value))
+
+                field_wrapper(
+                    label_html: label_html,
+                    control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
+                    horizontal: horizontal
+                )
+            end
+
             def field(attribute, label: nil, horizontal: false)
                 label_html = label(attribute, label) 
                 text_field_html = text_field(attribute)
@@ -46,12 +68,10 @@ module LesliView
                 )
             end              
 
-            # Custom label method
             def label(method, text = nil, options = {})
                 super(method, text, options.merge(class: 'label'))
             end
 
-            # Custom text_field method
             def text_field(method, options = {})
                 value = @object.send(method) # Get the value from the model's attribute
                 super(method, options.merge(value: value, class: 'input')) # Pass value to the text_field helper
@@ -66,7 +86,6 @@ module LesliView
                 end
             end
 
-            # Optional: customize submit button
             def submit(value = nil, options = {}, horizontal:false)
                 submit_html = super(value, options.merge(class: 'button is-primary'))
                 field_wrapper(control_html:submit_html, horizontal:horizontal)
@@ -97,6 +116,10 @@ module LesliView
             def field(attribute, label:nil)
                 super(attribute, label:label, horizontal:true)
             end
+
+            def field_select(attribute, choices, options = {}, html_options = {}, label:nil)
+                super(attribute, choices, options = {}, html_options = {}, label:nil, horizontal:true)
+            end 
 
             def submit(value = nil, options = {})
                 super(value, options, horizontal:true)

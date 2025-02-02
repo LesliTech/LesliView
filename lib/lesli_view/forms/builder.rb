@@ -35,21 +35,16 @@ module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
 
-            def field(attribute, label:nil)
+            def field(attribute, label: nil, horizontal: false)
                 label_html = label(attribute, label) 
                 text_field_html = text_field(attribute)
 
-                @template.content_tag(:div, class: 'lesli-field mb-3') do
-                    @template.content_tag(:div, class: 'field') do
-                        @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
-                        @template.content_tag(:div, class: 'field-body') do
-                            @template.content_tag(:div, class: 'field') do
-                                @template.content_tag(:div, text_field_html, class: 'control')
-                            end
-                        end
-                    end
-                end
-            end
+                field_wrapper(
+                    label_html:label_html, 
+                    control_html:text_field_html, 
+                    horizontal:horizontal
+                )
+            end              
 
             # Custom label method
             def label(method, text = nil, options = {})
@@ -72,9 +67,40 @@ module LesliView
             end
 
             # Optional: customize submit button
-            def submit(value = nil, options = {})
-                super(value, options.merge(class: 'button is-primary'))
+            def submit(value = nil, options = {}, horizontal:false)
+                submit_html = super(value, options.merge(class: 'button is-primary'))
+                field_wrapper(control_html:submit_html, horizontal:horizontal)
             end
+
+            private 
+
+            def field_wrapper label_html:nil, control_html:nil, horizontal:false
+
+                # Conditionally add 'is-horizontal' if horizontal is true
+                field_classes = ['field']
+                field_classes << 'is-horizontal' if horizontal
+
+                @template.content_tag(:div, class: 'lesli-field mb-3') do
+                    @template.content_tag(:div, class: field_classes.join(' ')) do
+                        @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
+                        @template.content_tag(:div, class: 'field-body') do
+                            @template.content_tag(:div, class: 'field') do
+                                @template.content_tag(:div, control_html, class: 'control')
+                            end
+                        end
+                    end
+                end
+            end 
         end
+
+        class BuilderHorizontal < Builder
+            def field(attribute, label:nil)
+                super(attribute, label:label, horizontal:true)
+            end
+
+            def submit(value = nil, options = {})
+                super(value, options, horizontal:true)
+            end
+        end 
     end
 end

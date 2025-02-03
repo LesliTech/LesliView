@@ -48,8 +48,8 @@ module LesliView
                 # Create the select HTML
                 select_html = select(attribute, choices, options, html_options.merge(value: value))
 
-                # Use field_wrapper to generate the final field layout
-                field_wrapper(
+                # Use field_build to generate the final field layout
+                field_build(
                     label_html: label_html,
                     control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
                     horizontal: horizontal
@@ -60,7 +60,7 @@ module LesliView
                 label_html = label(attribute, label) 
                 text_field_html = text_field(attribute)
 
-                field_wrapper(
+                field_build(
                     label_html:label_html, 
                     control_html:text_field_html, 
                     horizontal:horizontal
@@ -87,12 +87,10 @@ module LesliView
 
             def submit(value = nil, options = {}, horizontal:false)
                 submit_html = super(value, options.merge(class: 'button is-primary is-outlined'))
-                field_wrapper(control_html:submit_html, horizontal:horizontal)
+                field_build(control_html:submit_html, horizontal:horizontal)
             end
 
-            private 
-
-            def field_wrapper label_html:nil, control_html:nil, horizontal:false
+            def field_build(label_html:nil, control_html:nil, horizontal:false, &block)
 
                 # Conditionally add 'is-horizontal' if horizontal is true
                 field_classes = ['field']
@@ -103,12 +101,27 @@ module LesliView
                         @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
                         @template.content_tag(:div, class: 'field-body') do
                             @template.content_tag(:div, class: 'field') do
-                                @template.content_tag(:div, control_html, class: 'control')
+                                @template.content_tag(:div, control_html, class: 'control', &block)
                             end
                         end
                     end
                 end
-            end 
+            end
+
+            def fieldset(legend="", options={}, category:nil, &block)
+                options[:class] = ["box", "pr-6", "is-#{category}"]
+                options[:class].push("pt-5") unless legend.present?
+                #@template.field_set_tag(legend, options, &block)
+
+                @template.content_tag(:fieldset, options) do
+                    if legend.present?
+                        legend_html = @template.content_tag(:h5, legend, class: ["is-size-5", "mb-5", "ml-2"]) 
+                    end 
+                    
+                    # Ensure proper concatenation
+                    @template.safe_join([legend_html, @template.capture(&block)].compact) 
+                end
+            end
         end
 
         class BuilderHorizontal < Builder
@@ -122,6 +135,10 @@ module LesliView
 
             def submit(value = nil, options = {})
                 super(value, options, horizontal:true)
+            end
+
+            def field_build(label_html:nil, control_html:nil, horizontal:true)
+                super(label_html:label_html, control_html:control_html, horizontal:horizontal)
             end
         end 
     end

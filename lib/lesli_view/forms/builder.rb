@@ -31,6 +31,7 @@ Building a better future, one line of code at a time.
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
 =end
+
 module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
@@ -76,6 +77,14 @@ module LesliView
                 super(method, options.merge(value: value, class: 'input')) # Pass value to the text_field helper
             end
 
+            def email_field(method, options = {})
+                # Get the value from the model's attribute
+                value = @object.send(method) 
+
+                # Pass value to the text_field helper
+                super(method, options.merge(value: value, class: 'input')) 
+            end
+
             def button(value = nil, options = {})
                 value ||= "Save"
 
@@ -90,13 +99,13 @@ module LesliView
                 field_build(control_html:submit_html, horizontal:horizontal)
             end
 
-            def field_build(label_html:nil, control_html:nil, horizontal:false, &block)
+            def field_build(label_html:nil, control_html:nil, icon:nil, horizontal:false, &block)
 
                 # Conditionally add 'is-horizontal' if horizontal is true
                 field_classes = ['field']
                 field_classes << 'is-horizontal' if horizontal
 
-                @template.content_tag(:div, class: 'lesli-field mb-3') do
+                @template.content_tag(:div, class: 'lesli-form-field mb-3') do
                     @template.content_tag(:div, class: field_classes.join(' ')) do
                         @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
                         @template.content_tag(:div, class: 'field-body') do
@@ -109,7 +118,7 @@ module LesliView
             end
 
             def fieldset(legend="", options={}, category:nil, &block)
-                options[:class] = ["box", "pr-6", "is-#{category}"]
+                options[:class] = ["lesli-form-fieldset", "box", "pr-6", "is-#{category}"]
                 options[:class].push("pt-5") unless legend.present?
                 #@template.field_set_tag(legend, options, &block)
 

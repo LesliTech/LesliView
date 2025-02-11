@@ -29,7 +29,6 @@ require "lesli_view/elements/button"
 require "lesli_view/forms/fields"
 require "lesli_view/forms/inputs"
 require "lesli_view/forms/buttons"
-require "lesli_view/forms/selects"
 require "lesli_view/forms/fieldset"
 
 require "lesli_view/forms/custom"

@@ -1,32 +1,24 @@
 module LesliView
     module Forms
         module Fields
-            def field(attribute, label: nil, horizontal: false)
+            def field_control(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
+                field_control_text(attribute, label:label, message:message, category:category, icon:icon, horizontal:horizontal)
+            end
+
+            def field_control_text(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
                 label_html = label(attribute, label)
                 text_field_html = text_field(attribute)
 
-                field_build(
+                field_control_builder(
                     label_html: label_html,
                     control_html: text_field_html,
                     horizontal: horizontal
                 )
             end
 
-            def lesli_text_field(attribute, label: nil, horizontal: false)
-                label_html = label(attribute, label)
-                text_field_html = text_field(attribute)
-
-                field_build(
-                    label_html: label_html,
-                    control_html: text_field_html,
-                    horizontal: horizontal
-                )
-            end
-
-            def lesli_email_field(attribute, label: nil, help:nil, category:nil, horizontal: false)
+            def field_control_email(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
                 label_html = label(attribute, label)
                 control_html = email_field(attribute)
-                #message_html = 
 
                 field_build(
                     label_html: label_html,
@@ -35,15 +27,30 @@ module LesliView
                 )
             end
 
-            def lesli_help_text(text, category)
-                @template.content_tag(:p, text, class: "help #{css_category(category)}")
+            def field_control_select(attribute, choices, label: nil, message:nil, category:nil, icon:nil, horizontal: false, humanize:true)
+                choices = choices.map { |k, v| [k.humanize.capitalize, v] } if humanize
+                value = @object.send(attribute)
+                label_html = label(attribute, label)
+                select_html = select(attribute, choices, {}, { value: value })
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
+                    horizontal: horizontal
+                )
             end
 
-            def field_build(
+            def field_control_submit(value = nil, options = {}, horizontal: false)
+                submit_html = submit(value, options)
+                field_control_builder(control_html: submit_html, horizontal: horizontal)
+            end
+
+            def field_control_builder(
                 label_html:nil, 
                 control_html:nil, 
-                message_html:nil,
+                message_text:nil,
                 horizontal:false, 
+                category:nil,
                 icon:nil, 
                 &block
             )
@@ -73,7 +80,7 @@ module LesliView
                                     content << icon_html(icon_right, 'right') if icon_right
                                     content
                                 end
-                                control_html + message_html
+                                control_html + @template.content_tag(:p, message_text, class: "help #{css_category(category)}")
                             end
                         end
                     end
@@ -81,18 +88,6 @@ module LesliView
             end
 
             private
-
-            def field_params params
-                {
-                    label: nil,
-                    icon: nil,
-                    info: nil,
-                    warning: nil,
-                    danger: nil,
-                    horizontal: false
-                }.merge(options)
-            end
-
             def icon_html(icon_class, position)
                 return ''.html_safe unless icon_class
 

@@ -40,6 +40,10 @@ module LesliView
             include LesliView::Forms::Buttons
             include LesliView::Forms::Selects
             include LesliView::Forms::Fieldset
+
+            def css_category category=nil 
+                return "is-#{category}"
+            end 
         end
     end
 end

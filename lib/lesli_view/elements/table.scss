@@ -32,7 +32,7 @@ Building a better future, one line of code at a time.
 
 
 // ·  
-//@import "../../scss/component";
+@import "Lesli/scss/templates/component.scss";
 
 
 // · 
@@ -73,6 +73,18 @@ table.lesli-table {
     }
 
     tbody {
+
+        tr.is-danger {
+            --bulma-table-cell-background-color: var(--bulma-danger-90);
+        }
+
+        tr.is-warning {
+            --bulma-table-cell-background-color: var(--bulma-warning-90);
+        }
+
+        tr.is-info {
+            --bulma-table-cell-background-color: var(--bulma-info-90);
+        }
 
         // default styles for cell containers
         td {
@@ -130,3 +142,12 @@ table.lesli-table {
         margin-bottom: .8rem;
     }    
 }
+
+/*
+td:has(~ td:hover), / * previous sibling cells * /
+table:has(td:nth-of-type(3):hover) / * column cells * /
+tr:not(:first-of-type):has(~ tr:hover)
+td:nth-of-type(3) {
+  background: silver !important;
+}
+*/

@@ -59,9 +59,13 @@ module LesliView
             class TableRow < ViewComponent::Base
                 renders_many :cells, "TableData"
 
+                def initialize(css_class: "")
+                    @css_class = css_class
+                end
+
                 def call
                     # safe_joins ensure multiple <td> elements render correctly
-                    content_tag(:tr, safe_join(cells))
+                    content_tag(:tr, safe_join(cells), class:@css_class)
                 end
 
                 class TableData < ViewComponent::Base

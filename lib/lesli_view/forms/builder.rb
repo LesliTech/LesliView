@@ -35,15 +35,14 @@ Building a better future, one line of code at a time.
 module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
-            include LesliView::Forms::Fields
-            include LesliView::Forms::Inputs
-            include LesliView::Forms::Buttons
-            include LesliView::Forms::Selects
-            include LesliView::Forms::Fieldset
-
             def css_category category=nil 
                 return "is-#{category}"
             end 
+
+            include LesliView::Forms::Fields
+            include LesliView::Forms::Inputs
+            include LesliView::Forms::Buttons
+            include LesliView::Forms::Fieldset
         end
     end
 end

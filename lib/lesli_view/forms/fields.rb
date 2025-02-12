@@ -45,6 +45,23 @@ module LesliView
                 field_control_builder(control_html: submit_html, horizontal: horizontal)
             end
 
+            def field_control_button(value = nil, options = {}, category:"primary", icon:nil, type:"submit", horizontal: false)
+                # Merge user-provided classes with default button classes
+                button_classes = ["button", "is-#{category}"]
+
+                button_html = @template.content_tag(:button, class: button_classes, type: type, **options.except(:class)) do
+                    html = "".html_safe
+                    if icon.present?
+                        html << @template.content_tag(:span, class: "icon") do
+                            @template.content_tag(:span, icon, class: "material-icons")
+                        end
+                    end
+                    html << @template.content_tag(:span, value) if value.present?
+                    html
+                end
+                field_control_builder(control_html: button_html, icon:nil, horizontal: horizontal)
+            end
+
             def field_control_builder(
                 label_html:nil, 
                 control_html:nil, 
@@ -88,11 +105,13 @@ module LesliView
             end
 
             private
+
             def icon_html(icon_class, position)
                 return ''.html_safe unless icon_class
 
                 @template.content_tag(:span, class: "icon is-small is-#{position}") do
-                    @template.content_tag(:i, '', class: icon_class)
+                    #@template.content_tag(:i, '', class: icon_class)
+                    @template.content_tag(:span, icon_class, class: "material-icons")
                 end
             end          
         end

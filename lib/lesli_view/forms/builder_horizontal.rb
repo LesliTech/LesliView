@@ -13,6 +13,10 @@ module LesliView
                 super(value, options, horizontal:true)
             end
 
+            def field_control_button(value = nil, options = {}, icon:nil, horizontal: false)
+                super(value, options, icon:icon, horizontal:true)
+            end 
+
             def field_control_select(attribute, choices, label: nil, message:nil, category:nil, icon:nil, humanize:true)
                 super(attribute, choices, label:label, message:message, category:category, icon:icon, horizontal:true, humanize:humanize)
             end 

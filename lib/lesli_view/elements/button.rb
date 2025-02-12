@@ -35,7 +35,7 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Button < ViewComponent::Base
-            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small
+            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :type
 
             # Adds two numbers together.
             # @param [Integer] a The first number.
@@ -51,7 +51,8 @@ module LesliView
                 success: false, 
                 warning: false, 
                 danger: false, 
-                small: false
+                small: false,
+                type: "button"
             )
                 @label = label
                 @url = url
@@ -63,6 +64,7 @@ module LesliView
                 @warning = warning
                 @danger = danger
                 @small = small
+                @type = type
             end
 
             def button_classes

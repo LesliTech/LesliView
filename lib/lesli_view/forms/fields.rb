@@ -20,9 +20,9 @@ module LesliView
                 label_html = label(attribute, label)
                 control_html = email_field(attribute)
 
-                field_build(
+                field_control_builder(
                     label_html: label_html,
-                    control_html: text_field_html,
+                    control_html: control_html,
                     horizontal: horizontal
                 )
             end

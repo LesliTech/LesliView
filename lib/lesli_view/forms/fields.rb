@@ -23,7 +23,8 @@ module LesliView
                 field_control_builder(
                     label_html: label_html,
                     control_html: control_html,
-                    horizontal: horizontal
+                    horizontal: horizontal,
+                    icon:icon
                 )
             end
 

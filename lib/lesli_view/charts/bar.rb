@@ -40,7 +40,19 @@ module LesliView
                 @title = title
                 @labels = labels
                 @datasets = datasets
-                @data = data
+
+                # ensures we get the highest number as a float to 
+                # avoid integer division issues.
+                data_max = data.max.to_f
+                @data = data.map { |item|
+                    {
+                        value: item,
+                        # Divides each count by the max value.
+                        # Multiplies by 100 to scale it.
+                        # Uses .round to get whole numbers
+                        size: (item / data_max * 100).round 
+                    }
+                }
             end
         end
     end

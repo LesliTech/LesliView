@@ -1,6 +1,6 @@
-<div class="lesli-charts lesli-charts-bar box">
+<div class="lesli-charts lesli-charts-bar">
     <table class="charts-css column <%= "multiple data-spacing-15" unless @datasets.empty? %> show-heading show-labels">
-        <caption><h5 class="is-size-5"><%= @title %></h5></caption>
+        <caption><h5 class="is-size-5 mb-3"><%= @title %></h5></caption>
         <thead>
             <tr>
                 <th scope="col"> Year </th>
@@ -11,7 +11,7 @@
             <% @data.each_with_index do |data, index| %>
                 <tr>
                     <th><%= @labels[index] %></th>
-                    <td style="--size: calc( <%= data %> / 100 );"><%= data %></td>
+                    <td style="--size: calc( <%= data[:size] %> / 100 );"><%= data[:value] %></td>
                 </tr>
             <% end %>
             <% @datasets.each do |dataset| %>

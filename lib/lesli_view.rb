@@ -25,6 +25,10 @@ require "lesli_view/elements/avatar"
 require "lesli_view/elements/button"
 
 
+# loading charts
+require "lesli_view/charts/bar"
+
+
 # loading forms
 require "lesli_view/forms/fields"
 require "lesli_view/forms/inputs"

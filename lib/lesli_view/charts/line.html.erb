@@ -1,0 +1,17 @@
+<div class="lesli-charts lesli-charts-line" style="max-width=100px;">
+    <table class="charts-css line show-heading show-labels">
+        <caption><h5 class="is-size-5 mb-3"><%= @title %></h5></caption>
+        <tbody style="<%= "height: #{@height}px;" if @height %>">
+            <% previous_value = 0 %>
+            <% @data.each_with_index do |record| %>
+                <tr>
+                    <th scope="row"><%= record[:label] %></th>
+                    <td style="--start: <%= previous_value %>; --end: <%= record[:size] %>;">
+                        <span class="data"><%= record[:value] %></span>
+                    </td>
+                </tr> 
+                <% previous_value = record[:size]%>
+            <% end %>
+        </tbody>
+    </table>
+</div>

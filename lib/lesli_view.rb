@@ -27,6 +27,7 @@ require "lesli_view/elements/button"
 
 # loading charts
 require "lesli_view/charts/bar"
+require "lesli_view/charts/line"
 
 
 # loading forms

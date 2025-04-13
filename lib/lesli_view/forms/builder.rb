@@ -41,7 +41,6 @@ module LesliView
 
             include LesliView::Forms::Fields
             include LesliView::Forms::Inputs
-            include LesliView::Forms::Buttons
             include LesliView::Forms::Fieldset
         end
     end

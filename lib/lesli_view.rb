@@ -33,10 +33,8 @@ require "lesli_view/charts/line"
 # loading forms
 require "lesli_view/forms/fields"
 require "lesli_view/forms/inputs"
-require "lesli_view/forms/buttons"
 require "lesli_view/forms/fieldset"
 
-require "lesli_view/forms/custom"
 require "lesli_view/forms/builder"
 require "lesli_view/forms/builder_horizontal"
 

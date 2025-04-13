@@ -5,6 +5,17 @@ module LesliView
                 field_control_text(attribute, label:label, message:message, category:category, icon:icon, horizontal:horizontal)
             end
 
+            def field_control_checkbox(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
+                label_html = label(attribute, label)
+                text_field_html = check_box(attribute, {}, true, false)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: text_field_html,
+                    horizontal: horizontal
+                )
+            end
+
             def field_control_text(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
                 label_html = label(attribute, label)
                 text_field_html = text_field(attribute)

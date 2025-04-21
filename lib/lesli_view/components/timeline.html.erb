@@ -1,0 +1,21 @@
+
+<div class="lesli-timelines">
+    <ul class="lesli-timeline lesli-timeline-split py-6">
+        <% @activities.each do |activity| %>
+            <li class="lesli-timeline-item">
+                <div class="lesli-timeline-info">
+                    <span><%= activity[:date] %></span>
+                </div>
+                <div class="lesli-timeline-marker"></div>
+                <div class="lesli-timeline-content">
+                    <h3 class="lesli-timeline-title">
+                        <%= activity[:title] %>
+                    </h3>
+                    <p>
+                        <%= activity[:description] %>
+                    </p>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</div>

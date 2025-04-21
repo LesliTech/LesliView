@@ -13,12 +13,13 @@ require "lesli_view/layout/container"
 
 
 # loading components
+require "lesli_view/components/tabs"
 require "lesli_view/components/header"
 require "lesli_view/components/toolbar"
+require "lesli_view/components/timeline"
 
 
 # loading elements
-require "lesli_view/elements/tabs"
 require "lesli_view/elements/empty"
 require "lesli_view/elements/table"
 require "lesli_view/elements/avatar"

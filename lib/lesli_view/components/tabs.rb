@@ -12,7 +12,7 @@
 =end
 
 module LesliView
-    module Elements
+    module Components
         class Tabs < ViewComponent::Base
             renders_many :tabs, "TabComponent"
 

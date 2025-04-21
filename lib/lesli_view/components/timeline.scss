@@ -1,0 +1,218 @@
+
+.lesli-timelines {
+
+    .lesli-timeline {
+    line-height: 1.4em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    }
+    .lesli-timeline h1,
+    .lesli-timeline h2,
+    .lesli-timeline h3,
+    .lesli-timeline h4,
+    .lesli-timeline h5,
+    .lesli-timeline h6 {
+    line-height: inherit;
+    }
+
+    /*----- TIMELINE ITEM -----*/
+    .lesli-timeline-item {
+    padding-left: 40px;
+    position: relative;
+    }
+    .lesli-timeline-item:last-child {
+    padding-bottom: 0;
+    }
+
+    /*----- TIMELINE INFO -----*/
+    .lesli-timeline-info {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 0 0 0.5em 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    }
+
+    /*----- TIMELINE MARKER -----*/
+    .lesli-timeline-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 15px;
+    }
+    .lesli-timeline-marker:before {
+    background: #ff6b6b;
+    border: 3px solid transparent;
+    border-radius: 100%;
+    content: "";
+    display: block;
+    height: 15px;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 15px;
+    transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+    }
+    .lesli-timeline-marker:after {
+    content: "";
+    width: 3px;
+    background: #ccd5db;
+    display: block;
+    position: absolute;
+    top: 24px;
+    bottom: 0;
+    left: 6px;
+    }
+    .lesli-timeline-item:last-child .lesli-timeline-marker:after {
+    content: none;
+    }
+
+    .lesli-timeline-item:not(.period):hover .lesli-timeline-marker:before {
+    background: transparent;
+    border: 3px solid #ff6b6b;
+    }
+
+    /*----- TIMELINE CONTENT -----*/
+    .lesli-timeline-content {
+    padding-bottom: 40px;
+    }
+    .lesli-timeline-content p:last-child {
+    margin-bottom: 0;
+    }
+
+    /*----- TIMELINE PERIOD -----*/
+    .period {
+    padding: 0;
+    }
+    .period .lesli-timeline-info {
+    display: none;
+    }
+    .period .lesli-timeline-marker:before {
+    background: transparent;
+    content: "";
+    width: 15px;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    top: 0;
+    bottom: 30px;
+    position: absolute;
+    border-top: 3px solid #ccd5db;
+    border-bottom: 3px solid #ccd5db;
+    }
+    .period .lesli-timeline-marker:after {
+    content: "";
+    height: 32px;
+    top: auto;
+    }
+    .period .lesli-timeline-content {
+    padding: 40px 0 70px;
+    }
+    .period .timeline-title {
+    margin: 0;
+    }
+
+    /*----------------------------------------------
+    MOD: TIMELINE SPLIT
+    ----------------------------------------------*/
+    @media (min-width: 768px) {
+    .lesli-timeline-split .timeline, .timeline-centered .lesli-timeline {
+    display: table;
+    }
+    .lesli-timeline-split .lesli-timeline-item, .timeline-centered .lesli-timeline-item {
+    display: table-row;
+    padding: 0;
+    }
+    .lesli-timeline-split .lesli-timeline-info, .timeline-centered .lesli-timeline-info,
+    .lesli-timeline-split .lesli-timeline-marker,
+    .timeline-centered .lesli-timeline-marker,
+    .lesli-timeline-split .lesli-timeline-content,
+    .timeline-centered .lesli-timeline-content,
+    .lesli-timeline-split .period .lesli-timeline-info {
+    display: table-cell;
+    vertical-align: top;
+    }
+    .lesli-timeline-split .lesli-timeline-marker, .timeline-centered .lesli-timeline-marker {
+    position: relative;
+    }
+    .lesli-timeline-split .lesli-timeline-content, .timeline-centered .lesli-timeline-content {
+    padding-left: 30px;
+    }
+    .lesli-timeline-split .lesli-timeline-info, .timeline-centered .lesli-timeline-info {
+    padding-right: 30px;
+    }
+    .lesli-timeline-split .period .timeline-title, .timeline-centered .period .timeline-title {
+    position: relative;
+    left: -45px;
+    }
+    }
+
+    /*----------------------------------------------
+    MOD: TIMELINE CENTERED
+    ----------------------------------------------*/
+    @media (min-width: 992px) {
+    .timeline-centered,
+    .timeline-centered .lesli-timeline-item,
+    .timeline-centered .lesli-timeline-info,
+    .timeline-centered .lesli-timeline-marker,
+    .timeline-centered .lesli-timeline-content {
+    display: block;
+    margin: 0;
+    padding: 0;
+    }
+    .timeline-centered .lesli-timeline-item {
+    padding-bottom: 40px;
+    overflow: hidden;
+    }
+    .timeline-centered .lesli-timeline-marker {
+    position: absolute;
+    left: 50%;
+    margin-left: -7.5px;
+    }
+    .timeline-centered .lesli-timeline-info,
+    .timeline-centered .lesli-timeline-content {
+    width: 50%;
+    }
+    .timeline-centered > .lesli-timeline-item:nth-child(odd) .lesli-timeline-info {
+    float: left;
+    text-align: right;
+    padding-right: 30px;
+    }
+    .timeline-centered > .lesli-timeline-item:nth-child(odd) .lesli-timeline-content {
+    float: right;
+    text-align: left;
+    padding-left: 30px;
+    }
+    .timeline-centered > .lesli-timeline-item:nth-child(even) .lesli-timeline-info {
+    float: right;
+    text-align: left;
+    padding-left: 30px;
+    }
+    .timeline-centered > .lesli-timeline-item:nth-child(even) .lesli-timeline-content {
+    float: left;
+    text-align: right;
+    padding-right: 30px;
+    }
+    .timeline-centered > .lesli-timeline-item.period .lesli-timeline-content {
+    float: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    }
+    .timeline-centered .lesli-timeline-item.period {
+    padding: 50px 0 90px;
+    }
+    .timeline-centered .period .lesli-timeline-marker:after {
+    height: 30px;
+    bottom: 0;
+    top: auto;
+    }
+    .timeline-centered .period .timeline-title {
+    left: auto;
+    }
+    }
+}

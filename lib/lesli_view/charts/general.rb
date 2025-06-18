@@ -32,18 +32,17 @@ Building a better future, one line of code at a time.
 
 module LesliView
     module Charts
-        class Bar < General
-            def initialize(id: nil, title: nil, subtitle: nil, labels:nil, series:nil, serie: nil, height: "300px")
-                super(
-                    id: id, 
-                    title: title, 
-                    subtitle: subtitle, 
-                    labels: labels, 
-                    series: series, 
-                    serie: serie, 
-                    height: height,
-                    type: "bar"
-                )
+        class General < ViewComponent::Base
+            attr_reader :id, :title, :subtitle, :labels, :series, :height, :type
+
+            def initialize(id: nil, title: nil, subtitle: nil, labels:nil, series:nil, serie: nil, height: "300px", type:)
+                @id = id || "lesli-chart-#{rand(100)}" 
+                @title = title
+                @subtitle = subtitle
+                @series = series || [{ data: serie }]
+                @labels = labels
+                @height = height
+                @type = type
             end
         end
     end

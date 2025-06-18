@@ -32,29 +32,18 @@ Building a better future, one line of code at a time.
 
 module LesliView
     module Charts
-        class Line < ViewComponent::Base
-            attr_reader :id, :title, :labels, :data, :dataset
-            attr_reader :height
-
-            def initialize(id: nil, title: nil, labels:[], data: [], datasets:[], height:nil)
-                @id = id
-                @title = title
-                @labels = labels
-                @datasets = datasets
-
-                @height = height
-
-                # ensures we get the highest number as a float to 
-                # avoid integer division issues.
-                data_max = data.max_by { |item| item[:value] }[:value].to_f
-                data_max = data.max_by { |item| item[:value] }[:value].to_f
-                @data = data.map do |item|
-                    { 
-                        label: item[:label], 
-                        value: item[:value],
-                        size: (item[:value] / data_max * 0.99).round(2) 
-                    }
-                end
+        class Line < General
+            def initialize(id: nil, title: nil, subtitle: nil, labels:nil, series:nil, serie: nil, height: "300px")
+                super(
+                    id: id, 
+                    title: title, 
+                    subtitle: subtitle, 
+                    labels: labels, 
+                    series: series, 
+                    serie: serie, 
+                    height: height,
+                    type: "line"
+                )
             end
         end
     end

@@ -1,39 +1,10 @@
-<style>
-.tab-item {
-    display: none; /* Hide all tab panes by default */
-}
-
-.tab-item:target {
-    display: block; /* Show the tab pane that matches the URL fragment */
-}
-
-.tabs li a[href*="#"]:target {
-    font-weight: bold; /* Style the active tab link */
-    background-color: red;
-}
-
-.tab-item:target + a {
-    font-weight: bold; /* Style the active tab link */
-    background-color: red;
-}
-
-<% if active_tab %>
-    .tab-items:not(:has(.tab-item:target)) #<%= active_tab %> {
-        display: block;
-    }
-<% else %>
-    .tab-items:not(:has(.tab-item:target)) #<%= tabs.first.tab_id %> {
-        display: block;
-    }
-<% end %>
-</style>
-<div class="lesli-tabs">
+<div class="lesli-tabs" x-data="{ activeTab: '<%= tabs[0].tab_id %>' }">
     <div class="tabs">
         <ul>
             <% tabs.each_with_index do |tab, index| %>
                 <% tab.set_tab_id(tab.tab_id, index) %>
-                <li>
-                    <a href="#<%= tab.tab_id %>" data-turbo="false">
+                <li :class="{ 'is-active': activeTab === '<%= tab.tab_id %>' }">
+                    <a @click="activeTab = '<%= tab.tab_id %>'" data-turbo="false">
                         <% if tab.icon %>
                             <span class="icon is-small">
                                 <span class="material-icons">
@@ -53,7 +24,10 @@
         <% tabs.each_with_index do |tab, index| %>
             <div
                 id="<%= tab.tab_id %>"
-                class="tab-item">
+                class="tab-item"
+                x-show="activeTab === '<%= tab.tab_id %>'"
+                x-transition
+                x-cloak>
                 <%= tab %>
             </div>
         <% end %>

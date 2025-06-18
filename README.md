@@ -1,7 +1,7 @@
 
 <div align="center">
-    <img width="100" alt="LesliView logo" src="./docs/view-logo.svg" />
-    <h3 align="center">View elements & components for The Lesli Framework.</h3>
+    <img width="100" alt="LesliView logo" src="./docs/images/view-logo.svg" />
+    <h3 align="center">Web Elements & Components for The Lesli Framework.</h3>
 </div>
 
 <br />

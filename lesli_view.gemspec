@@ -42,8 +42,8 @@ Gem::Specification.new do |spec|
     spec.authors     = ["The Lesli Development Team"]
     spec.email       = ["hello@lesli.tech"]
     spec.homepage    = "https://www.lesli.dev/"
-    spec.summary     = "View elements & components for The Lesli Framework."
-    spec.description = "View elements & components for The Lesli Framework."
+    spec.summary     = "Web Elements & Components for The Lesli Framework."
+    spec.description = "Web Elements & Components for The Lesli Framework."
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["changelog_uri"] = "https://github.com/LesliTech/LesliView"

@@ -1,0 +1,81 @@
+<script>
+document.addEventListener("turbo:load", () => {
+    var options = {
+        series: <%== series.to_json %>,
+        labels: <%== labels.to_json %>,
+        grid: {
+            show: false,
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            }
+        },
+        chart: {
+            type: "<%= type %>", 
+            height: "<%= height %>",
+            toolbar: {
+                show: false
+            },
+            events: {
+                markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
+                    emit("markerClick", { seriesIndex, dataPointIndex })
+                }
+            }
+        },
+        legend: {
+            show: true,
+            position: 'top',
+            horizontalAlign: 'center'
+        },
+        dataLabels: {
+            enabled: true,
+        },
+        //colors: this.lesli.colors("charts"),
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'round',
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 6,
+            }
+        },
+        xaxis: {
+            categories: [],
+            tickPlacement: 'between',
+            labels: {
+                show: true,
+                rotate: -65,
+                rotateAlways: false,
+                trim: false,
+                offsetY: 5,
+                style: {
+                    fontSize: '15px'
+                }
+            }
+        },
+        yaxis: {
+            show: true,
+        }
+    }
+    var chart = new ApexCharts(document.getElementById("<%= id %>"), options);
+    chart.render();
+});
+</script>
+
+
+<div class="lesli-charts lesli-charts-<%= type %> section box mb-4">
+
+    <% if title.present? %>
+        <h3 class="ml-2"><%= title %></h3>
+    <% end %>
+
+    <% if subtitle.present? %>
+        <p class="ml-2"><b><%= subtitle %></b></p>
+    <% end %>
+
+    <div id="<%= id %>"></div>
+</div>

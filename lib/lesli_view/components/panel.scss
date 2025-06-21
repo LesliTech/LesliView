@@ -1,0 +1,32 @@
+section.lesli-panel {
+    
+    div.lesli-panel-background {
+        position: fixed;
+        z-index: 38;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        &.overlay {
+            background: rgba(230, 230, 230, .5);
+        }
+    }
+
+    div.lesli-panel-container {
+        background-color: white;
+        position: fixed;
+        z-index: 40;
+        right: 0;
+        top: 0;
+        width: 600px;
+        height: 100%;
+        overflow-y: scroll;
+
+        @include lesli-css-scrollbar(hide);
+
+        .lesli-panel-header {
+            padding: 1rem 1rem .6rem;
+            border-bottom: 1px solid lesli-css-color(slate);
+        }
+    }
+}

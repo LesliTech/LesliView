@@ -14,6 +14,7 @@ require "lesli_view/layout/container"
 
 # loading components
 require "lesli_view/components/tabs"
+require "lesli_view/components/panel"
 require "lesli_view/components/header"
 require "lesli_view/components/toolbar"
 require "lesli_view/components/timeline"

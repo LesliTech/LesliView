@@ -1,0 +1,34 @@
+<section 
+  class="lesli-panel" 
+  x-data="{ status: false }"
+  x-cloak
+  <%== "@#{id}.window='status = !status'" %>>
+    <% if overlay %>
+        <div 
+            class="lesli-panel-background overlay" 
+            x-transition
+            x-show="status"
+            x-on:click="status = !status">
+        </div>
+    <% end %>
+    <div 
+        class="lesli-panel-container box p-0"
+        x-show="status"
+        x-transition>
+        <div class="lesli-panel-header is-flex">
+            <div class="is-flex-grow-1">
+                <h5 class="is-size-5">
+                    <%= title %>
+                </h5>
+            </div>
+            <div class="hover" x-on:click="status = !status">
+                <span class="material-icons md-24">
+                    arrow_forward_ios
+                </span>
+            </div>
+        </div>
+        <div class="lesli-panel-body p-4">
+            <%= content %>
+        </div>
+    </div>
+</section>

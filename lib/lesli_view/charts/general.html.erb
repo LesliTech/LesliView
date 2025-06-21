@@ -1,71 +1,66 @@
 <script>
 document.addEventListener("turbo:load", () => {
-    var options = {
-        series: <%== series.to_json %>,
-        labels: <%== labels.to_json %>,
+    const chartId = "<%= id %>";
+    const chartElement = document.getElementById(chartId);
+
+    if (!chartElement) {
+        console.warn("Chart element not found:", chartId);
+        return;
+    }
+
+    // Clear previous chart instance (important for Turbo re-renders)
+    chartElement.innerHTML = "";
+
+    const options = {
+        series: <%= raw(series.to_json) %>,
+        labels: <%= raw(labels.to_json) %>,
         grid: {
             show: false,
-            padding: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
-            }
+            padding: { top: 0, right: 0, bottom: 0, left: 0 }
         },
         chart: {
-            type: "<%= type %>", 
+            type: "<%= type %>",
             height: "<%= height %>",
-            toolbar: {
-                show: false
-            },
+            toolbar: { show: false },
             events: {
                 markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
-                    emit("markerClick", { seriesIndex, dataPointIndex })
+                    emit("markerClick", { seriesIndex, dataPointIndex });
                 }
             }
         },
         legend: {
             show: true,
-            position: 'top',
-            horizontalAlign: 'center'
+            position: "top",
+            horizontalAlign: "center"
         },
-        dataLabels: {
-            enabled: true,
-        },
-        //colors: this.lesli.colors("charts"),
+        dataLabels: { enabled: true },
         stroke: {
             show: true,
-            curve: 'smooth',
-            lineCap: 'round',
+            curve: "smooth",
+            lineCap: "round"
         },
         plotOptions: {
-            bar: {
-                borderRadius: 6,
-            }
+            bar: { borderRadius: 6 }
         },
         xaxis: {
-            categories: [],
-            tickPlacement: 'between',
+            categories: <%= raw(labels.to_json) %>,
+            tickPlacement: "between",
             labels: {
                 show: true,
                 rotate: -65,
                 rotateAlways: false,
                 trim: false,
                 offsetY: 5,
-                style: {
-                    fontSize: '15px'
-                }
+                style: { fontSize: "15px" }
             }
         },
-        yaxis: {
-            show: true,
-        }
-    }
-    var chart = new ApexCharts(document.getElementById("<%= id %>"), options);
-    chart.render();
+        yaxis: { show: true }
+    };
+
+    const chart = new ApexCharts(chartElement, options);
+    requestAnimationFrame(() => chart.render());
 });
 </script>
-
 
 <div class="lesli-charts lesli-charts-<%= type %> section box mb-4">
 

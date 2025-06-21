@@ -1,10 +1,18 @@
 <% tag_name = url.present? ? :a : :button %>
-<%= content_tag(
-    tag_name, 
-    href: (url if url), 
-    class: button_classes, 
-    data: { }.merge(url.present? ? { turbo_frame: "_top" } : {})
-    ) do %>
+
+<% attributes = {
+  class: button_classes,
+  data: {}
+} %>
+
+<% attributes[:href] = url if url.present? %>
+<% attributes[:data][:turbo_frame] = "_top" if url.present? %>
+
+<%# Add Alpine.js properties %>
+<% attributes[:"x-data"] = "" if dispatch %>
+<% attributes[:"@click"] = "$dispatch('#{ dispatch }')" if dispatch %>
+
+<%= content_tag(tag_name, **attributes) do %>
     <% if icon %>
         <span class="icon <%= 'is-small' if small %>">
             <span class="material-icons"><%= icon %></span>

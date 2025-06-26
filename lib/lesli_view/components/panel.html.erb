@@ -1,8 +1,11 @@
-<section 
-  class="lesli-panel" 
-  x-data="{ status: false }"
-  x-cloak
-  <%== "@#{id}.window='status = !status'" %>>
+
+<% attributes = {} %>
+<% attributes[:class] = "lesli-panel" %>
+<% attributes[:"x-data"] = "{ status: false }" %>
+<% attributes[:"x-cloak"] = true %>
+<% attributes[:"@#{id}.window"] = "status = !status" %>
+
+<%= content_tag(:section, **attributes) do %>
     <% if overlay %>
         <div 
             class="lesli-panel-background overlay" 
@@ -31,4 +34,4 @@
             <%= content %>
         </div>
     </div>
-</section>
+<% end %>

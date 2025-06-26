@@ -1,3 +1,8 @@
+
+@use "lesli-css/sass/color";
+@use "lesli-css/sass/layout/scrollbar";
+
+
 section.lesli-panel {
     
     div.lesli-panel-background {
@@ -22,11 +27,11 @@ section.lesli-panel {
         height: 100%;
         overflow-y: scroll;
 
-        @include lesli-css-scrollbar(hide);
+        @include scrollbar.lesli-scrollbar(hide);
 
         .lesli-panel-header {
             padding: 1rem 1rem .6rem;
-            border-bottom: 1px solid lesli-css-color(slate);
+            border-bottom: 1px solid color.lesli-color(slate);
         }
     }
 }

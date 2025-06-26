@@ -32,7 +32,7 @@ Building a better future, one line of code at a time.
 
 
 // ·  
-//@import "../../scss/component";
+@use "lesli-css/sass/helpers/breakpoint";
 
 
 // · 
@@ -48,7 +48,7 @@ Building a better future, one line of code at a time.
 
 
 // ·  
-@include lesli-css-breakpoint-mobile {
+@include breakpoint.lesli-breakpoint-mobile {
     section.lesli-element-header {
         flex-direction: column;
 
@@ -59,7 +59,7 @@ Building a better future, one line of code at a time.
     }
 }
 
-@include lesli-css-breakpoint-small {
+@include breakpoint.lesli-breakpoint-small {
     section.lesli-element-header {
         .lesli-element-header-title,
         .lesli-element-header-items {

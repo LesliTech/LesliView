@@ -32,13 +32,13 @@ Building a better future, one line of code at a time.
 
 
 // ·  
-@use "lesli-css/sass/helpers/breakpoint";
+@use "lesli-css" as lesli;
 
 
 // · 
 table.lesli-table {
     display: table;
-    //box-shadow: $lesli-box-shadow;
+    @include lesli.lesli-shadow();
 
     // standard padding
     // normally used in tables for index views
@@ -133,7 +133,7 @@ table.lesli-table {
 }
 
 
-@include breakpoint.lesli-breakpoint-until-tablet {
+@include lesli.lesli-breakpoint-until-tablet {
     .lesli-table-container {
         overflow: auto;
         overflow-y: auto;

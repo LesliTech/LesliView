@@ -33,17 +33,8 @@ Building a better future, one line of code at a time.
 module LesliView
     module Charts
         class Line < General
-            def initialize(id: nil, title: nil, subtitle: nil, labels:nil, series:nil, serie: nil, height: "300px")
-                super(
-                    id: id, 
-                    title: title, 
-                    subtitle: subtitle, 
-                    labels: labels, 
-                    series: series, 
-                    serie: serie, 
-                    height: height,
-                    type: "line"
-                )
+            def type
+                "line"
             end
         end
     end

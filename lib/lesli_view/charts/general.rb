@@ -33,16 +33,38 @@ Building a better future, one line of code at a time.
 module LesliView
     module Charts
         class General < ViewComponent::Base
-            attr_reader :id, :title, :subtitle, :labels, :series, :height, :type
 
-            def initialize(id: nil, title: nil, subtitle: nil, labels:nil, series:nil, serie: nil, height: "300px", type:)
+            attr_reader(
+                :id, 
+                :title, 
+                :subtitle, 
+                :labels, 
+                :series, 
+                :height, 
+                :compact
+            )
+
+            def initialize(
+                id: nil, 
+                title: nil, 
+                subtitle: nil, 
+                labels:nil, 
+                series:nil, 
+                serie: nil, 
+                height: "300px", 
+                compact: false
+            )
                 @id = id || "lesli-chart-#{rand(100)}" 
                 @title = title
                 @subtitle = subtitle
-                @series = series || [{ data: serie }]
                 @labels = labels
+                @series = series || [{ name: title, data: serie }]
                 @height = height
-                @type = type
+                @compact = compact
+            end
+
+            def type
+                nil
             end
         end
     end

@@ -1,5 +1,4 @@
-
-<div align="center">
+<div align="center" class="documentation-header">
     <img width="100" alt="LesliView logo" src="./docs/images/view-logo.svg" />
     <h3 align="center">Web Elements & Components for The Lesli Framework.</h3>
 </div>
@@ -7,7 +6,7 @@
 <br />
 <hr/>
 
-<p align="center" class="is-flex is-justify-content-center">
+<div class="documentation-statics">
     <a target="blank" href="https://rubygems.org/gems/lesli">
         <img height="22" alt="Gem Version" src="https://badge.fury.io/rb/lesli.svg"/>
     </a>
@@ -17,10 +16,7 @@
     <a href="https://codecov.io/github/LesliTech/LesliBabel"> 
         <img height="22" src="https://sonarcloud.io/api/project_badges/measure?project=LesliTech_LesliBabel&metric=sqale_rating"/> 
     </a>
-</p>
-
-<hr/>
-<br />
+</div>
 
 ### Quick start
 
@@ -29,35 +25,30 @@
 bundle add lesli_view
 ```
 
-```erb
-<%# index.html.erb %>
-<%= render LesliView::Layout::Container.new("shield-sessions") do %>
-    <%= render LesliView::Element::Header.new(title: "Sessions", back: true) do %>
-        <%= render(LesliView::Element::Button.new(icon: "add", solid:true)) do %>
-            Add new
-        <% end %>
-        <%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
-            Reload
-        <% end %>
-    <% end %>
-    <%= render LesliView::Element::Toolbar.new() %>
-    <%= render(LesliView::Element::Table.new(
-        columns: columns,
-        records: @sessions[:records]
-    )) %>
-<% end %> 
-```
+### Usage 
 
 ```erb
-<%# single component %>
-<%= render(LesliView::Element::Button.new(icon: "refresh")) do %>
-    Reload
+# app/views/lesli_support/tickets/index.html.erb
+
+<%= render(LesliView::Layout::Container.new("support-tickets")) do %>
+
+    <%= render(LesliView::Components::Header.new("Tickets")) %>
+    <%= render(LesliView::Components::Toolbar.new()) %>
+
+    <%= render(LesliView::Elements::Table.new(
+        :columns => columns,
+        :records => @tickets.dig(:records),
+        link: -> (ticket) { ticket_path(ticket.id) }
+    )) %>
 <% end %>
 ```
 
 ### Documentation
+- **Components:**
+    - [Header](https://www.lesli.dev/gems/view/component-header)
+
+### Lesli Documentation
 * [website](https://www.lesli.dev/)
-* [database](./docs/database.md)
 * [documentation](https://www.lesli.dev/gems/view/)
 
 

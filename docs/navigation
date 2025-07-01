@@ -1,0 +1,3 @@
+<%= navigation_for("gems", "view", "about") %>
+<%= navigation_for("gems", "view", "charts") %>
+<%= navigation_for("gems", "view", "components") %>

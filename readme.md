@@ -6,7 +6,7 @@
 <br />
 <hr/>
 
-<div class="documentation-statics">
+<div align="center" class="documentation-statics">
     <a target="blank" href="https://rubygems.org/gems/lesli">
         <img height="22" alt="Gem Version" src="https://badge.fury.io/rb/lesli.svg"/>
     </a>
@@ -18,12 +18,17 @@
     </a>
 </div>
 
+<hr/>
+<br />
+
+
 ### Quick start
 
 ```shell
 # Add LesliAdmin engine gem
 bundle add lesli_view
 ```
+
 
 ### Usage 
 
@@ -43,9 +48,11 @@ bundle add lesli_view
 <% end %>
 ```
 
+
 ### Documentation
 - **Components:**
     - [Header](https://www.lesli.dev/gems/view/component-header)
+
 
 ### Lesli Documentation
 * [website](https://www.lesli.dev/)
@@ -79,8 +86,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 <hr />
 <br />
 
-<p align="center">
+<div align="center" class="has-text-centered">
     <img width="200" alt="Lesli logo" src="https://cdn.lesli.tech/lesli/brand/app-logo.svg" />
-    <h4 align="center">Ruby on Rails SaaS Development Framework.</h4>
-</p>
-
+    <h4 align="center" class="mt-0">Ruby on Rails SaaS Development Framework.</h4>
+</div>

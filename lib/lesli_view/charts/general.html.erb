@@ -4,7 +4,7 @@ document.addEventListener("turbo:load", () => {
     const chartElement = document.getElementById(chartId);
 
     if (!chartElement) {
-        console.warn("Chart element not found:", chartId);
+        ///console.warn("Chart element not found:", chartId);
         return;
     }
 
@@ -42,7 +42,7 @@ document.addEventListener("turbo:load", () => {
                 },
             }
         },
-        dataLabels: { enabled: true, offsetY: 20 },
+        dataLabels: { enabled: true },
         stroke: {
             show: true,
             curve: "smooth",
@@ -72,7 +72,10 @@ document.addEventListener("turbo:load", () => {
                 const label = w.globals.labels[dataPointIndex]; 
                 return `${label}: ${value}`;
             }
+        <% elsif type="line" %>
+            options.grid.padding = { top: 14, right: 0, bottom: 6, left: 0 }
         <% end %>
+
     <% end %>
 
     const chart = new ApexCharts(chartElement, options);

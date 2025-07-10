@@ -13,6 +13,11 @@
         <% end %>
     </div>
     <div class="lesli-element-header-items is-flex is-flex-grow-1 is-justify-content-end">
+        <% if new_path %>
+            <%= render ::LesliView::Elements::Button.new(
+                "Nuevo", url:new_path, icon:"add", solid:true
+            ) %>
+        <% end %>
         <%= content %>
     </div>
 </section>

@@ -35,11 +35,12 @@ Building a better future, one line of code at a time.
 module LesliView
     module Components
         class Header < ViewComponent::Base
-            attr_reader :title, :back
+            attr_reader :title, :back, :new_path
 
-            def initialize(title, back: nil)
+            def initialize(title, new_path:nil, back:nil)
                 @title = title
                 @back = back
+                @new_path = new_path
             end
         end
     end

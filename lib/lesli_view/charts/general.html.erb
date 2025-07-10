@@ -72,7 +72,7 @@ document.addEventListener("turbo:load", () => {
                 const label = w.globals.labels[dataPointIndex]; 
                 return `${label}: ${value}`;
             }
-        <% elsif type="line" %>
+        <% elsif type == "line" %>
             options.grid.padding = { top: 14, right: 0, bottom: 6, left: 0 }
         <% end %>
 

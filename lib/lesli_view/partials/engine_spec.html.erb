@@ -1,0 +1,53 @@
+
+<style>
+    #about li:nth-child(1) {
+        border-bottom: 1px solid silver;
+    }
+    #about li:nth-child(2),
+    #about li:nth-child(3),
+    #about li:nth-child(4) {
+        font-size: 1.1rem;
+        margin-left: .4rem;
+    }
+</style>
+<div class="partial-engine-spec">
+    <ul>
+        <li class="mb-3 pb-2">
+            <h5 class="is-title is-size-5 has-text-weight-semibold"><%= engine[:name] %></h5>
+            <p class="is-size-5"><%= engine[:description] %></p>
+        </li>
+        <li class="mb-2">
+            <span class="icon-text">
+                <span class="material-icons md-24">
+                    bug_report
+                </span>
+                <span></span>
+            </span>
+            Version: <%= engine[:version] %>
+        </li>
+        <li class="mb-2">
+            <span class="icon-text">
+                <span class="material-icons md-24">
+                    schedule
+                </span>
+                <span></span>
+            </span>
+            Build: <%= LesliDate::Formatter.new(Time.at(engine[:build].to_i)).date_time %>
+        </li>
+        <li>
+            <span class="icon-text">
+                <span class="material-icons md-24">
+                    library_books
+                </span>
+                <span></span>
+            </span>
+            <%= link_to_if(
+                engine.dig(:metadata, "documentation_uri"),
+                engine.dig(:metadata, "documentation_uri"), 
+                engine.dig(:metadata, "documentation_uri"), 
+                target: "_blank",
+                class: "is-family-sans-serif"
+            ) %>
+        </li>
+    </ul>
+</div>

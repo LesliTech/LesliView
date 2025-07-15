@@ -16,10 +16,11 @@ module LesliView
         class Tabs < ViewComponent::Base
             renders_many :tabs, "TabComponent"
 
-            attr_reader :active_tab
+            attr_reader :active_tab, :vertical
 
-            def initialize(active_tab: nil)
+            def initialize(active_tab: nil, vertical: false)
                 @active_tab = active_tab
+                @vertical = vertical
             end
 
             class TabComponent < ViewComponent::Base

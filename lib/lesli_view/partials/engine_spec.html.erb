@@ -1,21 +1,19 @@
 
 <style>
-    #about li:nth-child(1) {
+    .partial-engine-spec div {
         border-bottom: 1px solid silver;
     }
-    #about li:nth-child(2),
-    #about li:nth-child(3),
-    #about li:nth-child(4) {
+    .partial-engine-spec li {
         font-size: 1.1rem;
         margin-left: .4rem;
     }
 </style>
 <div class="partial-engine-spec">
+    <div class="mb-3 pb-2">
+        <h5 class="is-title is-size-5 has-text-weight-semibold"><%= engine[:name] %></h5>
+        <p class="is-size-5"><%= engine[:description] %></p>
+    </div>
     <ul>
-        <li class="mb-3 pb-2">
-            <h5 class="is-title is-size-5 has-text-weight-semibold"><%= engine[:name] %></h5>
-            <p class="is-size-5"><%= engine[:description] %></p>
-        </li>
         <li class="mb-2">
             <span class="icon-text">
                 <span class="material-icons md-24">

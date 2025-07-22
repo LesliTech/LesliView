@@ -136,7 +136,7 @@ module LesliView
 
                 @template.content_tag(:span, class: "icon is-small is-#{position}") do
                     #@template.content_tag(:i, '', class: icon_class)
-                    @template.content_tag(:span, icon_class, class: "material-icons")
+                    @template.content_tag(:span, icon_class, class: "material-symbols-outlined")
                 end
             end          
         end

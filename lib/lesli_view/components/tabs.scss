@@ -28,11 +28,11 @@
                 justify-content: flex-start;
                 padding: 0.75em 1em;
                 border-bottom: none;
-                border-right: 3px solid transparent;
+                border-right: 2px solid transparent;
             }
 
             &.is-active a {
-                border-right-color: #00d1b2;
+                border-right-color: var(--color-primary);
                 border-bottom-color: transparent;
             }
         }
@@ -41,5 +41,9 @@
             flex-grow: 1;
             padding: 1rem;
         }
+    }
+
+    .tab-items {
+        flex: 1;
     }
 }

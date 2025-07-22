@@ -78,7 +78,7 @@ module LesliView
                     html = "".html_safe
                     if icon.present?
                         html << @template.content_tag(:span, class: "icon") do
-                            @template.content_tag(:span, icon, class: "material-icons")
+                            @template.content_tag(:span, icon, class: "material-symbols")
                         end
                     end
                     html << @template.content_tag(:span, value) if value.present?

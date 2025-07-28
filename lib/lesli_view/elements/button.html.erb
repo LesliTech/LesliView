@@ -17,8 +17,10 @@
         <span class="icon <%= 'is-small' if small %>">
             <span class="material-symbols"><%= icon %></span>
         </span>
-    <% end %>
-    <% unless icon_only? %>
-        <span><%= label %></span>
+        <% unless icon_only? %>
+            <span><%= label %></span>
+        <% end %>
+    <% else %>
+        <%= label %>
     <% end %>
 <% end %>

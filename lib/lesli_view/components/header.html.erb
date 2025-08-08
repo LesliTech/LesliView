@@ -1,5 +1,5 @@
 <section class="lesli-element-header is-flex">
-    <div class="lesli-element-header-title is-flex is-align-items-center">
+    <div class="lesli-element-header-title">
         <% if back %>
             <%= link_to(
                 back || request.referer || root_path, 
@@ -9,8 +9,9 @@
             <% end %>
         <% end %>
         <% if title.present? %>
-            <h1 class="subtitle is-size-3"><%= title %></h1>
+            <h1 class="subtitle is-size-3 mb-1"><%= title %></h1>
         <% end %>
+        <p><%= subtitle %>&nbsp;</p>
     </div>
     <div class="lesli-element-header-items is-flex is-flex-grow-1 is-justify-content-end">
         <% if new_path %>

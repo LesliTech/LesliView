@@ -1,0 +1,9 @@
+<div class="lesli-items-discussions-comments-comment is-flex mb-6">
+    <div class="has-text-right">
+        <strong>Luis Donis</strong> <br>
+        <%= discussion['created_at_string'] || Date2.new.date_time %>
+    </div>
+    <div class="ml-4 is-fullwidth">
+        <%== discussion.message %>
+    </div>
+</div>

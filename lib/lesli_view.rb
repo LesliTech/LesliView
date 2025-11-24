@@ -37,6 +37,11 @@ require "lesli_view/forms/builder"
 require "lesli_view/forms/builder_horizontal"
 
 
+# items
+require "lesli_view/items/discussion"
+require "lesli_view/items/discussions"
+
+
 # loading layout
 require "lesli_view/layout/container"
 
@@ -44,6 +49,9 @@ require "lesli_view/layout/container"
 # loading partials
 require "lesli_view/partials/engine_spec"
 
+
+# widgets
+require "lesli_view/widgets/count"
 
 module LesliView
     class Error < StandardError; end

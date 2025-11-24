@@ -1,0 +1,56 @@
+<%#
+
+Lesli
+
+Copyright (c) 2025, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
+<article class="lesli-items-discussions" id="lesli-items-discussions">
+    <div class="lesli-items-discussions-form">
+        <%= form_with(
+            url: @path, 
+            model: @resource.discussions.new, 
+            builder: LesliView::Forms::Builder) do |form| %>
+            <%= form.field_text_editor(:message) %>
+            <%= form.field_control_submit("Add comment") %>
+        <% end %>
+    </div>
+    <div class="lesli-items-discussions-comments" id="lesli-comments">
+        <% @resource.discussions.each do |comment| %>
+            <div class="lesli-items-discussions-comments-comment is-flex mb-6">
+                <div class="has-text-right">
+                    <strong>Luis Donis</strong> <br>
+                    <%= comment['created_at_string'] || Date2.new.date_time %>
+                </div>
+                <div class="ml-4 is-fullwidth">
+                    <%== comment.message %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</article>
+

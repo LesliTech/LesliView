@@ -1,0 +1,28 @@
+<style>
+.lesli-view-widgets-chart {
+}
+</style>
+
+<%
+    # Determine the chart component class dynamically
+    chart_component = case type
+    when :bar
+        LesliView::Charts::Bar
+    when :line
+        LesliView::Charts::Line
+    else
+        nil # Handle unknown types gracefully
+    end
+%>
+
+<div class="lesli-view-widgets-chart">
+    <% if chart_component %>
+        <%= render(chart_component.new(
+            title: title,
+            labels: data.map{ |i| i[0] },
+            serie: data.map{ |i| i[1] },
+            height: '132px',
+            compact: true
+        )) %>
+    <% end %>
+</div>

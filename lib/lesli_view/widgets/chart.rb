@@ -32,12 +32,13 @@ Building a better future, one line of code at a time.
 
 module LesliView
     module Widgets
-        class Count < ViewComponent::Base
-            attr_reader :title, :number
+        class Chart < ViewComponent::Base
+            attr_reader :title, :data, :type
 
-            def initialize(title=nil, number=nil)
+            def initialize(title=nil, data=nil, type: :bar)
                 @title = title
-                @number = number
+                @data = data
+                @type = type
             end
         end
     end

@@ -52,6 +52,7 @@ require "lesli_view/partials/engine_spec"
 
 # widgets
 require "lesli_view/widgets/count"
+require "lesli_view/widgets/chart"
 
 module LesliView
     class Error < StandardError; end

@@ -1,16 +1,18 @@
 <section class="lesli-element-header is-flex">
     <div class="lesli-element-header-title">
-        <% if back %>
-            <%= link_to(
-                back || request.referer || root_path, 
-                class: "button is-info is-outlined mr-4",
-                data: { turbo_frame: '_top' }) do %>
-                <span class="material-symbols">arrow_back</span>
+        <div class="is-flex">
+            <% if back %>
+                <%= link_to(
+                    back || request.referer || root_path, 
+                    class: "button is-info is-outlined mr-4 mb-1",
+                    data: { turbo_frame: '_top' }) do %>
+                    <span class="material-symbols">arrow_back</span>
+                <% end %>
             <% end %>
-        <% end %>
-        <% if title.present? %>
-            <h1 class="subtitle is-size-3 mb-1"><%= title %></h1>
-        <% end %>
+            <% if title.present? %>
+                <h1 class="subtitle is-size-3 mb-1"><%= title %></h1>
+            <% end %>
+        </div>
         <p><%= subtitle %>&nbsp;</p>
     </div>
     <div class="lesli-element-header-items is-flex is-flex-grow-1 is-justify-content-end">

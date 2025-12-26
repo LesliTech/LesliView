@@ -51,6 +51,7 @@ require "lesli_view/partials/engine_spec"
 
 
 # widgets
+require "lesli_view/widgets/date"
 require "lesli_view/widgets/count"
 require "lesli_view/widgets/chart"
 

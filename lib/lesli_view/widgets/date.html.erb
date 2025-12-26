@@ -1,0 +1,16 @@
+<style>
+.lesli-view-widgets-date p.date {
+    font-weight: 200;
+    font-size: 5rem;
+}
+</style>
+<div class="lesli-view-widgets-date">
+    <div class="box has-text-centered">
+        <p class="date">
+            <%= @date.day %>
+        </h6>
+        <p class="month">
+            <%= @date.strftime("%B") %>
+        </p>
+    </div>
+</div>

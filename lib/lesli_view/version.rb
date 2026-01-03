@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module LesliView
-    VERSION = "1.0.5"
-    BUILD = "1754919086"
+    VERSION = "1.0.6"
+    BUILD = "1767477530"
 end

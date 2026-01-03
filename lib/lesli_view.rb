@@ -54,6 +54,7 @@ require "lesli_view/partials/engine_spec"
 require "lesli_view/widgets/date"
 require "lesli_view/widgets/count"
 require "lesli_view/widgets/chart"
+require "lesli_view/widgets/weather"
 
 module LesliView
     class Error < StandardError; end

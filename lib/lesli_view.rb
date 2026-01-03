@@ -55,6 +55,7 @@ require "lesli_view/widgets/date"
 require "lesli_view/widgets/count"
 require "lesli_view/widgets/chart"
 require "lesli_view/widgets/weather"
+require "lesli_view/widgets/calendar"
 
 module LesliView
     class Error < StandardError; end

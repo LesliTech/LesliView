@@ -35,7 +35,7 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Button < ViewComponent::Base
-            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :type, :dispatch
+            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :type, :dispatch, :method, :params
 
             # Adds two numbers together.
             # @param [Integer] a The first number.
@@ -53,7 +53,9 @@ module LesliView
                 danger: false, 
                 small: false,
                 type: "button",
-                dispatch:nil
+                dispatch:nil,
+                method: nil,
+                params:nil
             )
                 @label = label
                 @url = url
@@ -67,9 +69,26 @@ module LesliView
                 @small = small
                 @type = type
                 @dispatch = dispatch
+                @method = method
+                @params = params
             end
 
-            def button_classes
+            def mode
+                return :button_to if @method.present?
+                return :link if @url.present?
+                :button
+            end
+
+            def alpine_attributes
+                return {} unless @dispatch
+
+                {
+                "x-data": "",
+                "@click": "$dispatch('#{@dispatch}')"
+                }
+            end
+
+            def html_classes
                 classes = ["button", button_variant]
                 classes << "is-light" << "is-outlined" unless solid
                 classes << "is-loading" if loading
@@ -87,6 +106,20 @@ module LesliView
 
             def icon_only?
                 icon && !label
+            end
+
+            def button_content
+                if @icon
+                    safe_join([
+                        content_tag(:span,
+                            content_tag(:span, @icon, class: "material-symbols"),
+                            class: "icon #{'is-small' if @small}"
+                        ),
+                        (@icon_only ? nil : content_tag(:span, @label))
+                    ].compact)
+                else
+                    @label
+                end
             end
         end  
     end

@@ -13,7 +13,9 @@
                 <h1 class="subtitle is-size-3 mb-1"><%= title %></h1>
             <% end %>
         </div>
-        <p><%= subtitle %>&nbsp;</p>
+        <% if subtitle.present? %>
+            <p><%= subtitle %></p>
+        <% end %>
     </div>
     <div class="lesli-element-header-items is-flex is-flex-grow-1 is-justify-content-end">
         <% if new_path %>

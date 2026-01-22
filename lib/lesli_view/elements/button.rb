@@ -35,7 +35,7 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Button < ViewComponent::Base
-            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :type, :dispatch, :method, :params
+            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :dispatch, :method, :params, :css_class
 
             # Adds two numbers together.
             # @param [Integer] a The first number.
@@ -52,10 +52,10 @@ module LesliView
                 warning: false, 
                 danger: false, 
                 small: false,
-                type: "button",
                 dispatch:nil,
                 method: nil,
-                params:nil
+                params:nil,
+                css_class:nil
             )
                 @label = label
                 @url = url
@@ -67,10 +67,10 @@ module LesliView
                 @warning = warning
                 @danger = danger
                 @small = small
-                @type = type
                 @dispatch = dispatch
                 @method = method
                 @params = params
+                @css_class = css_class
             end
 
             def mode
@@ -93,6 +93,7 @@ module LesliView
                 classes << "is-light" << "is-outlined" unless solid
                 classes << "is-loading" if loading
                 classes << "is-small" if small
+                classes << css_class 
                 classes.join(" ")
             end
 

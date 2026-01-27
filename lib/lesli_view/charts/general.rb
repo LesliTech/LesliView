@@ -45,26 +45,81 @@ module LesliView
             )
 
             def initialize(
-                id: nil, 
-                title: nil, 
-                subtitle: nil, 
+                id:nil, 
+                title:nil, 
+                subtitle:nil, 
+                database:nil,
                 labels:nil, 
                 series:nil, 
-                serie: nil, 
-                height: "300px", 
-                compact: false
+                serie:nil, 
+                height:"400px",
+                compact:false
             )
-                @id = id || "lesli-chart-#{rand(100)}" 
+                @id = id || "lesli-chart-#{rand(1000)}" 
                 @title = title
                 @subtitle = subtitle
                 @labels = labels
-                @series = series || [{ name: title, data: serie }]
+                @series = series
                 @height = height
                 @compact = compact
+
+                @series = [{ name: title, data: serie }] if serie
+                @labels, @series = database_to_series(database) unless @series
             end
 
             def type
                 nil
+            end
+
+            # Transforms a database query result into a structure compatible with Chart.js
+            #
+            # Expected input:
+            #   An enumerable of records responding to:
+            #     - :name  → series name (ex: browser, category, status)
+            #     - :label → x-axis value (ex: date, category label)
+            #     - :data  → y-axis value (numeric)
+            #
+            #   Example: 
+            #       browsers = current_user.account.audit.account_devices
+            #       .group(:agent_browser, :created_at)
+            #       .select(
+            #           'created_at as label',
+            #           'agent_browser as name',
+            #           'sum(agent_count) as data'
+            #       )
+            #
+            def database_to_series(data)
+
+                # Placeholder for x-axis labels.
+                # Chart.js can infer labels from `{ x, y }` points,
+                # but this is kept for future compatibility and flexibility.
+                labels = []
+
+                # Group records by series name
+                # Example: group all "Chrome" rows together
+                series = data
+                .group_by { |r| r[:name] }
+                .map do |name, records|
+
+                    # Build a Chart.js-compatible series
+                    {
+                        # Series name (used in legend and tooltips)
+                        name: name,
+
+                        # Convert each database row into an (x, y) point
+                        data: records.map do |record|
+                            {
+                                # X-axis value (date, category, etc.)
+                                x: record[:label],
+
+                                # Y-axis value (must be numeric)
+                                y: record[:data]
+                            }
+                        end
+                    }
+                end
+
+                [labels, series]
             end
         end
     end

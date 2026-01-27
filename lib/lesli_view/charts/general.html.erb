@@ -1,85 +1,43 @@
+<%#
+
+Lesli
+
+Copyright (c) 2026, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
 <script>
 document.addEventListener("turbo:load", () => {
-    const chartId = "<%= id %>";
-    const chartElement = document.getElementById(chartId);
-
-    if (!chartElement) {
-        ///console.warn("Chart element not found:", chartId);
-        return;
-    }
-
-    // Clear previous chart instance (important for Turbo re-renders)
-    chartElement.innerHTML = "";
-
-    var options = {
+    new LesliChart({
+        id: "<%= id %>",
+        type: "<%= type %>",
         series: <%= raw(series.to_json) %>,
         labels: <%= raw(labels.to_json) %>,
-        grid: {
-            show: false,
-            padding: { top: 0, right: 0, bottom: 0, left: 0 }
-        },
-        chart: {
-            type: "<%= type %>",
-            height: "<%= height %>",
-            toolbar: { show: false },
-            events: {
-                markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
-                    emit("markerClick", { seriesIndex, dataPointIndex });
-                }
-            }
-        },
-        legend: {
-            show: true,
-            position: "top",
-            horizontalAlign: "center"
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 6,
-                borderRadiusApplication: 'end',
-                dataLabels: {
-                    position: 'top', // top, center, bottom
-                },
-            }
-        },
-        dataLabels: { enabled: true },
-        stroke: {
-            show: true,
-            curve: "smooth",
-            lineCap: "round"
-        },
-        xaxis: {
-            categories: <%= raw(labels.to_json) %>,
-            tickPlacement: "between",
-            labels: {
-                show: true,
-                rotate: -65,
-                rotateAlways: false,
-                trim: false,
-                offsetY: 5,
-                style: { fontSize: "15px" }
-            }
-        },
-        yaxis: { show: true }
-    };
-
-    // Overrides for compact view
-    <% if compact %>
-        options.chart.sparkline = { enabled: true };
-
-        <% if type == "bar" %>
-            options.dataLabels.formatter= function (value, { seriesIndex, dataPointIndex, w }) {
-                const label = w.globals.labels[dataPointIndex]; 
-                return `${label}: ${value}`;
-            }
-        <% elsif type == "line" %>
-            options.grid.padding = { top: 14, right: 0, bottom: 6, left: 0 }
-        <% end %>
-
-    <% end %>
-
-    const chart = new ApexCharts(chartElement, options);
-    chart.render()
+        compact: <%= compact ? "true" : "false" %>
+    });
 });
 </script>
 
@@ -93,5 +51,5 @@ document.addEventListener("turbo:load", () => {
         <p class="ml-2"><b><%= subtitle %></b></p>
     <% end %>
 
-    <div id="<%= id %>"></div>
+    <div id="<%= id %>" style="min-height:<%= height %>"></div>
 </div>

@@ -39,7 +39,7 @@ module LesliView
                 :title, 
                 :subtitle, 
                 :labels, 
-                :series, 
+                :datasets, 
                 :height, 
                 :compact
             )
@@ -48,10 +48,11 @@ module LesliView
                 id:nil, 
                 title:nil, 
                 subtitle:nil, 
-                database:nil,
                 labels:nil, 
-                series:nil, 
-                serie:nil, 
+                dataset:nil,
+                datasets:nil, 
+                database_to_dataset:nil,
+                database_to_datasets:nil,
                 height:"400px",
                 compact:false
             )
@@ -59,16 +60,21 @@ module LesliView
                 @title = title
                 @subtitle = subtitle
                 @labels = labels
-                @series = series
+                @datasets = datasets
                 @height = height
                 @compact = compact
 
-                @series = [{ name: title, data: serie }] if serie
-                @labels, @series = database_to_series(database) unless @series
+                @datasets = [{ name: title, data: dataset }] if dataset
+                @datasets = database_to_dataset(database_to_dataset) if database_to_dataset
+                @datasets = database_to_datasets(database_to_datasets) if database_to_datasets
             end
 
             def type
                 nil
+            end
+
+            def database_to_dataset(data)
+                [{ data: data.map { |d| { x: d['xaxiskey'], y: d['yaxiskey'] }}}]
             end
 
             # Transforms a database query result into a structure compatible with Chart.js
@@ -88,38 +94,29 @@ module LesliView
             #           'sum(agent_count) as data'
             #       )
             #
-            def database_to_series(data)
-
-                # Placeholder for x-axis labels.
-                # Chart.js can infer labels from `{ x, y }` points,
-                # but this is kept for future compatibility and flexibility.
-                labels = []
+            def database_to_datasets(data)
 
                 # Group records by series name
                 # Example: group all "Chrome" rows together
-                series = data
-                .group_by { |r| r[:name] }
+                data
+                .group_by { |records| records['dataname'] }
                 .map do |name, records|
-
-                    # Build a Chart.js-compatible series
                     {
                         # Series name (used in legend and tooltips)
-                        name: name,
+                        label: name,
 
                         # Convert each database row into an (x, y) point
                         data: records.map do |record|
                             {
                                 # X-axis value (date, category, etc.)
-                                x: record[:label],
+                                x: record['xaxiskey'],
 
                                 # Y-axis value (must be numeric)
-                                y: record[:data]
+                                y: record['yaxiskey']
                             }
                         end
                     }
                 end
-
-                [labels, series]
             end
         end
     end

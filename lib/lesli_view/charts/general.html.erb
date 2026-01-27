@@ -34,14 +34,14 @@ document.addEventListener("turbo:load", () => {
     new LesliChart({
         id: "<%= id %>",
         type: "<%= type %>",
-        series: <%= raw(series.to_json) %>,
+        datasets: <%= raw(datasets.to_json) %>,
         labels: <%= raw(labels.to_json) %>,
         compact: <%= compact ? "true" : "false" %>
     });
 });
 </script>
 
-<div class="lesli-charts lesli-charts-<%= type %> section box mb-0 p-0 pt-1">
+<div class="lesli-charts lesli-charts-<%= type %> section box m-0 p-2">
 
     <% if title.present? %>
         <%= tag.h3(title, class: (compact ? "is-size-7 has-text-centered" : "ml-2")) %>

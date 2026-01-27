@@ -20,7 +20,7 @@
         <%= render(chart_component.new(
             title: title,
             labels: data.map{ |i| i[0] },
-            serie: data.map{ |i| i[1] },
+            dataset: data.map{ |i| i[1] },
             height: '132px',
             compact: true
         )) %>

@@ -35,7 +35,7 @@ Building a better future, one line of code at a time.
             url: @path, 
             model: @resource.discussions.new, 
             builder: LesliView::Forms::Builder) do |form| %>
-            <%= form.field_text_editor(:message) %>
+            <%= form.text_editor_lexxy(:message) %>
             <%= form.field_control_submit("Add comment") %>
         <% end %>
     </div>

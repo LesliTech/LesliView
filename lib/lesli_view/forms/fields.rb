@@ -39,23 +39,10 @@ module LesliView
                 )
             end
 
-            def field_text_editor(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
+            def field_textarea(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
 
                 label_html = label(attribute, label)
-                control_html = text_editor(attribute)
-
-                field_control_builder(
-                    label_html: label_html,
-                    control_html: control_html,
-                    horizontal: horizontal,
-                    icon:icon
-                )
-            end
-
-            def field_text_editor_lexxy(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
-
-                label_html = label(attribute, label)
-                control_html = text_editor_lexxy(attribute)
+                control_html = rich_textarea(attribute)
 
                 field_control_builder(
                     label_html: label_html,

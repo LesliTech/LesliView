@@ -24,12 +24,6 @@ module LesliView
                 @template.content_tag("trix-editor", "", toolbar: editor_id, input: input_id)
             end
 
-            def text_editor_lexxy(method, options = {})
-                field_name = "#{object_name}[#{method}]"
-                field_id   = "#{object_name}_#{method}"
-
-                @template.content_tag("lexxy-editor", "", name: field_name, id: field_id)
-            end
 
             def email_field(method, options = {})
                 value = @object.send(method)

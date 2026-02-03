@@ -5,15 +5,15 @@
             <% @activities.each do |activity| %>
                 <li class="lesli-timeline-item">
                     <div class="lesli-timeline-info">
-                        <span><%= activity[:date] %></span>
+                        <span><%= activity['date'] %></span>
                     </div>
                     <div class="lesli-timeline-marker"></div>
                     <div class="lesli-timeline-content">
                         <h3 class="lesli-timeline-title">
-                            <%= activity[:title] %>
+                            <%= activity['operation'] %>
                         </h3>
                         <p>
-                            <%= activity[:description] %>
+                            <%= activity['description'] %>
                         </p>
                     </div>
                 </li>

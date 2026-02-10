@@ -39,19 +39,6 @@ module LesliView
                 )
             end
 
-            def field_textarea(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
-
-                label_html = label(attribute, label)
-                control_html = rich_textarea(attribute)
-
-                field_control_builder(
-                    label_html: label_html,
-                    control_html: control_html,
-                    horizontal: horizontal,
-                    icon:icon
-                )
-            end
-
             def field_control_select(attribute, choices, label: nil, message:nil, category:nil, icon:nil, horizontal: false, humanize:true)
                 choices = choices.map { |k, v| [k.humanize.capitalize, v] } if humanize
                 value = @object.send(attribute)
@@ -62,6 +49,19 @@ module LesliView
                     label_html: label_html,
                     control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
                     horizontal: horizontal
+                )
+            end
+
+            def field_control_textarea(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
+
+                label_html = label == false ? '' : label(attribute, label)
+                control_html = rich_textarea(attribute)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: control_html,
+                    horizontal: horizontal,
+                    icon:icon
                 )
             end
 

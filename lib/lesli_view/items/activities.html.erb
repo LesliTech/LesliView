@@ -29,28 +29,10 @@ Building a better future, one line of code at a time.
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
 %>
-<article class="lesli-items-discussions" id="lesli-items-discussions">
-    <div class="lesli-items-discussions-form">
-        <%= form_with(
-            url: @path, 
-            model: @resource.discussions.new, 
-            builder: LesliView::Forms::Builder) do |form| %>
-            <%= form.field_control_textarea(:message) %>
-            <%= form.field_control_submit("Add comment") %>
-        <% end %>
-    </div>
-    <div class="lesli-items-discussions-comments" id="lesli-comments">
-        <% @resource.discussions.each do |comment| %>
-            <div class="lesli-items-discussions-comments-comment is-flex mb-6">
-                <div class="has-text-right">
-                    <strong>Luis Donis</strong> <br>
-                    <%= comment['created_at_string'] || Date2.new.date_time %>
-                </div>
-                <div class="ml-4 is-fullwidth lexxy-content">
-                    <%== comment.message %>
-                </div>
-            </div>
-        <% end %>
-    </div>
+
+
+
+<article class="lesli-items-activities" id="lesli-items-activities">
+    <%= render(LesliView::Components::Timeline.new(activities:@activities)) %>
 </article>
 

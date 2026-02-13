@@ -38,6 +38,7 @@ require "lesli_view/forms/builder_horizontal"
 
 
 # items
+require "lesli_view/items/activities"
 require "lesli_view/items/discussion"
 require "lesli_view/items/discussions"
 

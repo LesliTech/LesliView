@@ -1,17 +1,20 @@
-
 <div class="lesli-timelines">
-    <div class="py-6 pl-4">
+    <div class="py-6 pl-6">
         <ul class="lesli-timeline lesli-timeline-split">
             <% @activities.each do |activity| %>
                 <li class="lesli-timeline-item">
                     <div class="lesli-timeline-info">
                         <span><%= activity['date'] %></span>
                     </div>
-                    <div class="lesli-timeline-marker"></div>
+                    <div class="lesli-timeline-marker">
+                        <span class="material-symbols-outlined">
+                            <%= activity.dig('metadata','icon') || 'radio_button_checked' %>
+                        </span>
+                    </div>
                     <div class="lesli-timeline-content">
-                        <h3 class="lesli-timeline-title">
+                        <h6 class="lesli-timeline-title">
                             <%= activity['operation'] %>
-                        </h3>
+                        </h6>
                         <p>
                             <%= activity['description'] %>
                         </p>

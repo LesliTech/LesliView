@@ -2,78 +2,76 @@
 .lesli-timelines {
 
     .lesli-timeline {
-    line-height: 1.4em;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    }
-    .lesli-timeline h1,
-    .lesli-timeline h2,
-    .lesli-timeline h3,
-    .lesli-timeline h4,
-    .lesli-timeline h5,
-    .lesli-timeline h6 {
-    line-height: inherit;
+        line-height: 1.4em;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
     }
 
     /*----- TIMELINE ITEM -----*/
     .lesli-timeline-item {
-    padding-left: 40px;
-    position: relative;
+        padding-left: 40px;
+        position: relative;
     }
     .lesli-timeline-item:last-child {
-    padding-bottom: 0;
+        padding-bottom: 0;
     }
 
     /*----- TIMELINE INFO -----*/
     .lesli-timeline-info {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin: 0 0 0.5em 0;
-    text-transform: uppercase;
-    white-space: nowrap;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin: 0 0 0.5em 0;
+        text-transform: uppercase;
+        white-space: nowrap;
     }
 
     /*----- TIMELINE MARKER -----*/
     .lesli-timeline-marker {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 15px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 15px;
     }
-    .lesli-timeline-marker:before {
-    background: #ff6b6b;
-    border: 3px solid transparent;
-    border-radius: 100%;
-    content: "";
-    display: block;
-    height: 15px;
-    position: absolute;
-    top: 4px;
-    left: 0;
-    width: 15px;
-    transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+
+    .lesli-timeline-marker:before2 {
+        background: #ff6b6b;
+        border: 3px solid transparent;
+        border-radius: 100%;
+        content: "";
+        display: block;
+        height: 15px;
+        position: absolute;
+        top: 4px;
+        left: 0;
+        width: 15px;
+        transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
     }
+
     .lesli-timeline-marker:after {
-    content: "";
-    width: 3px;
-    background: #ccd5db;
-    display: block;
-    position: absolute;
-    top: 24px;
-    bottom: 0;
-    left: 6px;
+        content: "";
+        width: 2px;
+        background: #ccd5db;
+        display: block;
+        position: absolute;
+        top: 24px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
+
     .lesli-timeline-item:last-child .lesli-timeline-marker:after {
-    content: none;
+        content: none;
     }
 
     .lesli-timeline-item:not(.period):hover .lesli-timeline-marker:before {
-    background: transparent;
-    border: 3px solid #ff6b6b;
+        background: transparent;
+        border: 3px solid #ff6b6b;
     }
 
     /*----- TIMELINE CONTENT -----*/

@@ -35,9 +35,10 @@ Building a better future, one line of code at a time.
 module LesliView
     module Components
         class Timeline < ViewComponent::Base
-            attr_reader :activities
+            attr_reader :activities, :icons
 
-            def initialize(activities: nil)
+            def initialize(activities: nil, icons:{})
+                @icons=icons
                 @activities = activities
             end
         end  

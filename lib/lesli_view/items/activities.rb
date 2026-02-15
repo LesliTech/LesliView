@@ -32,14 +32,15 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Activities < ViewComponent::Base
-            attr_reader :activities
+            attr_reader :activities, :icons
 
-            def initialize(resource)
+            def initialize(resource, icons:{})
+                @icons=icons
                 @activities = resource.activities
                 .select(
                     :id, 
                     "description as operation", 
-                    "metadata",
+                    "activity_code as icon",
                     Date2.new.db_column('created_at', as:'date')
                 ).order(id: :desc).as_json
             end

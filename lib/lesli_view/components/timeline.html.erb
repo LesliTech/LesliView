@@ -8,7 +8,7 @@
                     </div>
                     <div class="lesli-timeline-marker">
                         <span class="material-symbols-outlined">
-                            <%= activity.dig('metadata','icon') || 'radio_button_checked' %>
+                            <%= @icons.dig(activity['icon']&.to_sym) || 'radio_button_checked' %>
                         </span>
                     </div>
                     <div class="lesli-timeline-content">

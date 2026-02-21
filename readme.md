@@ -33,45 +33,31 @@ bundle add lesli_view
 ```
 
 
-### Usage 
+<br />
+<hr/>
+<br />
 
-```erb
-# app/views/lesli_support/tickets/index.html.erb
+### Demo
 
-<%= render(LesliView::Layout::Container.new("support-tickets")) do %>
-
-    <%= render(LesliView::Components::Header.new("Tickets")) %>
-    <%= render(LesliView::Components::Toolbar.new()) %>
-
-    <%= render(LesliView::Elements::Table.new(
-        :columns => columns,
-        :records => @tickets.dig(:records),
-        link: -> (ticket) { ticket_path(ticket.id) }
-    )) %>
-<% end %>
-```
+* [online demo](https://demo.lesli.dev/)
+* [docker demo](https://github.com/LesliTech/lesli-docker-demo)
 
 
 ### Documentation
-- **Components:**
-    - [Header](https://www.lesli.dev/gems/view/component-header)
-
-
-### Lesli Documentation
 * [website](https://www.lesli.dev/)
 * [documentation](https://www.lesli.dev/gems/view/)
 
 
-### Get in touch with Lesli
+### Connect with Lesli
 
+* [X: @LesliTech](https://x.com/LesliTech)
 * [Email: hello@lesli.tech](hello@lesli.tech)
 * [Website: https://www.lesli.tech](https://www.lesli.tech)
-* [Twitter: @LesliTech](https://twitter.com/LesliTech)
 
 
 ### License
 -------
-Copyright (c) 2025, Lesli Technologies, S. A.
+Copyright (c) 2026, Lesli Technologies, S. A.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -86,10 +72,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see http://www.gnu.org/licenses/.
 
+<br />
 <hr />
+<br />
 <br />
 
 <div align="center" class="has-text-centered">
     <img width="200" alt="Lesli logo" src="https://cdn.lesli.tech/lesli/brand/app-logo.svg" />
-    <h4 align="center" class="mt-0">Ruby on Rails SaaS Development Framework.</h4>
+    <h3 align="center" class="mt-0">
+        The Open-Source SaaS Development Framework for Ruby on Rails.
+    </h3>
 </div>
+
+<br />
+<br />

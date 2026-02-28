@@ -42,8 +42,12 @@ Gem::Specification.new do |spec|
     spec.authors     = ["The Lesli Development Team"]
     spec.email       = ["hello@lesli.tech"]
     spec.homepage    = "https://www.lesli.dev/"
-    spec.summary     = "Web Elements & Components for The Lesli Framework."
-    spec.description = "Web Elements & Components for The Lesli Framework."
+    spec.summary     = "A Rails ViewComponent-based UI library for The Lesli Framework."
+    spec.description = <<~DESC
+        LesliView is a ViewComponent-powered UI library for The Lesli Framework, 
+        providing reusable Rails components and form builders to create consistent, 
+        scalable, and maintainable application interfaces.
+    DESC
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["changelog_uri"] = "https://github.com/LesliTech/LesliView"
@@ -56,10 +60,6 @@ Gem::Specification.new do |spec|
     spec.bindir = "exe"
     spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
     spec.require_paths = ["lib"]
-
-
-    # Ruby version
-    spec.required_ruby_version = ">= 2.7"
 
     # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
     spec.add_dependency("view_component", "~> 4.1")

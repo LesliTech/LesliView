@@ -1,0 +1,68 @@
+<%#
+
+Lesli
+
+Copyright (c) 2025, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
+<style>
+.lesli-items-attachments {
+    .files {
+        display:flex;
+        .file-list {
+            padding: .2rem 1rem;
+            text-align: center;
+            span {
+                font-size: 2.8rem;
+            }
+        }
+    }
+}
+</style>
+<article class="lesli-items-attachments box p-6" id="lesli-items-attachments">
+    <div class="file is-boxed">
+        <label class="file-label">
+            <input class="file-input" type="file" name="resume" />
+            <span class="file-cta">
+                <span class="material-symbols-outlined">
+                    upload_file
+                </span>
+                <span class="file-label"> Choose a file… </span>
+            </span>
+        </label>
+    </div>
+
+    <div class="files">
+        <% ['file-word-2-line','file-excel-2-line','file-pdf-2-line'].each do |file| %>
+            <div class="file-list">
+                <span class="ri-<%= file %>"></span>
+                <p><%= file %></p>
+            </div>
+        <% end %>
+    </div>
+</article>
+

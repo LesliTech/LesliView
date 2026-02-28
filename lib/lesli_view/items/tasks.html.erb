@@ -1,0 +1,66 @@
+<%#
+
+Lesli
+
+Copyright (c) 2026, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
+<style>
+.lesli-items-tasks {
+    .lesli-items-tasks-tasks-task-done p {
+        text-decoration: line-through;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+</style>
+<article class="lesli-items-tasks box p-6" id="<%= dom_id(@resource, :tasks) %>">
+    <div class="lesli-items-tasks-form">
+        <% task_class = "#{@resource.class.name.deconstantize}::Items::Task".constantize %>
+        <% scope_key = ActiveSupport::Inflector.underscore(task_class.name).tr("/", "_") %>
+        <%= form_with(
+            scope: scope_key,
+            model: task_class.new,
+            builder: LesliView::Forms::Builder,
+            url: helpers.polymorphic_path([:items, :tasks], 
+                taskable_type:@resource.class.name, 
+                taskable_id: @resource.id
+            )) do |form| %>
+            <%= form.field_control_text :title %>
+            <%= form.field_control_submit "Add task" %>
+        <% end %>
+    </div>
+    <hr>
+    <div class="lesli-items-tasks-container">
+        <ul id="<%="#{scope_key}-lesli-items-tasks-list"%>">
+            <% @resource.tasks.each do |task| %>
+                <%= render(LesliView::Items::Task.new(task, scope_key)) %>
+            <% end %>
+        </ul>
+    </div>
+</article>
+

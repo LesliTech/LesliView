@@ -38,10 +38,13 @@ require "lesli_view/forms/builder_horizontal"
 
 
 # items
+require "lesli_view/items/task"
+require "lesli_view/items/tasks"
 require "lesli_view/items/actions"
 require "lesli_view/items/activities"
-require "lesli_view/items/discussion"
+#require "lesli_view/items/discussion"
 require "lesli_view/items/discussions"
+require "lesli_view/items/attachments"
 
 
 # loading layout

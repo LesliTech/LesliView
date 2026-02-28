@@ -11,7 +11,7 @@ module LesliView
             end
 
             def text_field(method, options = {})
-                value = @object.send(method)
+                value = @object.send(method) if @object
                 super(method, options.merge(value: value, class: 'input'))
             end
 

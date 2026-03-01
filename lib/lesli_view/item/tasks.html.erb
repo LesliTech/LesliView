@@ -40,13 +40,13 @@ Building a better future, one line of code at a time.
 </style>
 <article class="lesli-items-tasks box p-6" id="<%= dom_id(@resource, :tasks) %>">
     <div class="lesli-items-tasks-form">
-        <% task_class = "#{@resource.class.name.deconstantize}::Items::Task".constantize %>
+        <% task_class = "#{@resource.class.name.deconstantize}::Item::Task".constantize %>
         <% scope_key = ActiveSupport::Inflector.underscore(task_class.name).tr("/", "_") %>
         <%= form_with(
             scope: scope_key,
             model: task_class.new,
             builder: LesliView::Forms::Builder,
-            url: helpers.polymorphic_path([:items, :tasks], 
+            url: helpers.polymorphic_path([:item, :tasks], 
                 taskable_type:@resource.class.name, 
                 taskable_id: @resource.id
             )) do |form| %>
@@ -58,7 +58,7 @@ Building a better future, one line of code at a time.
     <div class="lesli-items-tasks-container">
         <ul id="<%="#{scope_key}-lesli-items-tasks-list"%>">
             <% @resource.tasks.each do |task| %>
-                <%= render(LesliView::Items::Task.new(task, scope_key)) %>
+                <%= render(LesliView::Item::Task.new(task, scope_key)) %>
             <% end %>
         </ul>
     </div>

@@ -31,7 +31,7 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliView
-    module Items
+    module Item
         class Task < ViewComponent::Base
             attr_reader :resource, :scope_key
 

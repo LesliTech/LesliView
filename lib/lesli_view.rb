@@ -42,7 +42,7 @@ require "lesli_view/item/task"
 require "lesli_view/item/tasks"
 require "lesli_view/item/actions"
 require "lesli_view/item/activities"
-#require "lesli_view/item/discussion"
+require "lesli_view/item/discussion"
 require "lesli_view/item/discussions"
 require "lesli_view/item/attachments"
 

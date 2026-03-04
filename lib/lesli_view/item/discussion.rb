@@ -30,7 +30,7 @@ Building a better future, one line of code at a time.
 // · 
 =end
 module LesliView
-    module Items
+    module Item
         class Discussion < ViewComponent::Base
             attr_reader :discussion
 

@@ -49,9 +49,11 @@ Gem::Specification.new do |spec|
         scalable, and maintainable application interfaces.
     DESC
 
-    spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["changelog_uri"] = "https://github.com/LesliTech/LesliView"
-    spec.metadata["source_code_uri"] = "https://github.com/LesliTech/LesliView"
+    spec.metadata["homepage_uri"]       = spec.homepage
+    spec.metadata["changelog_uri"]      = "https://github.com/LesliTech/LesliView/releases"
+    spec.metadata["source_code_uri"]    = "https://github.com/LesliTech/LesliView"
+    spec.metadata["bug_tracker_uri"]    = "https://github.com/LesliTech/LesliView/issues"
+    spec.metadata["documentation_uri"]  = "https://www.lesli.dev/gems/view/"
 
     spec.files = Dir.chdir(File.expand_path(__dir__)) do
         Dir["{lib}/**/*", "license", "Rakefile", "readme.md"]
@@ -62,5 +64,8 @@ Gem::Specification.new do |spec|
     spec.require_paths = ["lib"]
 
     # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
-    spec.add_dependency("view_component", "~> 4.1")
+    spec.add_dependency("view_component", "~> 4.1.0")
+
+    # A new editor for Action Text based on Meta's Lexical framework.
+    spec.add_dependency("lexxy")
 end

@@ -58,7 +58,7 @@ Building a better future, one line of code at a time.
     <div class="lesli-items-tasks-container">
         <ul id="<%="#{scope_key}-lesli-items-tasks-list"%>">
             <% @resource.tasks.each do |task| %>
-                <%= render(LesliView::Item::Task.new(task, scope_key)) %>
+                <%= render(LesliView::Items::Task.new(task, scope_key)) %>
             <% end %>
         </ul>
     </div>

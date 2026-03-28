@@ -33,12 +33,5 @@ Building a better future, one line of code at a time.
 module LesliView
     class Engine < ::Rails::Engine
         isolate_namespace LesliView
-
-        initializer "lesli_view" do |app|
-
-            # autoloading sass style sheet files
-            app.config.assets.precompile += %w[lesli_view/lesli_view.scss]
-
-        end
     end
 end

@@ -49,7 +49,7 @@ Building a better future, one line of code at a time.
     <div class="lesli-items-discussions-container">
         <ul id="<%="#{scope_key}-lesli-items-discussions-list"%>">
             <% @resource.discussions.order(created_at: :desc).each do |comment| %>
-                <%= render(LesliView::Item::Discussion.new(comment)) %>
+                <%= render(LesliView::Items::Discussion.new(comment)) %>
             <% end %>
         </ul>
     </div>

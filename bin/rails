@@ -12,11 +12,3 @@ require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
 
 require "rails/all"
 require "rails/engine/commands"
-
-pp ENGINE_ROOT
-pp ENGINE_PATH
-pp APP_PATH
-pp ENV["BUNDLE_GEMFILE"]
-
-pp "rails file"
-pp "rails file"

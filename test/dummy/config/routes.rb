@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Blorgh::Engine => "/blorgh"
+  mount LesliView::Engine => "/lesli_view"
 end

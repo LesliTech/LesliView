@@ -35,6 +35,8 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in my_engine.gemspec.
 gemspec
 
+gem "rails"
+
 gem "puma"
 
 gem "sqlite3"

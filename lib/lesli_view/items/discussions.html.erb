@@ -31,13 +31,13 @@ Building a better future, one line of code at a time.
 %>
 <article class="lesli-items-discussions" id="lesli-items-discussions">
     <div class="lesli-items-discussions-form">
-        <% discussion_class = "#{@resource.class.name.deconstantize}::Item::Discussion".constantize %>
+        <% discussion_class = "#{@resource.class.name.deconstantize}::Items::Discussion".constantize %>
         <% scope_key = ActiveSupport::Inflector.underscore(discussion_class.name).tr("/", "_") %>
         <%= form_with(
             scope: scope_key,
             model: discussion_class.new,
             builder: LesliView::Forms::Builder,
-            url: helpers.polymorphic_path([:item, :discussions], 
+            url: helpers.polymorphic_path([:items, :discussions], 
                 discussable_type:@resource.class.name, 
                 discussable_id: @resource.id
             )) do |form| %>

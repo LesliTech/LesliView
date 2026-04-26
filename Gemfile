@@ -35,7 +35,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in my_engine.gemspec.
 gemspec
 
-gem "rails"
+#gem "rails"
 
 gem "puma"
 
@@ -45,4 +45,4 @@ gem "propshaft"
 
 gem "rubocop-rails-omakase", require: false
 
-gem "lesli_testing", path: "../../gems/LesliTesting"
+gem "lesli_testing", path: "../LesliTesting"

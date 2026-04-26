@@ -10,8 +10,8 @@ require "lesli_view/engine"
 
 # loading charts
 require "lesli_view/charts/general"
-require "lesli_view/charts/bar"
 require "lesli_view/charts/line"
+require "lesli_view/charts/bar"
 
 
 # loading components
@@ -61,6 +61,10 @@ require "lesli_view/widgets/count"
 require "lesli_view/widgets/chart"
 require "lesli_view/widgets/weather"
 require "lesli_view/widgets/calendar"
+
+
+# load components
+require "lexxy"
 
 module LesliView
     class Error < StandardError; end

@@ -64,8 +64,8 @@ Gem::Specification.new do |spec|
     spec.require_paths = ["lib"]
 
     # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
-    spec.add_dependency("view_component", "~> 4.1.0")
+    spec.add_dependency("view_component", "~> 4.8.0")
 
     # A new editor for Action Text based on Meta's Lexical framework.
-    spec.add_dependency("lexxy")
+    spec.add_dependency("lexxy", "~> 0.9.9.beta")
 end

@@ -16,13 +16,15 @@
 %>
 
 <div class="lesli-view-widgets-chart">
-    <% if chart_component %>
-        <%= render(chart_component.new(
-            title: title,
-            labels: data.map{ |i| i[0] },
-            dataset: data.map{ |i| i[1] },
-            height: '132px',
-            compact: true
-        )) %>
-    <% end %>
+    <div class="box">
+        <% if chart_component %>
+            <%= render(chart_component.new(
+                title: title,
+                labels: data.map{ |i| i[0] },
+                dataset: data.map{ |i| i[1] },
+                height: '132px',
+                compact: true
+            )) %>
+        <% end %>
+    </div>
 </div>

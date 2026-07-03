@@ -49,11 +49,11 @@ module LesliView
             end
 
             def table_header_class(column)
-                column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : ""
+                column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : nil
             end
 
             def table_body_class(column)
-                column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : ""
+                column[:field] == "id" || column[:align] == "center" ? "has-text-centered" : nil
             end
 
             class TableRow < ViewComponent::Base

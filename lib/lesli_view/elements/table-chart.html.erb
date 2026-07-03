@@ -1,0 +1,42 @@
+distribution: [{
+    label: "Deactivated_users",
+    value: summary[:total_users_deactivated],
+    percentage: percentage(summary[:total_users_deactivated], summary[:total_users]),
+    color: "#5D7C4D"
+}, {
+    label: "Locked_users",
+    value: summary[:total_users_locked],
+    percentage: percentage(summary[:total_users_locked], summary[:total_users]),
+    color: "#B23A3A"
+}, {
+    label: "Unconfirmed_users",
+    value: summary[:total_users_unconfirmed],
+    percentage: percentage(summary[:total_users_unconfirmed], summary[:total_users]),
+    color: "#5F6C7D"
+}, {
+    label: "Deleted_users",
+    value: summary[:total_users_deleted],
+    percentage: percentage(summary[:total_users_deleted], summary[:total_users]),
+    color: "#4B5FA8"
+}],
+<%= render(LesliView::Elements::Table.new(columns: [])) do |table| %>
+    <% @users[:distribution].each do |user| %>
+        <% table.with_row(css_class:"is-white") do |row| %>
+            <% row.with_cell(css_class:"") do %>
+                <%= user[:label] %>
+            <% end %>
+            <% row.with_cell(css_class:"p-0 is-fullwidth") do %>
+                <p style="padding:8px;border-radius:4px;background:<%= user[:color] %>;width:<%= user[:percentage] %>%">
+                </p>
+            <% end %>
+            <% row.with_cell(css_class:"has-text-right") do %>
+                <%= user[:value] %>
+            <% end %>
+            <% row.with_cell(css_class:"has-text-right") do %>
+                <span class="has-text-grey-light has-text-weight-bold">
+                    <%= user[:percentage] %>%
+                </span>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

@@ -1,7 +1,13 @@
 
-<!-- app/components/lesli_application_container_component.html.erb -->
+<%
+    container_class = class_names(
+        "lesli-application-container block w-full px-4 py-6 sm:px-6 sm:py-8 lg:px-8",
+        dashboard ? "max-w-none" : "mx-auto max-w-7xl"
+    )
+%>
+
 <turbo-frame
     id="<%= turbo_frame_id %>"
-    class="lesli-application-container container <%= 'is-fluid' if dashboard %>">
+    class="<%= container_class %>">
     <%= content %>
 </turbo-frame>

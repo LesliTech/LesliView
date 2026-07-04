@@ -1,23 +1,41 @@
-<section class="lesli-element-header is-flex">
-    <div class="lesli-element-header-title">
-        <div class="is-flex">
+
+<section class="mb-8 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+
+    <!-- Title -->
+    <div class="min-w-0">
+        <div class="flex items-start gap-4">
+
             <% if back %>
                 <%= link_to(
                     back || request.referer || root_path, 
-                    class: "button is-info is-outlined mr-4 mb-1",
-                    data: { turbo_frame: '_top' }) do %>
-                    <span class="material-symbols">arrow_back</span>
+                    class: "mt-1 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-sky-600 bg-white text-sky-700 shadow-sm transition hover:bg-sky-50 hover:text-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500/30",
+                    aria: { label: "Go back" },
+                    data: { turbo_frame: "_top" }) do %>
+                    <span class="material-symbols-rounded text-[26px] leading-none">
+                        arrow_back
+                    </span>
                 <% end %>
             <% end %>
-            <% if title.present? %>
-                <h1 class="subtitle is-size-3 mb-1"><%= title %></h1>
-            <% end %>
+
+            <div class="min-w-0">
+                <% if title.present? %>
+                    <h1 class="text-3xl tracking-tight text-slate-700 sm:text-4xl">
+                        <%= title %>
+                    </h1>
+                <% end %>
+
+                <% if subtitle.present? %>
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
+                        <%= subtitle %>
+                    </p>
+                <% end %>
+            </div>
+
         </div>
-        <% if subtitle.present? %>
-            <p><%= subtitle %></p>
-        <% end %>
     </div>
-    <div class="lesli-element-header-items is-flex is-flex-grow-1 is-justify-content-end">
+
+    <!-- Actions -->
+    <div class="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end">
         <% if new_path %>
             <%= render ::LesliView::Elements::Button.new(
                 "Nuevo", url:new_path, icon:"add", solid:true
@@ -26,4 +44,3 @@
         <%= content %>
     </div>
 </section>
-

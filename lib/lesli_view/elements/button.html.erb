@@ -1,5 +1,3 @@
-
-
 <% if mode == :button_to %>
 
     <%= button_to(
@@ -7,8 +5,15 @@
         method: @method,
         params: @params,
         class: html_classes,
-        data: { turbo_frame: "_top" },
-        **alpine_attributes) do %>
+        form_class: "inline-flex",
+        form: {
+            data: {
+                turbo_frame: "_top"
+            }
+        },
+        disabled: loading,
+        **alpine_attributes
+    ) do %>
         <%= button_content %>
     <% end %>
 
@@ -17,8 +22,14 @@
     <%= link_to(
         @url,
         class: html_classes,
-        data: { turbo_frame: "_top" },
-        **alpine_attributes) do %>
+        data: {
+            turbo_frame: "_top"
+        },
+        aria: {
+            disabled: loading
+        },
+        **alpine_attributes
+    ) do %>
         <%= button_content %>
     <% end %>
 
@@ -28,7 +39,12 @@
         :button,
         type: "button",
         class: html_classes,
-        **alpine_attributes) do %>
+        disabled: loading,
+        aria: {
+            busy: loading
+        },
+        **alpine_attributes
+    ) do %>
         <%= button_content %>
     <% end %>
 

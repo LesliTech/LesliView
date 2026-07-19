@@ -1,25 +1,25 @@
 
-<section class="mx-auto my-10 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+<section
+    class="mx-auto my-10 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% end %>>
 
-    <!-- Title -->
     <div class="min-w-0">
         <div class="flex items-start gap-4">
 
-            <% if back %>
+            <% if back? %>
                 <%= link_to(
-                    back || request.referer || root_path, 
+                    back_path,
                     class: "mt-1 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-sky-600 bg-white text-sky-700 shadow-sm transition hover:bg-sky-50 hover:text-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500/30",
-                    aria: { label: "Go back" },
-                    data: { turbo_frame: "_top" }) do %>
-                    <span class="material-symbols-rounded text-[26px] leading-none">
-                        arrow_back
-                    </span>
+                    aria: { label: I18n.t("actions.back", default: "Go back") },
+                    data: { turbo_frame: "_top" }
+                ) do %>
+                    <span class="material-symbols-rounded text-[26px] leading-none" aria-hidden="true">arrow_back</span>
                 <% end %>
             <% end %>
 
             <div class="min-w-0">
                 <% if title.present? %>
-                    <h1 class="text-3xl tracking-tight text-slate-700 sm:text-4xl">
+                    <h1 id="<%= title_id %>" class="text-3xl tracking-tight text-slate-700 sm:text-4xl">
                         <%= title %>
                     </h1>
                 <% end %>
@@ -34,13 +34,21 @@
         </div>
     </div>
 
-    <!-- Actions -->
-    <div class="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end">
-        <% if new_path %>
-            <%= render ::LesliView::Elements::Button.new(
-                "Nuevo", url:new_path, icon:"add", solid:true
-            ) %>
-        <% end %>
-        <%= content %>
-    </div>
+    <% if actions? %>
+        <div
+            class="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end"
+            role="group"
+            aria-label="<%= I18n.t('actions.label', default: 'Page actions') %>">
+            <% if new_path.present? %>
+                <%= render ::LesliView::Elements::Button.new(
+                    new_button_label,
+                    url: new_path,
+                    icon: "add",
+                    solid: true
+                ) %>
+            <% end %>
+
+            <%= content if content? %>
+        </div>
+    <% end %>
 </section>

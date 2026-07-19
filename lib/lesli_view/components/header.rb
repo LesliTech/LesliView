@@ -35,13 +35,46 @@ Building a better future, one line of code at a time.
 module LesliView
     module Components
         class Header < ViewComponent::Base
-            attr_reader :title, :subtitle, :back, :new_path
+            attr_reader :title, :subtitle, :back, :new_path, :new_label
 
-            def initialize(title, subtitle="", new_path:nil, back:nil)
+            def initialize(title, subtitle = nil, new_path: nil, new_label: nil, back: nil)
+                # Support the legacy positional options hash:
+                # Header.new("Title", back: path)
+                if subtitle.is_a?(Hash)
+                    legacy_options = subtitle.symbolize_keys
+                    subtitle = legacy_options[:subtitle]
+                    new_path ||= legacy_options[:new_path]
+                    new_label ||= legacy_options[:new_label]
+                    back ||= legacy_options[:back]
+                end
+
                 @title = title
                 @subtitle = subtitle
                 @back = back
                 @new_path = new_path
+                @new_label = new_label
+            end
+
+            def back?
+                back.present?
+            end
+
+            def back_path
+                return back unless back == true
+
+                request.referer.presence || "/"
+            end
+
+            def new_button_label
+                new_label.presence || I18n.t("actions.new", default: "New")
+            end
+
+            def actions?
+                new_path.present? || content?
+            end
+
+            def title_id
+                @title_id ||= "lesli-header-title-#{object_id}"
             end
         end
     end

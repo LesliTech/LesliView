@@ -31,33 +31,313 @@ Building a better future, one line of code at a time.
 */
 
 
-
-/* 1. Reference Tailwind for its design tokens (colors, spacing, etc.) */
+/* Reference Tailwind utilitie */
 @reference "tailwindcss";
 
 
-/* 2. Define your base utility */
-@utility lesli-button {
-    @apply border
-    inline-flex
-    items-center
-    justify-center
-    gap-2
-    font-medium
-    whitespace-nowrap
-    transition-colors
-    duration-150
-    focus:outline-none
-    focus-visible:ring-2
-    focus-visible:ring-offset-2
-    disabled:pointer-events-none
-    disabled:opacity-50
+
+@layer components {
+    .lesli-button {
+        @apply
+            cursor-pointer
+            inline-flex
+            items-center
+            justify-center
+            gap-2
+            border
+            rounded-lg
+            h-10
+            px-4
+            text-sm
+            font-medium
+            whitespace-nowrap
+            transition-colors
+            duration-150
+            focus:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-offset-2
+            disabled:pointer-events-none
+            disabled:opacity-50;
+    }
+
+    .lesli-button.is-small {
+        @apply
+            h-8
+            rounded-md
+            px-3
+            text-xs;
+    }
+
+    .lesli-button.is-icon-only {
+        @apply
+            w-10
+            px-0;
+    }
+
+    .lesli-button.is-icon-only.is-small {
+        @apply
+            w-8
+            px-0;
+    }
+
+    .lesli-button.is-loading {
+        @apply
+            pointer-events-none
+            cursor-wait
+            opacity-80;
+    }
+
+    /*
+     * Solid variants
+     */
+
+    .lesli-button.is-primary {
+        @apply
+            border-blue-600
+            bg-blue-600
+            text-white
+            hover:border-blue-700
+            hover:bg-blue-700
+            focus-visible:ring-blue-500;
+    }
+
+    .lesli-button.is-info {
+        @apply
+            border-sky-600
+            bg-sky-600
+            text-white
+            hover:border-sky-700
+            hover:bg-sky-700
+            focus-visible:ring-sky-500;
+    }
+
+    .lesli-button.is-success {
+        @apply
+            border-emerald-600
+            bg-emerald-600
+            text-white
+            hover:border-emerald-700
+            hover:bg-emerald-700
+            focus-visible:ring-emerald-500;
+    }
+
+    .lesli-button.is-warning {
+        @apply
+            border-amber-500
+            bg-amber-500
+            text-amber-950
+            hover:border-amber-600
+            hover:bg-amber-600
+            focus-visible:ring-amber-500;
+    }
+
+    .lesli-button.is-danger {
+        @apply
+            border-rose-600
+            bg-rose-600
+            text-white
+            hover:border-rose-700
+            hover:bg-rose-700
+            focus-visible:ring-rose-500;
+    }
+
+    /*
+     * Light variants
+     *
+     * These must come after solid variants.
+     */
+
+    .lesli-button.is-primary.is-light {
+        @apply
+            border-blue-100
+            bg-blue-50
+            text-blue-700
+            hover:border-blue-200
+            hover:bg-blue-100
+            focus-visible:ring-blue-500;
+    }
+
+    .lesli-button.is-info.is-light {
+        @apply
+            border-sky-100
+            bg-sky-50
+            text-sky-700
+            hover:border-sky-200
+            hover:bg-sky-100
+            focus-visible:ring-sky-500;
+    }
+
+    .lesli-button.is-success.is-light {
+        @apply
+            border-emerald-100
+            bg-emerald-50
+            text-emerald-700
+            hover:border-emerald-200
+            hover:bg-emerald-100
+            focus-visible:ring-emerald-500;
+    }
+
+    .lesli-button.is-warning.is-light {
+        @apply
+            border-amber-100
+            bg-amber-50
+            text-amber-700
+            hover:border-amber-200
+            hover:bg-amber-100
+            focus-visible:ring-amber-500;
+    }
+
+    .lesli-button.is-danger.is-light {
+        @apply
+            border-rose-100
+            bg-rose-50
+            text-rose-700
+            hover:border-rose-200
+            hover:bg-rose-100
+            focus-visible:ring-rose-500;
+    }
+
+    /*
+     * Outlined variants
+     *
+     * These must come after solid and light variants.
+     */
+
+    .lesli-button.is-primary.is-outlined {
+        @apply
+            border-blue-300
+            bg-transparent
+            text-blue-700
+            hover:border-blue-400
+            hover:bg-blue-50
+            focus-visible:ring-blue-500;
+    }
+
+    .lesli-button.is-info.is-outlined {
+        @apply
+            border-sky-300
+            bg-transparent
+            text-sky-700
+            hover:border-sky-400
+            hover:bg-sky-50
+            focus-visible:ring-sky-500;
+    }
+
+    .lesli-button.is-success.is-outlined {
+        @apply
+            border-emerald-300
+            bg-transparent
+            text-emerald-700
+            hover:border-emerald-400
+            hover:bg-emerald-50
+            focus-visible:ring-emerald-500;
+    }
+
+    .lesli-button.is-warning.is-outlined {
+        @apply
+            border-amber-300
+            bg-transparent
+            text-amber-700
+            hover:border-amber-400
+            hover:bg-amber-50
+            focus-visible:ring-amber-500;
+    }
+
+    .lesli-button.is-danger.is-outlined {
+        @apply
+            border-rose-300
+            bg-transparent
+            text-rose-700
+            hover:border-rose-400
+            hover:bg-rose-50
+            focus-visible:ring-rose-500;
+    }
+
+    /*
+     * Optional: light + outlined
+     */
+
+    .lesli-button.is-light.is-outlined {
+        @apply
+            bg-transparent;
+    }
 }
 
 
-/* 3. Build your component using @apply */
+
 @layer components {
-    .lesli-button-primary {
-        @apply lesli-button bg-blue-600 text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    .lesli-icon {
+        @apply
+            inline-flex
+            items-center
+            justify-center
+            shrink-0
+            h-6
+            w-6
+            text-[1.5rem]
+            leading-none;
+    }
+
+    .lesli-icon.is-small {
+        @apply
+            h-4
+            w-4
+            text-[1rem];
+    }
+
+    .lesli-icon.is-medium {
+        @apply
+            h-8
+            w-8
+            text-[2rem];
+    }
+
+    .lesli-icon.is-large {
+        @apply
+            h-12
+            w-12
+            text-[3rem];
+    }
+
+    .lesli-icon .material-symbols,
+    .lesli-icon .material-symbols-outlined,
+    .lesli-icon .material-symbols-rounded,
+    .lesli-icon .material-symbols-sharp {
+        @apply
+            block
+            text-inherit
+            leading-none;
+    }
+
+    /*
+     * Button-specific icon sizing.
+     * This keeps icons visually balanced inside .lesli-button.
+     */
+    .lesli-button .lesli-icon {
+        @apply
+            h-5
+            w-5
+            text-[1.25rem];
+    }
+
+    .lesli-button.is-small .lesli-icon {
+        @apply
+            h-4
+            w-4
+            text-[1rem];
+    }
+
+    .lesli-button.is-icon-only .lesli-icon {
+        @apply
+            h-5
+            w-5
+            text-[1.25rem];
+    }
+
+    .lesli-button.is-icon-only.is-small .lesli-icon {
+        @apply
+            h-4
+            w-4
+            text-[1rem];
     }
 }

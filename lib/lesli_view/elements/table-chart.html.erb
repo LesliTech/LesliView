@@ -21,19 +21,19 @@ distribution: [{
 }],
 <%= render(LesliView::Elements::Table.new(columns: [])) do |table| %>
     <% @users[:distribution].each do |user| %>
-        <% table.with_row(css_class:"is-white") do |row| %>
-            <% row.with_cell(css_class:"") do %>
+        <% table.with_row do |row| %>
+            <% row.with_cell do %>
                 <%= user[:label] %>
             <% end %>
-            <% row.with_cell(css_class:"p-0 is-fullwidth") do %>
+            <% row.with_cell(class_name: "w-full p-0") do %>
                 <p style="padding:8px;border-radius:4px;background:<%= user[:color] %>;width:<%= user[:percentage] %>%">
                 </p>
             <% end %>
-            <% row.with_cell(css_class:"has-text-right") do %>
+            <% row.with_cell(align: :right) do %>
                 <%= user[:value] %>
             <% end %>
-            <% row.with_cell(css_class:"has-text-right") do %>
-                <span class="has-text-grey-light has-text-weight-bold">
+            <% row.with_cell(align: :right) do %>
+                <span class="font-semibold text-slate-400">
                     <%= user[:percentage] %>%
                 </span>
             <% end %>

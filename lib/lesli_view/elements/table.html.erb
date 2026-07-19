@@ -1,24 +1,18 @@
-<div class="lesli-table-container table-container">
-    <table id="<%= id %>" class="table is-fullwidth lesli-table <%= class_name %>">
+<div class="lesli-table-container">
+    <table id="<%= id %>" class="<%= table_classes %>">
+        <% if caption.present? %>
+            <caption class="sr-only"><%= caption %></caption>
+        <% end %>
+
         <% unless headless %>
             <thead>
                 <tr>
                     <% columns.each do |column| %>
-                        <th 
-                            width="<%= column[:width] %>" 
-                            class="<%= table_header_class(column) %>" 
-                            data-action="click->table#sort" 
-                            data-field="<%= column[:field] %>">
-                            <% if column[:sort] %>
-                                <span class="icon-text">
-                                    <span><%= column[:label] %></span>
-                                    <span class="icon">
-                                        <span class="material-symbols"><%= column[:field] == @current_sort ? (current_sort_dir(column) == "asc" ? "arrow_upward" : "arrow_downward") : "sort" %></span>
-                                    </span>
-                                </span>
-                            <% else %>
-                                <%= column[:label] %>
-                            <% end %>
+                        <th
+                            scope="col"
+                            width="<%= column[:width] %>"
+                            class="<%= column_class(column) %>">
+                            <%= column[:label] %>
                         </th>
                     <% end %>
                 </tr>
@@ -26,14 +20,15 @@
         <% end %>
         <tbody>
             <% if records %>
-                <% records.each_with_index do |record, i| %>
+                <% records.each do |record| %>
                     <tr>
                         <% columns.each do |column| %>
-                            <td class="<%= table_body_class(column) %>">
+                            <% value = value_for(record, column) %>
+                            <td class="<%= class_names(column_class(column), "lesli-table__cell--linked": link.present?) %>">
                                 <% if link %>
-                                    <%= link_to(record[column[:field]] || "", link.call(record), class: "link", data: { turbo_frame: '_top' }) %>
+                                    <%= link_to(value || "", link.call(record), class: "lesli-table__link", data: { turbo_frame: "_top" }) %>
                                 <% else %>
-                                    <%= record[column[:field]] %>
+                                    <%= value %>
                                 <% end %>
                             </td>
                         <% end %>
@@ -42,6 +37,14 @@
             <% end %>
             <% rows.each do |row| %>
                 <%= row %>
+            <% end %>
+
+            <% if empty? %>
+                <tr>
+                    <td class="lesli-table__empty" colspan="<%= [columns.size, 1].max %>">
+                        <%= empty_text %>
+                    </td>
+                </tr>
             <% end %>
         </tbody>
     </table>

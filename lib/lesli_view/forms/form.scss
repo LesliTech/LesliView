@@ -31,57 +31,5 @@ Building a better future, one line of code at a time.
 */
 
 
-// · 
-.lesli-form-field {
-    .field:not(.is-horizontal) {
-        .field-label {
-            text-align: left;
-        }
-    }
-}
-
-
-.lesli-form-fieldset {
-    padding: 2.5rem 2rem;
-    border-radius: 5px;
-    //border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
-    fieldset {
-        padding: 1.2rem;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        margin-bottom: 1rem;
-    }
-}
-
-
-form fieldset.is-warning {
-    border: 2px solid var(--bulma-warning);
-    background-color: var(--bulma-warning-95);
-}
-form fieldset.is-warning h5 {
-    color: var(--bulma-warning-bold);
-    font-weight: 600;
-}
-
-
-form fieldset.is-info {
-    border: 2px solid var(--bulma-info);
-    background-color: var(--bulma-info-95);
-}
-form fieldset.is-info h5 {
-    color: var(--bulma-info-bold);
-    font-weight: 600;
-}
-
-
-form fieldset.is-danger {
-    border: 2px solid var(--bulma-danger);
-    background-color: var(--bulma-danger-95);
-}
-form fieldset.is-danger h5 {
-    color: var(--bulma-danger-bold);
-    font-weight: 600;
-}
+// LesliView forms have migrated to Tailwind.
+// See lib/lesli_view/forms/form.css.

@@ -35,9 +35,22 @@ Building a better future, one line of code at a time.
 module LesliView
     module Forms
         class Builder < ActionView::Helpers::FormBuilder
-            def css_category category=nil 
-                return "is-#{category}"
-            end 
+            CATEGORY_ALIASES = {
+                alert: :danger,
+                error: :danger,
+                notice: :info
+            }.freeze
+
+            def css_category(category = nil)
+                return if category.blank?
+
+                normalized_category = CATEGORY_ALIASES.fetch(category.to_sym, category.to_sym)
+                "is-#{normalized_category}"
+            end
+
+            def merge_css_classes(*classes)
+                classes.flatten.compact.flat_map { |value| value.to_s.split }.reject(&:blank?).uniq.join(" ")
+            end
 
             include LesliView::Forms::Fields
             include LesliView::Forms::Inputs

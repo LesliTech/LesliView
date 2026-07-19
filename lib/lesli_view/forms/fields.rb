@@ -1,67 +1,113 @@
 module LesliView
     module Forms
         module Fields
-            def field_control(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
-                field_control_text(attribute, label:label, message:message, category:category, icon:icon, horizontal:horizontal)
+            def field_control(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                field_control_text(attribute, label: label, message: message, category: category, icon: icon, horizontal: horizontal, **options)
             end
 
-            def field_control_checkbox(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
-                label_html = label(attribute, label)
-                text_field_html = check_box(attribute, {}, true, false)
+            def field_control_checkbox(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                label_text = label.presence || attribute.to_s.humanize
+                checkbox_html = check_box(attribute, options, true, false)
+                control_html = @template.content_tag(:label, class: "lesli-form-checkbox-label") do
+                    @template.safe_join([
+                        checkbox_html,
+                        @template.content_tag(:span, label_text)
+                    ])
+                end
 
                 field_control_builder(
-                    label_html: label_html,
-                    control_html: text_field_html,
+                    control_html: control_html,
+                    message_text: message,
+                    category: category,
                     horizontal: horizontal
                 )
             end
 
-            def field_control_text(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
+            def field_control_password(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
                 label_html = label(attribute, label)
-                text_field_html = text_field(attribute)
-
-                field_control_builder(
-                    label_html: label_html,
-                    control_html: text_field_html,
-                    horizontal: horizontal
-                )
-            end
-
-            def field_control_email(attribute, label: nil, message:nil, category:nil, icon:nil, horizontal: false)
-                label_html = label(attribute, label)
-                control_html = email_field(attribute)
+                control_html = password_field(attribute, options)
 
                 field_control_builder(
                     label_html: label_html,
                     control_html: control_html,
-                    horizontal: horizontal,
-                    icon:icon
-                )
-            end
-
-            def field_control_select(attribute, choices, label: nil, message:nil, category:nil, icon:nil, horizontal: false, humanize:true)
-                choices = choices.map { |k, v| [k.humanize.capitalize, v] } if humanize
-                value = @object.send(attribute)
-                label_html = label(attribute, label)
-                select_html = select(attribute, choices, {}, { value: value })
-
-                field_control_builder(
-                    label_html: label_html,
-                    control_html: @template.content_tag(:div, select_html, class: "select is-fullwidth"),
+                    message_text: message,
+                    category: category,
+                    icon: icon,
                     horizontal: horizontal
                 )
             end
 
-            def field_control_textarea(attribute, label:nil, message:nil, category:nil, icon:nil, horizontal: false)
-
-                label_html = label == false ? '' : label(attribute, label)
-                control_html = rich_textarea(attribute)
+            def field_control_text(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                label_html = label(attribute, label)
+                control_html = text_field(attribute, options)
 
                 field_control_builder(
                     label_html: label_html,
                     control_html: control_html,
+                    message_text: message,
+                    category: category,
+                    icon: icon,
+                    horizontal: horizontal
+                )
+            end
+
+            def field_control_email(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                label_html = label(attribute, label)
+                control_html = email_field(attribute, options)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: control_html,
+                    message_text: message,
+                    category: category,
                     horizontal: horizontal,
-                    icon:icon
+                    icon: icon
+                )
+            end
+
+            def field_control_select(attribute, choices, label: nil, message: nil, category: nil, icon: nil, horizontal: false, humanize: true, options: {}, html_options: {})
+                choices = choices.map { |text, value| [text.to_s.humanize, value] } if humanize
+                label_html = label(attribute, label)
+                select_html = select(attribute, choices, options, html_options)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: @template.content_tag(:div, select_html, class: "lesli-form-select-wrapper"),
+                    message_text: message,
+                    category: category,
+                    icon: icon,
+                    horizontal: horizontal
+                )
+            end
+
+            def field_control_textarea(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                label_html = label == false ? nil : label(attribute, label)
+                control_html = rich_textarea(attribute, options)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: control_html,
+                    message_text: message,
+                    category: category,
+                    horizontal: horizontal,
+                    icon: icon
+                )
+            end
+
+            # Backward-compatible shorthand used by older Lesli forms.
+            def field_textarea(attribute, **options)
+                field_control_textarea(attribute, **options)
+            end
+
+            def field_select(attribute, choices, options = {}, html_options = {}, label: nil, humanize: true, **field_options)
+                field_control_select(
+                    attribute,
+                    choices,
+                    label: label,
+                    humanize: humanize,
+                    options: options,
+                    html_options: html_options,
+                    **field_options
                 )
             end
 
@@ -70,75 +116,62 @@ module LesliView
                 field_control_builder(control_html: submit_html, horizontal: horizontal)
             end
 
-            def field_control_button(value = nil, options = {}, category:"primary", icon:nil, type:"submit", horizontal: false)
-                # Merge user-provided classes with default button classes
-                button_classes = ["button", "is-#{category}"]
+            def field_control_button(value = nil, options = {}, category: "primary", icon: nil, type: "submit", horizontal: false)
+                options = options.symbolize_keys
+                button_classes = merge_css_classes("lesli-form-button", css_category(category), options.delete(:class))
 
-                button_html = @template.content_tag(:button, class: button_classes, type: type, **options.except(:class)) do
-                    html = "".html_safe
+                button_html = @template.content_tag(:button, class: button_classes, type: type, **options) do
+                    content = []
                     if icon.present?
-                        html << @template.content_tag(:span, class: "icon") do
+                        content << @template.content_tag(:span, class: "lesli-form-button-icon", aria: { hidden: true }) do
                             @template.content_tag(:span, icon, class: "material-symbols")
                         end
                     end
-                    html << @template.content_tag(:span, value) if value.present?
-                    html
+                    content << @template.content_tag(:span, value) if value.present?
+                    @template.safe_join(content)
                 end
-                field_control_builder(control_html: button_html, icon:nil, horizontal: horizontal)
+                field_control_builder(control_html: button_html, horizontal: horizontal)
             end
 
             def field_control_builder(
-                label_html:nil, 
-                control_html:nil, 
-                message_text:nil,
-                horizontal:false, 
-                category:nil,
-                icon:nil, 
+                label_html: nil,
+                control_html: nil,
+                message_text: nil,
+                horizontal: false,
+                category: nil,
+                icon: nil,
                 &block
             )
+                field_classes = merge_css_classes("lesli-form-field", horizontal && "is-horizontal", css_category(category))
+                control_classes = merge_css_classes("lesli-form-control", icon.present? && "has-icon")
+                captured_control = block_given? ? @template.capture(&block) : control_html
 
-                icon_left = icon
-                icon_right = nil
-
-                # Conditionally add 'is-horizontal' if horizontal is true
-                field_classes = ['field']
-                field_classes << 'is-horizontal' if horizontal
-
-                control_classes = ['control']
-                control_classes << 'has-icons-left' if icon_left
-                control_classes << 'has-icons-right' if icon_right
-
-                help_class = ""
-
-                @template.content_tag(:div, class: 'lesli-form-field mb-3') do
-                    @template.content_tag(:div, class: field_classes.join(' ')) do
-                        @template.content_tag(:div, label_html, class: 'field-label is-normal mb-1') +
-                        @template.content_tag(:div, class: 'field-body') do
-                            @template.content_tag(:div, class: 'field') do
-                                control_html = @template.content_tag(:div, class: control_classes.join(' ')) do
-                                    content = ''.html_safe
-                                    content << (block_given? ? @template.capture(&block) : control_html)
-                                    content << icon_html(icon_left, 'left') if icon_left
-                                    content << icon_html(icon_right, 'right') if icon_right
-                                    content
-                                end
-                                control_html + @template.content_tag(:p, message_text, class: "help #{css_category(category)}")
-                            end
+                @template.content_tag(:div, class: field_classes) do
+                    content = []
+                    content << @template.content_tag(:div, label_html, class: "lesli-form-label-wrapper") if label_html.present?
+                    content << @template.content_tag(:div, class: "lesli-form-field-body") do
+                        body = []
+                        body << @template.content_tag(:div, class: control_classes) do
+                            @template.safe_join([captured_control, icon_html(icon)].compact)
                         end
+                        if message_text.present?
+                            body << @template.content_tag(:p, message_text, class: merge_css_classes("lesli-form-help", css_category(category)))
+                        end
+                        @template.safe_join(body)
                     end
+                    @template.safe_join(content)
                 end
             end
 
             private
 
-            def icon_html(icon_class, position)
-                return ''.html_safe unless icon_class
+            def icon_html(icon_name)
+                return unless icon_name.present?
 
-                @template.content_tag(:span, class: "icon is-small is-#{position}") do
-                    #@template.content_tag(:i, '', class: icon_class)
-                    @template.content_tag(:span, icon_class, class: "material-symbols-outlined")
+                @template.content_tag(:span, class: "lesli-form-icon", aria: { hidden: true }) do
+                    @template.content_tag(:span, icon_name, class: "material-symbols-outlined")
                 end
-            end          
+            end
         end
     end
 end  

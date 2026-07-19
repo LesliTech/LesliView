@@ -1,0 +1,171 @@
+/* Tailwind styles for LesliView::Forms builders. */
+
+@layer components {
+    .lesli-form-field {
+        @apply mb-4;
+    }
+
+    .lesli-form-label-wrapper {
+        @apply mb-2;
+    }
+
+    .lesli-form-label {
+        @apply block text-sm font-medium leading-5 text-slate-700;
+    }
+
+    .lesli-form-field-body {
+        @apply min-w-0;
+    }
+
+    .lesli-form-control {
+        @apply relative;
+    }
+
+    .lesli-form-input,
+    .lesli-form-select,
+    .lesli-form-control textarea,
+    .lesli-form-control trix-editor {
+        @apply block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500 disabled:opacity-75;
+    }
+
+    .lesli-form-input,
+    .lesli-form-select {
+        @apply h-11;
+    }
+
+    .lesli-form-control textarea,
+    .lesli-form-control trix-editor {
+        @apply min-h-32 resize-y;
+    }
+
+    .lesli-form-select-wrapper {
+        @apply relative;
+    }
+
+    .lesli-form-select {
+        @apply cursor-pointer appearance-none pr-10;
+    }
+
+    .lesli-form-select-wrapper::after {
+        @apply pointer-events-none absolute right-3.5 top-1/2 h-2 w-2 -translate-y-2 rotate-45 border-b-2 border-r-2 border-slate-400 content-[''];
+    }
+
+    .lesli-form-checkbox {
+        @apply h-4 w-4 cursor-pointer rounded border-slate-300 accent-sky-600 focus:ring-2 focus:ring-sky-500/30 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .lesli-form-checkbox-label {
+        @apply inline-flex cursor-pointer items-center gap-2.5 text-sm text-slate-600;
+    }
+
+    .lesli-form-control.has-icon .lesli-form-input,
+    .lesli-form-control.has-icon .lesli-form-select {
+        @apply pl-11;
+    }
+
+    .lesli-form-icon {
+        @apply pointer-events-none absolute left-3.5 top-1/2 inline-flex h-5 w-5 -translate-y-1/2 items-center justify-center text-slate-400;
+    }
+
+    .lesli-form-icon .material-symbols-outlined {
+        @apply text-xl leading-none;
+    }
+
+    .lesli-form-help {
+        @apply mt-2 text-sm leading-5 text-slate-500;
+    }
+
+    .lesli-form-field.is-danger .lesli-form-input,
+    .lesli-form-field.is-danger .lesli-form-select,
+    .lesli-form-field.is-danger textarea,
+    .lesli-form-field.is-danger trix-editor {
+        @apply border-rose-400 focus:border-rose-500 focus:ring-rose-500/10;
+    }
+
+    .lesli-form-help.is-danger {
+        @apply text-rose-700;
+    }
+
+    .lesli-form-help.is-warning {
+        @apply text-amber-700;
+    }
+
+    .lesli-form-help.is-success {
+        @apply text-emerald-700;
+    }
+
+    .lesli-form-help.is-info {
+        @apply text-sky-700;
+    }
+
+    .lesli-form-button {
+        @apply inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-transparent px-4 text-sm font-semibold shadow-sm transition focus:outline-none focus:ring-4 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .lesli-form-button.is-primary,
+    .lesli-form-button.is-info {
+        @apply bg-sky-600 text-white hover:bg-sky-700 focus:ring-sky-500/20;
+    }
+
+    .lesli-form-button.is-success {
+        @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500/20;
+    }
+
+    .lesli-form-button.is-warning {
+        @apply bg-amber-500 text-amber-950 hover:bg-amber-600 focus:ring-amber-500/20;
+    }
+
+    .lesli-form-button.is-danger {
+        @apply bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-500/20;
+    }
+
+    .lesli-form-button.is-fullwidth {
+        @apply w-full;
+    }
+
+    .lesli-form-button-icon {
+        @apply inline-flex h-5 w-5 items-center justify-center;
+    }
+
+    .lesli-form-button-icon .material-symbols {
+        @apply text-xl leading-none;
+    }
+
+    .lesli-form-fieldset {
+        @apply mb-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+    }
+
+    .lesli-form-legend {
+        @apply -ml-1 mb-5 px-1 text-lg font-semibold text-slate-800;
+    }
+
+    .lesli-form-fieldset.is-info {
+        @apply border-sky-200 bg-sky-50/40;
+    }
+
+    .lesli-form-fieldset.is-success {
+        @apply border-emerald-200 bg-emerald-50/40;
+    }
+
+    .lesli-form-fieldset.is-warning {
+        @apply border-amber-200 bg-amber-50/50;
+    }
+
+    .lesli-form-fieldset.is-danger {
+        @apply border-rose-200 bg-rose-50/40;
+    }
+
+    @media (min-width: 768px) {
+        .lesli-form-field.is-horizontal {
+            @apply grid grid-cols-[minmax(8rem,1fr)_minmax(0,3fr)] items-start gap-5;
+        }
+
+        .lesli-form-field.is-horizontal > .lesli-form-label-wrapper {
+            @apply mb-0 pt-2.5 text-right;
+        }
+
+        .lesli-form-field.is-horizontal > .lesli-form-field-body {
+            @apply col-start-2;
+        }
+    }
+}

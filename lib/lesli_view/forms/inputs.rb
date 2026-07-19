@@ -2,17 +2,21 @@ module LesliView
     module Forms
         module Inputs
             def label(method, text = nil, options = {})
-                super(method, text, options.merge(class: 'label'))
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-label", options[:class])
+                super(method, text, options)
             end
 
             def check_box(method, options = {}, checked_value = "1", unchecked_value = "0")
-                value = @object.send(method)
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-checkbox", options[:class])
                 super(method, options, checked_value, unchecked_value)
             end
 
             def text_field(method, options = {})
-                value = @object.send(method) if @object
-                super(method, options.merge(value: value, class: 'input'))
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-input", options[:class])
+                super(method, options)
             end
 
             def text_editor(method, options = {})
@@ -26,22 +30,30 @@ module LesliView
 
 
             def email_field(method, options = {})
-                value = @object.send(method)
-                super(method, options.merge(value: value, class: 'input'))
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-input", options[:class])
+                super(method, options)
             end
 
             def password_field(method, options = {})
-                value = @object.send(method)
-                super(method, options.merge(value: value, class: 'input'))
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-input", options[:class])
+                options[:value] = @object.public_send(method) if @object && !options.key?(:value)
+                super(method, options)
             end
 
-            def submit(value=nil, options = {})
-                # Extract and merge classes properly
-                default_classes = "button is-primary"
-                custom_classes = options[:class] || ""
-                merged_classes = "#{default_classes} #{custom_classes}".strip
-                super(value, options.merge(class: merged_classes))
-            end 
+            def select(method, choices = nil, options = {}, html_options = {}, &block)
+                html_options = html_options.symbolize_keys
+                html_options[:class] = merge_css_classes("lesli-form-select", html_options[:class])
+                super(method, choices, options, html_options, &block)
+            end
+
+            def submit(value = nil, options = {})
+                options = options.symbolize_keys
+                options[:class] = merge_css_classes("lesli-form-button is-primary", options[:class])
+                super(value, options)
+            end
+
         end
     end
 end

@@ -1,16 +1,18 @@
-<style>
-.lesli-view-widgets-count p {
-    font-size: 4rem;
-    font-weight: 600;
-}
-</style>
-<div class="lesli-view-widgets-count">
-    <div class="box">
-        <h6 class="is-title is-size-6 mb-0">
-            <%= title %>
-        </h6>
-        <p class="has-text-centered">
-            <%= number %>
-        </p>
+<section
+    class="lesli-count-widget h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% else %>aria-label="<%= I18n.t('metrics.count', default: 'Count') %>"<% end %>>
+
+    <div class="flex h-full min-h-40 flex-col">
+        <% if title.present? %>
+            <h2 id="<%= title_id %>" class="text-sm font-medium leading-5 text-slate-500">
+                <%= title %>
+            </h2>
+        <% end %>
+
+        <div class="flex flex-1 items-center justify-center py-4">
+            <p class="break-all text-center text-5xl font-semibold leading-none tracking-tight text-sky-600 tabular-nums sm:text-6xl">
+                <%= display_number %>
+            </p>
+        </div>
     </div>
-</div>
+</section>

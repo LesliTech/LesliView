@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -35,9 +37,19 @@ module LesliView
         class Count < ViewComponent::Base
             attr_reader :title, :number
 
-            def initialize(title=nil, number=nil)
+            def initialize(title = nil, number = nil)
                 @title = title
                 @number = number
+            end
+
+            def display_number
+                return "—" if number.nil?
+
+                number
+            end
+
+            def title_id
+                @title_id ||= "lesli-count-title-#{object_id}"
             end
         end
     end

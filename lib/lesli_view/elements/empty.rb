@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -32,8 +34,13 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Empty < ViewComponent::Base
-            def initialize(text: "No data found")
+            attr_reader :text, :description
+
+            # `text` remains optional for icon-only uses such as error pages.
+            # A component block can be supplied to render an action below the message.
+            def initialize(text: "No data found", description: nil)
                 @text = text
+                @description = description
             end
         end
     end

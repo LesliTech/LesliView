@@ -1,22 +1,24 @@
-<style>
-.lesli-view-widgets-date p.date {
-    font-weight: 200;
-    font-size: 4.2rem;
-}
+<section
+    class="lesli-date-widget h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+    aria-label="<%= accessible_date %>">
 
-.lesli-view-widgets-date p.month {
-    font-weight: 300;
-    font-size: 1.8rem;
-    color: #d2d2d2;
-}
-</style>
-<div class="lesli-view-widgets-date">
-    <div class="box has-text-centered">
-        <p class="date">
-            <%= @date.day %>
-        </h6>
-        <p class="month">
-            <%= @date.strftime("%B") %>
-        </p>
-    </div>
-</div>
+    <time
+        class="flex h-full min-h-40 items-center justify-center"
+        datetime="<%= date.iso8601 %>">
+
+        <span class="text-6xl font-light leading-none tracking-tight text-sky-600">
+            <%= date.day %>
+        </span>
+
+        <span class="mx-5 h-20 w-px shrink-0 bg-slate-200 sm:mx-6" aria-hidden="true"></span>
+
+        <span class="min-w-0 text-left">
+            <span class="block text-lg font-semibold capitalize tracking-tight text-slate-700">
+                <%= weekday_name %>
+            </span>
+            <span class="mt-1 block text-base font-medium capitalize text-slate-400">
+                <%= month_name %> <%= date.year %>
+            </span>
+        </span>
+    </time>
+</section>

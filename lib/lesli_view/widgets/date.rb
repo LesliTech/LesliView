@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -35,8 +37,31 @@ module LesliView
         class Date < ViewComponent::Base
             attr_reader :date
 
-            def initialize(date = Time.now)
-                @date = date
+            def initialize(date = Time.current)
+                @date = normalize_date(date) || ::Date.current
+            end
+
+            def month_name
+                I18n.l(date, format: "%B")
+            end
+
+            def weekday_name
+                I18n.l(date, format: "%A")
+            end
+
+            def accessible_date
+                I18n.l(date, format: :long)
+            end
+
+            private
+
+            def normalize_date(value)
+                return if value.nil?
+                return value.to_date if value.respond_to?(:to_date)
+
+                ::Date.parse(value.to_s)
+            rescue ArgumentError, TypeError
+                nil
             end
         end
     end

@@ -6,29 +6,32 @@
         @url,
         method: @method,
         params: @params,
-        class: html_classes,
-        data: { turbo_frame: "_top" },
-        **alpine_attributes) do %>
+        disabled: disabled?,
+        **common_attributes
+    ) do %>
         <%= button_content %>
     <% end %>
 
 <% elsif mode == :link %>
 
-    <%= link_to(
-        @url,
-        class: html_classes,
-        data: { turbo_frame: "_top" },
-        **alpine_attributes) do %>
-        <%= button_content %>
+    <% if disabled? %>
+        <%= content_tag(:span, role: "link", tabindex: -1, **common_attributes) do %>
+            <%= button_content %>
+        <% end %>
+    <% else %>
+        <%= link_to(@url, **common_attributes) do %>
+            <%= button_content %>
+        <% end %>
     <% end %>
 
 <% else %>
 
     <%= content_tag(
         :button,
-        type: "button",
-        class: html_classes,
-        **alpine_attributes) do %>
+        type: button_type,
+        disabled: disabled?,
+        **common_attributes
+    ) do %>
         <%= button_content %>
     <% end %>
 

@@ -31,12 +31,10 @@ Building a better future, one line of code at a time.
 */
 
 
-/* Reference Tailwind utilitie */
-@reference "tailwindcss";
-
-
-
 @layer components {
+    .lesli-button:hover {
+        cursor: pointer;
+    }
     .lesli-button {
         @apply
             cursor-pointer
@@ -85,6 +83,16 @@ Building a better future, one line of code at a time.
             pointer-events-none
             cursor-wait
             opacity-80;
+    }
+
+    .lesli-button.is-loading::before {
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 9999px;
+        animation: lesli-button-spin .65s linear infinite;
     }
 
     /*
@@ -260,6 +268,12 @@ Building a better future, one line of code at a time.
     .lesli-button.is-light.is-outlined {
         @apply
             bg-transparent;
+    }
+}
+
+@keyframes lesli-button-spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 

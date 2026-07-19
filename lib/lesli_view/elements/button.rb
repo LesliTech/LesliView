@@ -35,33 +35,38 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Button < ViewComponent::Base
-            attr_reader :label, :url, :icon, :loading, :solid, :info, :success, :warning, :danger, :small, :dispatch, :method, :params, :css_class
+            attr_reader :label, :url, :icon, :loading, :solid, :light,
+                :info, :success, :warning, :danger, :small, :dispatch,
+                :method, :params, :css_class, :aria_label, :disabled,
+                :button_type, :data
 
-            # Adds two numbers together.
-            # @param [Integer] a The first number.
-            # @param [Integer] b The second number.
-            # @return [Integer] The sum of the two numbers.
             def initialize(
-                label=nil, 
-                url:nil,
-                icon: nil, 
-                loading: false, 
-                solid: false, 
-                info: false, 
-                success: false, 
-                warning: false, 
-                danger: false, 
+                label = nil,
+                url: nil,
+                icon: nil,
+                loading: false,
+                solid: true,
+                light: false,
+                info: true,
+                success: false,
+                warning: false,
+                danger: false,
                 small: false,
-                dispatch:nil,
+                dispatch: nil,
                 method: nil,
-                params:nil,
-                css_class:nil
+                params: nil,
+                css_class: nil,
+                aria_label: nil,
+                disabled: false,
+                type: :button,
+                data: {}
             )
                 @label = label
                 @url = url
                 @icon = icon
                 @loading = loading
                 @solid = solid
+                @light = light
                 @info = info
                 @success = success
                 @warning = warning
@@ -71,6 +76,10 @@ module LesliView
                 @method = method
                 @params = params
                 @css_class = css_class
+                @aria_label = aria_label
+                @disabled = disabled
+                @button_type = type
+                @data = data
             end
 
             def mode
@@ -80,20 +89,22 @@ module LesliView
             end
 
             def alpine_attributes
-                return {} unless @dispatch
+                return {} unless dispatch.present?
 
                 {
-                "x-data": "",
-                "@click": "$dispatch('#{@dispatch}')"
+                    "x-data": "",
+                    "@click": "$dispatch('#{dispatch}')"
                 }
             end
 
             def html_classes
                 classes = ["lesli-button", button_variant]
                 classes << "is-outlined" unless solid
+                classes << "is-light" if light
                 classes << "is-loading" if loading
                 classes << "is-small" if small
-                classes << css_class 
+                classes << "is-icon-only" if icon_only?
+                classes << css_class if css_class.present?
                 classes.join(" ")
             end
 
@@ -106,21 +117,50 @@ module LesliView
             end
 
             def icon_only?
-                icon && !label
+                icon.present? && visible_label.blank?
+            end
+
+            def disabled?
+                disabled || loading
+            end
+
+            def visible_label
+                label.presence || (content if content?)
+            end
+
+            def accessible_label
+                aria_label.presence || (icon.to_s.humanize if icon_only?)
+            end
+
+            def html_data
+                { turbo_frame: "_top" }.merge(data || {})
+            end
+
+            def common_attributes
+                attributes = {
+                    class: html_classes,
+                    data: html_data,
+                    aria: {
+                        label: accessible_label,
+                        busy: loading || nil,
+                        disabled: disabled? || nil
+                    }.compact
+                }
+
+                attributes.merge(alpine_attributes)
             end
 
             def button_content
-                if @icon
-                    safe_join([
-                        content_tag(:span,
-                            content_tag(:span, @icon, class: "material-symbols"),
-                            class: "lesli-icon #{'is-small' if @small}"
-                        ),
-                        (@icon_only ? nil : content_tag(:span, @label))
-                    ].compact)
-                else
-                    @label
+                parts = []
+
+                if icon.present?
+                    parts << content_tag(:span, class: "lesli-icon", aria: { hidden: true }) do
+                        content_tag(:span, icon, class: "material-symbols")
+                    end
                 end
+
+                parts << content_tag(:span, visible_label) if visible_label.present?
+                safe_join(parts)
             end
         end  
     end

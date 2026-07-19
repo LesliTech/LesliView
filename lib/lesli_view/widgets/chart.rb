@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -33,12 +35,53 @@ Building a better future, one line of code at a time.
 module LesliView
     module Widgets
         class Chart < ViewComponent::Base
+            CHART_COMPONENTS = {
+                bar: LesliView::Charts::Bar,
+                line: LesliView::Charts::Line
+            }.freeze
+
             attr_reader :title, :data, :type
 
-            def initialize(title=nil, data=nil, type: :bar)
+            def initialize(title = nil, data = nil, type: :bar)
                 @title = title
-                @data = data
-                @type = type
+                @data = normalize_data(data)
+                @type = normalize_type(type)
+            end
+
+            def chart_component
+                CHART_COMPONENTS.fetch(type)
+            end
+
+            def labels
+                data.map(&:first)
+            end
+
+            def dataset
+                data.map(&:last)
+            end
+
+            def data?
+                data.any?
+            end
+
+            def title_id
+                @title_id ||= "lesli-chart-widget-title-#{object_id}"
+            end
+
+            private
+
+            def normalize_data(value)
+                return [] if value.nil?
+                return value.to_a if value.respond_to?(:to_a)
+
+                []
+            end
+
+            def normalize_type(value)
+                value = value.to_s.downcase.to_sym
+                return value if CHART_COMPONENTS.key?(value)
+
+                :bar
             end
         end
     end

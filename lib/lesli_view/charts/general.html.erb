@@ -1,55 +1,41 @@
-<%#
+<div
+    class="lesli-chart lesli-chart-<%= type %> flex h-full min-w-0 flex-col"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% end %>>
 
-Lesli
+    <% if title.present? || subtitle.present? %>
+        <div class="mb-3">
+            <% if title.present? %>
+                <h3
+                    id="<%= title_id %>"
+                    class="<%= compact ? 'text-center text-xs font-medium text-slate-500' : 'text-base font-semibold text-slate-700' %>">
+                    <%= title %>
+                </h3>
+            <% end %>
 
-Copyright (c) 2026, Lesli Technologies, S. A.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see http://www.gnu.org/licenses/.
-
-Lesli · Ruby on Rails SaaS Development Framework.
-
-Made with ♥ by LesliTech
-Building a better future, one line of code at a time.
-
-@contact  hello@lesli.tech
-@website  https://www.lesli.tech
-@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
-
-// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
-// · 
-%>
-<script>
-document.addEventListener("turbo:load", () => {
-    new LesliChart({
-        id: "<%= id %>",
-        type: "<%= type %>",
-        datasets: <%= raw(datasets.to_json) %>,
-        labels: <%= raw(labels.to_json) %>,
-        compact: <%= compact ? "true" : "false" %>
-    });
-});
-</script>
-
-<div class="lesli-charts lesli-charts-<%= type %>">
-
-    <% if title.present? %>
-        <%= tag.h3(title, class: (compact ? "is-size-7 has-text-centered" : "ml-2")) %>
+            <% if subtitle.present? %>
+                <p class="mt-1 text-sm leading-5 text-slate-500"><%= subtitle %></p>
+            <% end %>
+        </div>
     <% end %>
 
-    <% if subtitle.present? %>
-        <p class="ml-2"><b><%= subtitle %></b></p>
-    <% end %>
-
-    <div id="<%= id %>" style="min-height:<%= height %>"></div>
+    <div
+        id="<%= id %>"
+        class="min-w-0 flex-1"
+        style="min-height: <%= height %>"></div>
 </div>
+
+<script data-lesli-chart-config="<%= chart_config.to_json %>">
+(() => {
+    const script = document.currentScript;
+    const renderChart = () => {
+        if (!window.LesliChart || !script) return;
+        new window.LesliChart(JSON.parse(script.dataset.lesliChartConfig));
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("turbo:load", renderChart, { once: true });
+    } else {
+        renderChart();
+    }
+})();
+</script>

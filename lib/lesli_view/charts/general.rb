@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -33,48 +35,62 @@ Building a better future, one line of code at a time.
 module LesliView
     module Charts
         class General < ViewComponent::Base
-
             attr_reader(
-                :id, 
-                :title, 
-                :subtitle, 
-                :labels, 
-                :datasets, 
-                :height, 
+                :id,
+                :title,
+                :subtitle,
+                :labels,
+                :datasets,
+                :height,
                 :compact
             )
 
             def initialize(
-                id:nil, 
-                title:nil, 
-                subtitle:nil, 
-                labels:nil, 
-                dataset:nil,
-                datasets:nil, 
-                database_to_dataset:nil,
-                database_to_datasets:nil,
-                height:"400px",
-                compact:false
+                id: nil,
+                title: nil,
+                subtitle: nil,
+                labels: nil,
+                dataset: nil,
+                datasets: nil,
+                database_to_dataset: nil,
+                database_to_datasets: nil,
+                height: "400px",
+                compact: false
             )
-                @id = id || "lesli-chart-#{rand(1000)}" 
+                @id = id.presence || "lesli-chart-#{object_id}"
                 @title = title
                 @subtitle = subtitle
-                @labels = labels
-                @datasets = datasets
-                @height = height
-                @compact = compact
+                @labels = Array(labels)
+                @height = normalize_height(height)
+                @compact = !!compact
 
-                @datasets = [{ name: title, data: dataset }] if dataset
-                @datasets = database_to_dataset(database_to_dataset) if database_to_dataset
-                @datasets = database_to_datasets(database_to_datasets) if database_to_datasets
+                source_datasets = datasets
+                source_datasets = [{ label: title, data: dataset }] unless dataset.nil?
+                source_datasets = convert_database_to_dataset(database_to_dataset) if database_to_dataset
+                source_datasets = convert_database_to_datasets(database_to_datasets) if database_to_datasets
+                @datasets = normalize_datasets(source_datasets)
             end
 
             def type
                 nil
             end
 
-            def database_to_dataset(data)
-                [{ data: data.map { |d| { x: d['xaxiskey'], y: d['yaxiskey'] }}}]
+            def chart_config
+                {
+                    id: id,
+                    type: type,
+                    datasets: datasets,
+                    labels: labels,
+                    compact: compact
+                }
+            end
+
+            def title_id
+                @title_id ||= "#{id}-title"
+            end
+
+            def convert_database_to_dataset(data)
+                [{ label: title, data: data.map { |record| { x: record["xaxiskey"], y: record["yaxiskey"] } } }]
             end
 
             # Transforms a database query result into a structure compatible with Chart.js
@@ -94,8 +110,7 @@ module LesliView
             #           'sum(agent_count) as data'
             #       )
             #
-            def database_to_datasets(data)
-
+            def convert_database_to_datasets(data)
                 # Group records by series name
                 # Example: group all "Chrome" rows together
                 data
@@ -117,6 +132,30 @@ module LesliView
                         end
                     }
                 end
+            end
+
+            # Preserve the original public conversion helpers.
+            alias_method :database_to_dataset, :convert_database_to_dataset
+            alias_method :database_to_datasets, :convert_database_to_datasets
+
+            def dataset_defaults
+                {}
+            end
+
+            private
+
+            def normalize_datasets(value)
+                Array(value).map do |dataset|
+                    attributes = dataset.respond_to?(:to_h) ? dataset.to_h.symbolize_keys : { data: Array(dataset) }
+                    dataset_defaults.merge(attributes)
+                end
+            end
+
+            def normalize_height(value)
+                value = value.to_s
+                return value if value.match?(/\A\d+(?:\.\d+)?(?:px|rem|em|vh|vw|%)\z/)
+
+                "400px"
             end
         end
     end

@@ -1,30 +1,27 @@
-<style>
-.lesli-view-widgets-chart {
-}
-</style>
+<section
+    class="lesli-chart-widget h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% else %>aria-label="<%= I18n.t('charts.chart', default: 'Chart') %>"<% end %>>
 
-<%
-    # Determine the chart component class dynamically
-    chart_component = case type
-    when :bar
-        LesliView::Charts::Bar
-    when :line
-        LesliView::Charts::Line
-    else
-        nil # Handle unknown types gracefully
-    end
-%>
+    <div class="flex h-full min-h-40 flex-col">
+        <% if title.present? %>
+            <h2 id="<%= title_id %>" class="mb-3 text-sm font-medium leading-5 text-slate-500">
+                <%= title %>
+            </h2>
+        <% end %>
 
-<div class="lesli-view-widgets-chart">
-    <div class="box">
-        <% if chart_component %>
-            <%= render(chart_component.new(
-                title: title,
-                labels: data.map{ |i| i[0] },
-                dataset: data.map{ |i| i[1] },
-                height: '132px',
-                compact: true
-            )) %>
+        <% if data? %>
+            <div class="min-h-0 flex-1">
+                <%= render(chart_component.new(
+                    labels: labels,
+                    datasets: [{ label: title, data: dataset }],
+                    height: "10rem",
+                    compact: true
+                )) %>
+            </div>
+        <% else %>
+            <div class="flex flex-1 items-center justify-center text-sm text-slate-400">
+                <%= I18n.t("charts.empty", default: "No chart data") %>
+            </div>
         <% end %>
     </div>
-</div>
+</section>

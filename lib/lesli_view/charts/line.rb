@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -35,6 +37,20 @@ module LesliView
         class Line < General
             def type
                 "line"
+            end
+
+            def dataset_defaults
+                {
+                    backgroundColor: "rgba(14, 165, 233, 0.12)",
+                    borderColor: "rgb(2, 132, 199)",
+                    borderWidth: 2,
+                    fill: true,
+                    pointBackgroundColor: "rgb(2, 132, 199)",
+                    pointBorderColor: "rgb(255, 255, 255)",
+                    pointBorderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5
+                }
             end
         end
     end

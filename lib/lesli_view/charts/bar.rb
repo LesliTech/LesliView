@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -35,6 +37,14 @@ module LesliView
         class Bar < General
             def type
                 "bar"
+            end
+
+            def dataset_defaults
+                {
+                    backgroundColor: "rgba(14, 165, 233, 0.72)",
+                    borderColor: "rgb(2, 132, 199)",
+                    borderWidth: 1
+                }
             end
         end
     end

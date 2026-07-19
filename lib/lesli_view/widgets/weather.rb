@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 =begin
 
 Lesli
@@ -33,10 +35,47 @@ Building a better future, one line of code at a time.
 module LesliView
     module Widgets
         class Weather < ViewComponent::Base
-            attr_reader :date
+            attr_reader :date, :temperature, :location, :condition, :unit, :icon
 
-            def initialize(date = Time.now)
+            def initialize(
+                date = Time.current,
+                temperature: 26,
+                location: "Guatemala",
+                condition: nil,
+                unit: "C",
+                icon: "rainy"
+            )
                 @date = date
+                @temperature = temperature
+                @location = location
+                @condition = condition
+                @unit = normalize_unit(unit)
+                @icon = icon.presence || "rainy"
+            end
+
+            def display_temperature
+                "#{temperature.presence || "—"}°"
+            end
+
+            def condition_text
+                condition.presence || I18n.t("weather.conditions.showers", default: "Showers")
+            end
+
+            def accessible_label
+                [
+                    location.presence,
+                    "#{display_temperature}#{unit}",
+                    condition_text
+                ].compact.join(", ")
+            end
+
+            private
+
+            def normalize_unit(value)
+                value = value.to_s.upcase
+                return value if %w[C F].include?(value)
+
+                "C"
             end
         end
     end

@@ -2,5 +2,5 @@
 
 module LesliView
     VERSION = "1.1.3"
-    BUILD = "1789353654"
+    BUILD = "1790534691"
 end

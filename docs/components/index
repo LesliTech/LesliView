@@ -1,0 +1,6 @@
+---
+title: Components
+---
+
+<!-- The section landing page begins with the standard page header. -->
+<%= partial("header") %>

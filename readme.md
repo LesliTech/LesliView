@@ -141,6 +141,13 @@ LesliView organizes its public interface into focused groups:
 
 See the [LesliView documentation](https://www.lesli.dev/gems/view/) for component options and additional examples.
 
+- [Installation](https://www.lesli.dev/gems/view/about/installation)
+- [Components](https://www.lesli.dev/gems/view/components)
+- [Elements](https://www.lesli.dev/gems/view/elements)
+- [Forms](https://www.lesli.dev/gems/view/forms)
+- [Charts](https://www.lesli.dev/gems/view/charts)
+- [Widgets](https://www.lesli.dev/gems/view/widgets)
+
 <br />
 
 ## Development

@@ -1,10 +1,9 @@
-<%= navigation_for("gems", "view", "about") %>
-
-<%= navigation_for("gems", "view", "components") %>
-<%= navigation_for("gems", "view", "elements") %>
-<%= navigation_for("gems", "view", "partials") %>
-<%= navigation_for("gems", "view", "layout") %>
-<%= navigation_for("gems", "view", "items") %>
-<%= navigation_for("gems", "view", "forms") %>
-<%= navigation_for("gems", "view", "charts") %>
-<%= navigation_for("gems", "view", "widgets") %>
+<%= navigation_for_folder("gems", "view", "about", order:["installation"]) %>
+<%= navigation_for_folder("gems", "view", "components", order:["header", "toolbar", "tabs", "panel", "timeline"]) %>
+<%= navigation_for_folder("gems", "view", "elements", order:["button", "avatar", "empty", "table"]) %>
+<%= navigation_for_folder("gems", "view", "forms", order:["builder", "fields", "inputs", "fieldset"]) %>
+<%= navigation_for_folder("gems", "view", "layout", order:["container"]) %>
+<%= navigation_for_folder("gems", "view", "charts", order:["general", "bar", "line"]) %>
+<%= navigation_for_folder("gems", "view", "widgets", order:["count", "date", "calendar", "chart", "weather"]) %>
+<%= navigation_for_folder("gems", "view", "items", order:["discussion", "tasks", "actions", "activities", "attachments"]) %>
+<%= navigation_for_folder("gems", "view", "partials", order:["engine_spec"]) %>

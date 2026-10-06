@@ -1,0 +1,6 @@
+---
+title: Charts
+---
+
+<!-- The section landing page mirrors the shared chart API. -->
+<%= partial("general") %>

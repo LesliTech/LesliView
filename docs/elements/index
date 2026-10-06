@@ -1,0 +1,6 @@
+---
+title: Elements
+---
+
+<!-- The section landing page begins with the primary action element. -->
+<%= partial("button") %>

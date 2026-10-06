@@ -1,49 +1,26 @@
+# Line chart
 
-# Chart Line
+`LesliView::Charts::Line` renders a Chart.js line chart through the shared `General` component.
 
-The chart line is a wrapper of [Apexchart line](https://apexcharts.com/docs/chart-types/line-chart/). We keep the compatibility with almost all the configuration supported by the original chart object. For more information you can refer to the original documentation.
-
-### Props
-
-| prop   | type             | required | notes |
-| ---    | ---              | ---      | ---   |
-| title  | string           | true     | Title and main message to include within the graph |
-| series | array of objects | true     | The set of data. You can combine as many objects as needed |
-| labels | array of strings | true     | Main description of every data in the series data array. |
-
-<br />
-
-### Example of a simple chart:
-
-```html
-<lesli-chart-line 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-line>
+```erb
+<%= render LesliView::Charts::Line.new(
+    title: "Weekly activity",
+    subtitle: "Created records",
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    dataset: [4, 1, 4, 2, 5]
+) %>
 ```
 
-<lesli-chart-line 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-line>
+Multiple datasets use Chart.js-compatible hashes:
 
-<hr />
-
-
-### Example of a multiple series chart:
-
-```html
-<lesli-chart-line 
-    title="My daily activity graph"
-    :series="[{ name: 'Last week', data:[4, 1, 4, 2, 5] }, { name: 'Current week', data:[3, 2, 5, 4, 2] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-line>
+```erb
+<%= render LesliView::Charts::Line.new(
+    labels: ["Mon", "Tue", "Wed"],
+    datasets: [
+        { label: "Last week", data: [4, 1, 4] },
+        { label: "This week", data: [3, 2, 5] }
+    ]
+) %>
 ```
 
-<lesli-chart-line 
-    title="My daily activity graph"
-    :series="[{ name: 'Last week', data:[4, 1, 4, 2, 5] }, { name: 'Current week', data:[3, 2, 5, 4, 2] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-line>
+Line charts add a filled translucent background, sky border, and point styles by default. Caller-supplied dataset attributes override those values. See [General chart](/gems/view/charts/general) for the complete input contract.

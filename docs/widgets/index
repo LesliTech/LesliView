@@ -1,0 +1,6 @@
+---
+title: Widgets
+---
+
+<!-- The section landing page begins with the compact metric widget. -->
+<%= partial("count") %>

@@ -1,77 +1,26 @@
+# Bar chart
 
-# Chart Bar
+`LesliView::Charts::Bar` renders a Chart.js bar chart through the shared `General` component.
 
-The chart bar is a wrapper of [Apexchart bar](https://apexcharts.com/docs/chart-types/bar-chart/). We keep the compatibility with almost all the configuration supported by the original chart object. For more information you can refer to the original documentation.
-
-### Props
-
-| prop   | type             | required | notes |
-| ---    | ---              | ---      | ---   |
-| title  | string           | true     | Title and main message to include within the graph |
-| series | array of objects | true     | The set of data. You can combine as many objects as needed |
-| labels | array of strings | true     | Main description of every data in the series data array. |
-
-<br />
-
-### Example of a simple chart:
-
-```html
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
+```erb
+<%= render LesliView::Charts::Bar.new(
+    title: "Tickets by status",
+    labels: ["Open", "Pending", "Closed"],
+    dataset: [12, 7, 19],
+    height: "20rem"
+) %>
 ```
 
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
+For multiple series, pass `datasets`:
 
-
-### Multi serie chart:
-
-```html
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
+```erb
+<%= render LesliView::Charts::Bar.new(
+    labels: ["Mon", "Tue", "Wed"],
+    datasets: [
+        { label: "Created", data: [5, 8, 4] },
+        { label: "Resolved", data: [3, 6, 7] }
+    ]
+) %>
 ```
 
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :series="[{ 
-        name:'Serie 1',
-        data:[4, 1, 4, 2, 5] 
-    }, { 
-        name:'Serie 2',
-        data:[1, 4, 2, 5, 3] 
-    }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
-
-
-### Stacked chart:
-
-```html
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :series="[{ data:[4, 1, 4, 2, 5] }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
-```
-
-<lesli-chart-bar 
-    title="My daily activity graph"
-    :stacked="true"
-    :series="[{ 
-        name:'Serie 1',
-        data:[4, 1, 4, 2, 5] 
-    }, { 
-        name:'Serie 2',
-        data:[1, 4, 2, 5, 3] 
-    }]"
-    :labels="['Monday','Tuesday','Wednesday', 'Thursday', 'Friday']">
-</lesli-chart-bar>
+Bar charts merge each dataset with the default sky background, border color, and one-pixel border. Dataset attributes supplied by the caller override those defaults. See [General chart](/gems/view/charts/general) for all constructor options and database conversion inputs.

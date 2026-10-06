@@ -1,74 +1,30 @@
-# Installation & configuration
+# Installation
 
-LesliView and its dependencies are automatically installed when installing Lesli, however you can use the components with any other rails project by installing the gem and dependencies manually.
+LesliView packages ViewComponent classes, Rails form builders, layouts, charts, widgets, and domain-oriented views for the Lesli presentation layer.
 
-## Check installation 
+## Standard Lesli applications
 
-```bash
-rake lesli:status
-```
-
-**result:**
-
-```text
-Lesli
--·-     -·-     -·-     -·-     -·-     -·-     -·-     -·-     
-
-| NAME           | CODE            | VERSION   | BUILD                           
-| - - - - - - - -| - - - - - - - - | - - - - - | - - - - - - -
-| Lesli          | lesli           | 5.0.22    | 1755006918                      
-| ---            |                 |           |                                 
-| LesliView      | lesli_view      | 1.0.6     | 1767477530                      
-| LesliAssets    | lesli_assets    | 1.0.6     | 1755007848                      
-| LesliSystem    | lesli_system    | 1.0.4     | 1754919086                      
-
-
-Environment: development
-```
-
-## Manually installation
-
-You can use LesliView in any rails project by installing the gem and its dependencies
+Lesli installs LesliView and LesliAssets automatically. Verify the registered gems from the host application:
 
 ```shell
-# Add LesliView gem
+bin/rails lesli:status
+```
+
+## Other Rails applications
+
+Add the component and asset gems:
+
+```shell
 bundle add lesli_view
 bundle add lesli_assets
 ```
 
+LesliView depends on ViewComponent and Lexxy at runtime. The host application must also load the styles, Material Symbols, JavaScript, and other frontend resources distributed by LesliAssets. A component can render without those resources, but it will not have its intended presentation or interactive behavior.
 
-### Loading assets
+Verify the installation in an ERB view:
 
-LesliView depends on Bulma, trix, remixicons and google icons.
-
-
-```scss
-@use "lesli-css";
-@use "lesli-css/sass/vendor/bulma";
-
-
-// · Vendor
-@use "trix/dist/trix.css";
-
-
-// · Configuration & variables
-@use "../settings/variables";
-
-
-// · LesliView components & elements 
-@use "LesliView/lib/lesli_view/components/timeline";
-@use "LesliView/lib/lesli_view/components/toolbar";
-@use "LesliView/lib/lesli_view/components/header";
-@use "LesliView/lib/lesli_view/components/panel";
-@use "LesliView/lib/lesli_view/components/tabs";
-@use "LesliView/lib/lesli_view/elements/avatar";
-@use "LesliView/lib/lesli_view/elements/table";
-@use "LesliView/lib/lesli_view/forms/form";
-@use "LesliView/lib/lesli_view/items/discussions";
-
-
-// · Font families and icons
-@use "../fonts/remixicons";
-@use "../fonts/mdsymbols";
-@use "../fonts/families";
+```erb
+<%= render LesliView::Elements::Button.new("Continue", url: root_path) %>
 ```
+
+Use the fully qualified constants shown in these guides. Most components accept a block through ViewComponent, while components with named slots document those slots explicitly.

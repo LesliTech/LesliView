@@ -1,0 +1,6 @@
+---
+title: Forms
+---
+
+<!-- The section landing page describes the shared form builder. -->
+<%= partial("builder") %>

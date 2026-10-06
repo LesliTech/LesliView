@@ -1,0 +1,6 @@
+---
+title: Partials
+---
+
+<!-- The section landing page documents the engine metadata partial. -->
+<%= partial("engine_spec") %>

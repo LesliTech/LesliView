@@ -1,6 +1,6 @@
 
 <section
-    class="mx-auto my-8 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between"
+    class="mx-auto my-8 grid w-full grid-cols-1 gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start"
     <% if title.present? %>aria-labelledby="<%= title_id %>"<% end %>>
 
     <div class="min-w-0">
@@ -36,7 +36,7 @@
 
     <% if actions? %>
         <div
-            class="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end"
+            class="flex flex-wrap items-center gap-3 md:justify-self-end"
             role="group"
             aria-label="<%= I18n.t('actions.label', default: 'Page actions') %>">
             <% if new_path.present? %>

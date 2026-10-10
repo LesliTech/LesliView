@@ -15,7 +15,7 @@ module LesliView
                 assert_includes html, "text-[2rem]"
                 assert_includes html, "rounded-full"
                 assert_includes html, "border-[0.1px]"
-                assert_includes html, "border-slate-300"
+                assert_includes html, "border-slate-400"
                 assert_includes html, "bg-slate-100"
                 refute_includes html, "has-background-grey-lighter"
                 refute_includes html, "has-text-weight-bold"

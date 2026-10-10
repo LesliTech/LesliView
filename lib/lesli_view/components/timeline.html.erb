@@ -1,26 +1,29 @@
-<div class="lesli-timelines">
-    <div class="py-6 pl-6">
-        <ul class="lesli-timeline lesli-timeline-split">
-            <% @activities.each do |activity| %>
-                <li class="lesli-timeline-item">
-                    <div class="lesli-timeline-info">
-                        <span><%= activity['date'] %></span>
-                    </div>
-                    <div class="lesli-timeline-marker">
-                        <span class="material-symbols-outlined">
-                            <%= @icons.dig(activity['icon']&.to_sym) || 'radio_button_checked' %>
-                        </span>
-                    </div>
-                    <div class="lesli-timeline-content">
-                        <h6 class="lesli-timeline-title">
-                            <%= activity['operation'] %>
-                        </h6>
-                        <p>
-                            <%= activity['description'] %>
-                        </p>
-                    </div>
-                </li>
-            <% end %>
-        </ul>
-    </div>
+<div class="lesli-timelines py-6">
+    <ul class="m-0 w-full list-none p-0">
+        <% activities.each do |activity| %>
+            <li class="group grid grid-cols-[1.5rem_minmax(0,1fr)] gap-x-4 md:grid-cols-[minmax(8rem,auto)_1.5rem_minmax(0,1fr)] md:gap-x-6">
+                <div class="col-start-2 mb-2 min-w-0 text-xs font-bold uppercase tracking-[0.2em] text-slate-500 md:col-start-1 md:row-start-1 md:mb-0 md:pt-1 md:text-right">
+                    <span><%= activity['date'] %></span>
+                </div>
+
+                <div class="relative col-start-1 row-span-2 row-start-1 flex justify-center md:col-start-2">
+                    <span
+                        class="material-symbols-outlined relative z-10 bg-white text-xl leading-none text-[var(--lesli-color-primary)]"
+                        aria-hidden="true">
+                        <%= icons.dig(activity['icon']&.to_sym) || 'radio_button_checked' %>
+                    </span>
+                    <span class="absolute top-7 bottom-0 left-1/2 w-px -translate-x-1/2 bg-slate-300 group-last:hidden" aria-hidden="true"></span>
+                </div>
+
+                <div class="col-start-2 row-start-2 min-w-0 pb-10 md:col-start-3 md:row-start-1">
+                    <h6 class="text-base font-semibold text-slate-800">
+                        <%= activity['operation'] %>
+                    </h6>
+                    <p class="mt-1 text-sm leading-6 text-slate-600">
+                        <%= activity['description'] %>
+                    </p>
+                </div>
+            </li>
+        <% end %>
+    </ul>
 </div>

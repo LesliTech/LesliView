@@ -1,51 +1,38 @@
-
-<style>
-    .partial-engine-spec div {
-        border-bottom: 1px solid silver;
-    }
-    .partial-engine-spec li {
-        font-size: 1.1rem;
-        margin-left: .4rem;
-    }
-</style>
 <div class="partial-engine-spec">
-    <div class="mb-3 pb-2">
-        <h5 class="is-title is-size-5 has-text-weight-semibold"><%= engine[:name] %></h5>
-        <p class="is-size-5"><%= engine[:summary] %></p>
+    <div class="mb-4 border-b border-slate-300 pb-3">
+        <h5 class="text-xl font-semibold text-slate-800"><%= engine[:name] %></h5>
+        <p class="mt-1 text-xl leading-7 text-slate-600"><%= engine[:summary] %></p>
     </div>
-    <ul>
-        <li class="mb-2">
-            <span class="icon-text">
-                <span class="material-symbols md-24">
-                    pest_control
-                </span>
-                <span></span>
+
+    <ul class="m-0 list-none space-y-2 p-0">
+        <li class="ml-1.5 flex items-center gap-2 text-[1.1rem] text-slate-600">
+            <span class="material-symbols shrink-0 text-2xl leading-none text-slate-400" aria-hidden="true">
+                pest_control
             </span>
-            Version: <%= engine[:version] %>
+            <span>Version: <%= engine[:version] %></span>
         </li>
-        <li class="mb-2">
-            <span class="icon-text">
-                <span class="material-symbols md-24">
-                    schedule
-                </span>
-                <span></span>
+
+        <li class="ml-1.5 flex items-center gap-2 text-[1.1rem] text-slate-600">
+            <span class="material-symbols shrink-0 text-2xl leading-none text-slate-400" aria-hidden="true">
+                schedule
             </span>
-            Build: <%= LesliDate::Formatter.new(Time.at(engine[:build].to_i)).date_time %>
+            <span>Build: <%= LesliDate::Formatter.new(Time.at(engine[:build].to_i)).date_time %></span>
         </li>
-        <li>
-            <span class="icon-text">
-                <span class="material-symbols md-24">
-                    library_books
-                </span>
-                <span></span>
+
+        <li class="ml-1.5 flex min-w-0 items-center gap-2 text-[1.1rem] text-slate-600">
+            <span class="material-symbols shrink-0 text-2xl leading-none text-slate-400" aria-hidden="true">
+                library_books
             </span>
-            <%= link_to_if(
-                engine.dig(:metadata, "documentation_uri"),
-                engine.dig(:metadata, "documentation_uri"), 
-                engine.dig(:metadata, "documentation_uri"), 
-                target: "_blank",
-                class: "is-family-sans-serif"
-            ) %>
+            <span class="min-w-0 break-all">
+                <%= link_to_if(
+                    engine.dig(:metadata, "documentation_uri"),
+                    engine.dig(:metadata, "documentation_uri"),
+                    engine.dig(:metadata, "documentation_uri"),
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    class: "font-sans text-[var(--lesli-color-primary)] underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--lesli-color-primary)]"
+                ) %>
+            </span>
         </li>
     </ul>
 </div>

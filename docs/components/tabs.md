@@ -15,3 +15,5 @@
 ```
 
 `active_tab:` selects the initial tab; otherwise the first tab is used. Set `vertical: true` for the vertical presentation. Each `with_tab` accepts `id:`, `title:`, and an optional Material Symbol `icon:`. When `id:` is omitted, a normalized ID is generated from the title and falls back to the tab position.
+
+The component uses Tailwind CSS for presentation and includes tab, tablist, and tabpanel semantics. Tabs can be selected with a pointer, `Tab`, `Enter`, `Space`, or the arrow keys.

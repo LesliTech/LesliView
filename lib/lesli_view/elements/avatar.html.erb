@@ -1,7 +1,7 @@
-<figure class="lesli-element-avatar has-background-grey-lighter" style="<%= avatar_style %>">
+<figure class="lesli-element-avatar <%= avatar_size %> flex shrink-0 items-center justify-center overflow-hidden rounded-full border-[0.1px] border-slate-400 bg-slate-100">
     <% if image %>
-        <img src="<%= image %>" alt="Avatar image">
+        <img class="h-full w-full object-cover" src="<%= image %>" alt="Avatar image">
     <% else %>
-        <span class="has-text-weight-bold <%= font_size %>"><%= letter %></span>
+        <span class="font-bold text-slate-700 <%= font_size %>"><%= letter %></span>
     <% end %>
 </figure>

@@ -1,34 +1,67 @@
-<div 
-    class="lesli-tabs <%= 'is-vertical' if vertical%>" 
-    x-data="{ activeTab: '<%= active_tab || tabs[0].tab_id %>' }">
-    <div class="tabs mb-0">
-        <ul>
-            <% tabs.each_with_index do |tab, index| %>
-                <% tab.set_tab_id(tab.tab_id, index) %>
-                <li :class="{ 'is-active': activeTab === '<%= tab.tab_id %>' }">
-                    <a @click="activeTab = '<%= tab.tab_id %>'" data-turbo="false">
-                        <% if tab.icon %>
-                            <span class="icon is-small">
-                                <span class="material-symbols-outlined">
-                                    <%= tab.icon %>
-                                </span>
-                            </span>
-                        <% end %>
-                        <span>
-                            <%= tab.title %>
+<% tabs.each_with_index { |tab, index| tab.set_tab_id(tab.tab_id, index) } %>
+<% initial_tab = active_tab.presence || tabs.first&.tab_id %>
+
+<div
+    class="lesli-tabs min-w-0<%= " flex items-start gap-6" if vertical %>"
+    x-data="{
+        activeTab: '<%= j(initial_tab.to_s) %>',
+        focusTab(event, offset) {
+            const tabs = Array.from(event.currentTarget.closest('[role=tablist]').querySelectorAll('[role=tab]'));
+            const currentIndex = tabs.indexOf(event.currentTarget);
+            const nextTab = tabs[(currentIndex + offset + tabs.length) % tabs.length];
+
+            nextTab.focus();
+            nextTab.click();
+        }
+    }">
+
+    <div class="<%= vertical ? "w-48 shrink-0" : "overflow-x-auto" %>">
+        <div
+            class="<%= vertical ? "flex w-full flex-col border-r border-slate-200" : "flex min-w-max border-b border-slate-200" %>"
+            role="tablist"
+            aria-orientation="<%= vertical ? "vertical" : "horizontal" %>">
+
+            <% tabs.each do |tab| %>
+                <button
+                    id="<%= tab.tab_id %>-tab"
+                    class="inline-flex min-h-11 cursor-pointer items-center gap-2 whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset <%= vertical ? "-mr-px w-full border-r-2 text-left" : "-mb-px justify-center border-b-2" %>"
+                    type="button"
+                    role="tab"
+                    aria-controls="<%= tab.tab_id %>"
+                    :aria-selected="activeTab === '<%= j(tab.tab_id) %>'"
+                    :tabindex="activeTab === '<%= j(tab.tab_id) %>' ? 0 : -1"
+                    :class="{
+                        'border-blue-600 text-blue-700': activeTab === '<%= j(tab.tab_id) %>',
+                        'border-transparent text-slate-500 hover:text-slate-700': activeTab !== '<%= j(tab.tab_id) %>'
+                    }"
+                    @click="activeTab = '<%= j(tab.tab_id) %>'"
+                    @keydown.right.prevent="focusTab($event, 1)"
+                    @keydown.down.prevent="focusTab($event, 1)"
+                    @keydown.left.prevent="focusTab($event, -1)"
+                    @keydown.up.prevent="focusTab($event, -1)">
+
+                    <% if tab.icon %>
+                        <span class="material-symbols-outlined text-xl leading-none" aria-hidden="true">
+                            <%= tab.icon %>
                         </span>
-                    </a>
-                </li>
+                    <% end %>
+
+                    <span><%= tab.title %></span>
+                </button>
             <% end %>
-        </ul>
+        </div>
     </div>
-    <div class="tab-items">
-        <% tabs.each_with_index do |tab, index| %>
+
+    <div class="min-w-0 flex-1<%= " pt-5" unless vertical %>">
+        <% tabs.each do |tab| %>
             <div
                 id="<%= tab.tab_id %>"
-                class="tab-item"
-                x-show="activeTab === '<%= tab.tab_id %>'"
-                x-transition
+                class="min-w-0"
+                role="tabpanel"
+                aria-labelledby="<%= tab.tab_id %>-tab"
+                tabindex="0"
+                x-show="activeTab === '<%= j(tab.tab_id) %>'"
+                x-transition.opacity.duration.150ms
                 x-cloak>
                 <%= tab %>
             </div>

@@ -32,7 +32,7 @@ Building a better future, one line of code at a time.
 module LesliView
     module Elements
         class Avatar < ViewComponent::Base
-            attr_reader :image, :name, :size, :letter, :font_size, :avatar_style
+            attr_reader :image, :name, :size, :letter, :font_size, :avatar_size
 
             def initialize(image: nil, name: "", size: "medium")
                 @image = image
@@ -40,7 +40,7 @@ module LesliView
                 @size = size
                 @letter = ""
                 @font_size = ""
-                @avatar_style = ""
+                @avatar_size = ""
                 calculate_size
                 get_letter unless @image
             end
@@ -51,14 +51,14 @@ module LesliView
             def calculate_size
                 case size
                 when "small"
-                    @font_size = "is-size-5"
-                    @avatar_style = "height: 60px; width: 60px;"
+                    @font_size = "text-xl"
+                    @avatar_size = "size-[60px]"
                 when "medium"
-                    @font_size = "is-size-3"
-                    @avatar_style = "height: 120px; width: 120px;"
+                    @font_size = "text-[2rem]"
+                    @avatar_size = "size-[120px]"
                 when "large"
-                    @font_size = "is-size-1"
-                    @avatar_style = "height: 180px; width: 180px;"
+                    @font_size = "text-5xl"
+                    @avatar_size = "size-[180px]"
                 else
                     raise ArgumentError, "Invalid size: #{size}"
                 end

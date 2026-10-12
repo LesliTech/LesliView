@@ -29,16 +29,9 @@ Building a better future, one line of code at a time.
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
 %>
-<style>
-.lesli-items-tasks {
-    .lesli-items-tasks-tasks-task-done p {
-        text-decoration: line-through;
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-}
-</style>
-<article class="lesli-items-tasks box p-6" id="<%= dom_id(@resource, :tasks) %>">
+<article
+    class="lesli-items-tasks rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+    id="<%= dom_id(@resource, :tasks) %>">
     <div class="lesli-items-tasks-form">
         <% task_class = "#{@resource.class.name.deconstantize}::Items::Task".constantize %>
         <% scope_key = ActiveSupport::Inflector.underscore(task_class.name).tr("/", "_") %>
@@ -54,13 +47,15 @@ Building a better future, one line of code at a time.
             <%= form.field_control_submit "Add task" %>
         <% end %>
     </div>
-    <hr>
+    <hr class="my-6 border-0 border-t border-slate-200">
+
     <div class="lesli-items-tasks-container">
-        <ul id="<%="#{scope_key}-lesli-items-tasks-list"%>">
+        <ul
+            id="<%= "#{scope_key}-lesli-items-tasks-list" %>"
+            class="m-0 list-none space-y-3 p-0">
             <% @resource.tasks.each do |task| %>
                 <%= render(LesliView::Items::Task.new(task, scope_key)) %>
             <% end %>
         </ul>
     </div>
 </article>
-

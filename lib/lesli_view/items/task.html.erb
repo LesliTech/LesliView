@@ -30,9 +30,9 @@ Building a better future, one line of code at a time.
 // · 
 %>
 
-<li 
+<li
     id="<%= dom_id(@resource, @scope_key) %>"
-    class="lesli-items-tasks-item is-flex mt-3 mb-3 <%= "lesli-items-tasks-task-done" if @resource.done %>">
+    class="lesli-items-tasks-item rounded-xl border transition-colors <%= @resource.done ? "lesli-items-tasks-task-done cursor-not-allowed border-slate-200 bg-slate-50" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50" %>">
     <%= form_with(
             url: helpers.polymorphic_path(@resource),
             method: :patch,
@@ -40,16 +40,21 @@ Building a better future, one line of code at a time.
             local: true
         ) do |form| %>
         <%= form.hidden_field :id, value: @resource.id %>
-        <%= form.button type: "submit", disabled: @resource.done? do %>
-            <p class="icon-text">
-                <span class="icon">
-                    <span class="material-symbols-outlined">
-                        <%= @resource.done ? "check_box"  : "check_box_outline_blank" %>
-                    </span>
+        <%= form.button(
+            type: "submit",
+            disabled: @resource.done?,
+            class: "flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--lesli-color-primary)] disabled:cursor-not-allowed"
+        ) do %>
+            <span class="flex min-w-0 items-center gap-3">
+                <span
+                    class="material-symbols-outlined shrink-0 text-xl leading-none <%= @resource.done ? "text-slate-400" : "text-[var(--lesli-color-primary)]" %>"
+                    aria-hidden="true">
+                    <%= @resource.done ? "check_box" : "check_box_outline_blank" %>
                 </span>
-                <span><%= @resource.title %></span>
-            </p>
+                <span class="min-w-0 break-words <%= "text-slate-500 line-through" if @resource.done %>">
+                    <%= @resource.title %>
+                </span>
+            </span>
         <% end %>
     <% end %>
 </li>
-

@@ -29,8 +29,8 @@ Building a better future, one line of code at a time.
 // · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
 // · 
 %>
-<article class="lesli-items-discussions" id="lesli-items-discussions">
-    <div class="lesli-items-discussions-form">
+<article class="lesli-items-discussions bg-white p-4 sm:p-8" id="lesli-items-discussions">
+    <div class="lesli-items-discussions-form p-4">
         <% discussion_class = "#{@resource.class.name.deconstantize}::Items::Discussion".constantize %>
         <% scope_key = ActiveSupport::Inflector.underscore(discussion_class.name).tr("/", "_") %>
         <%= form_with(
@@ -45,13 +45,15 @@ Building a better future, one line of code at a time.
             <%= form.field_control_submit("Add comment") %>
         <% end %>
     </div>
-    <hr />
-    <div class="lesli-items-discussions-container">
-        <ul id="<%="#{scope_key}-lesli-items-discussions-list"%>">
+    <hr class="my-6 border-0 border-t border-slate-200">
+
+    <div class="lesli-items-discussions-container p-4">
+        <ul
+            id="<%= "#{scope_key}-lesli-items-discussions-list" %>"
+            class="m-0 list-none space-y-6 p-0">
             <% @resource.discussions.order(created_at: :desc).each do |comment| %>
                 <%= render(LesliView::Items::Discussion.new(comment)) %>
             <% end %>
         </ul>
     </div>
 </article>
-

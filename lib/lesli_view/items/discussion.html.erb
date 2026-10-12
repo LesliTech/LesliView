@@ -1,9 +1,10 @@
-<div class="lesli-items-discussions-comments-comment is-flex mb-6">
-    <div class="has-text-right">
-        <strong>Luis Donis</strong> <br>
+<li class="lesli-items-discussions-comments-comment flex flex-col gap-3 border-b border-slate-200 pb-6 last:border-b-0 last:pb-0 sm:flex-row sm:gap-4">
+    <div class="shrink-0 text-sm leading-5 text-slate-500 sm:w-40 sm:text-right">
+        <strong class="block font-semibold text-slate-800">Luis Donis</strong>
         <%= discussion['created_at_string'] || Date2.new.date_time %>
     </div>
-    <div class="ml-4 is-fullwidth lexxy-content">
+
+    <div class="lexxy-content min-w-0 flex-1 break-words text-slate-700">
         <%== discussion.message %>
     </div>
-</div>
+</li>

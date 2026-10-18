@@ -1,0 +1,65 @@
+/*!
+
+Lesli
+
+Copyright (c) 2026, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// ·
+*/
+
+
+/* Define layer priority */
+@layer theme, components, utilities;
+
+
+/* Import Tailwind */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "lesli-css/css/colors.css";
+
+
+/* Shared Lesli theme */
+@import "../../../LesliAssets/source/tailwind/settings/variables.css";
+@import "../../../LesliAssets/source/tailwind/settings/theme.css";
+
+
+/* Vendor */
+/* Lexxy does not expose its CSS through package.json, so use its local files. */
+@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-variables.css" layer(theme);
+@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-content.css" layer(components);
+@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-editor.css" layer(components);
+
+
+/* Discover utility classes used by every LesliView component. */
+@source "../../lib/lesli_view/**/*.rb";
+@source "../../lib/lesli_view/**/*.html.erb";
+
+
+/* Component styles that are not expressed as utility classes. */
+@import "../../lib/lesli_view/components/toolbar.css";
+@import "../../lib/lesli_view/elements/button.css";
+@import "../../lib/lesli_view/elements/table.css";
+@import "../../lib/lesli_view/forms/form.css";

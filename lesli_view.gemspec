@@ -56,7 +56,7 @@ Gem::Specification.new do |spec|
     spec.metadata["documentation_uri"]  = "https://www.lesli.dev/gems/view/"
 
     spec.files = Dir.chdir(File.expand_path(__dir__)) do
-        Dir["{lib}/**/*", "license", "Rakefile", "readme.md"]
+        Dir["{app,lib}/**/*", "license", "Rakefile", "readme.md"]
     end
 
     spec.bindir = "exe"

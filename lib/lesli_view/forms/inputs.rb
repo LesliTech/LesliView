@@ -38,7 +38,6 @@ module LesliView
             def password_field(method, options = {})
                 options = options.symbolize_keys
                 options[:class] = merge_css_classes("lesli-form-input", options[:class])
-                options[:value] = @object.public_send(method) if @object && !options.key?(:value)
                 super(method, options)
             end
 

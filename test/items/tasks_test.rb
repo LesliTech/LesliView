@@ -32,8 +32,24 @@ module TasksTestApp
 
         attr_accessor :id, :tasks
 
+        def self.lesli_tasks_class
+            TasksTestApp::Items::Task
+        end
+
+        def self.lesli_tasks_association_name
+            :tasks
+        end
+
         def persisted?
             id.present?
+        end
+    end
+
+    class TicketWithTaskList < Ticket
+        attr_accessor :task_list
+
+        def self.lesli_tasks_association_name
+            :task_list
         end
     end
 end
@@ -42,12 +58,6 @@ module LesliView
     module Items
         class TasksTest < Minitest::Test
             def test_renders_create_form_and_task_states_with_tailwind_classes
-                view_context = ActionView::Base.empty
-                view_context.define_singleton_method(:protect_against_forgery?) { false }
-                view_context.define_singleton_method(:polymorphic_path) do |target, **|
-                    target.is_a?(Array) ? "/items/tasks" : "/items/tasks/#{target.id}"
-                end
-
                 html = Tasks.new(resource).render_in(view_context)
 
                 assert_includes html, "rounded-2xl border border-slate-200 bg-white"
@@ -70,6 +80,25 @@ module LesliView
                 refute_includes html, "icon-text"
             end
 
+            def test_renders_the_configured_task_association
+                custom_resource = TasksTestApp::TicketWithTaskList.new(
+                    id: 43,
+                    tasks: [],
+                    task_list: [
+                        TasksTestApp::Items::Task.new(
+                            id: 3,
+                            title: "Configured association",
+                            done: false
+                        )
+                    ]
+                )
+
+                html = Tasks.new(custom_resource).render_in(view_context)
+
+                assert_includes html, "Configured association"
+                assert_equal 1, html.scan(/<li\b/).length
+            end
+
             private
 
             def resource
@@ -80,6 +109,19 @@ module LesliView
                         TasksTestApp::Items::Task.new(id: 2, title: "Publish release", done: true)
                     ]
                 )
+            end
+
+            def view_context
+                context = ActionView::Base.empty
+                context.define_singleton_method(
+                    :protect_against_forgery?
+                ) { false }
+                context.define_singleton_method(:polymorphic_path) do |target, **|
+                    target.is_a?(Array) ?
+                        "/items/tasks" :
+                        "/items/tasks/#{target.id}"
+                end
+                context
             end
         end
     end

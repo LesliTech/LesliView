@@ -33,10 +33,26 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Tasks < ViewComponent::Base
-            attr_reader :resource, :path_to_create
+            attr_reader :resource
 
             def initialize(resource)
                 @resource = resource
+            end
+
+            def task_class
+                resource.class.lesli_tasks_class
+            end
+
+            def tasks
+                resource.public_send(
+                    resource.class.lesli_tasks_association_name
+                )
+            end
+
+            def scope_key
+                ActiveSupport::Inflector
+                    .underscore(task_class.name)
+                    .tr("/", "_")
             end
         end
     end

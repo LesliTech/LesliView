@@ -33,8 +33,6 @@ Building a better future, one line of code at a time.
     class="lesli-items-tasks rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
     id="<%= dom_id(@resource, :tasks) %>">
     <div class="lesli-items-tasks-form">
-        <% task_class = "#{@resource.class.name.deconstantize}::Items::Task".constantize %>
-        <% scope_key = ActiveSupport::Inflector.underscore(task_class.name).tr("/", "_") %>
         <%= form_with(
             scope: scope_key,
             model: task_class.new,
@@ -44,7 +42,7 @@ Building a better future, one line of code at a time.
                 taskable_id: @resource.id
             )) do |form| %>
             <%= form.field_control_text :title %>
-            <%= form.field_control_submit "Add task" %>
+            <%= form.field_control_submit I18n.t("lesli.items.tasks.add") %>
         <% end %>
     </div>
     <hr class="my-6 border-0 border-t border-slate-200">
@@ -53,7 +51,7 @@ Building a better future, one line of code at a time.
         <ul
             id="<%= "#{scope_key}-lesli-items-tasks-list" %>"
             class="m-0 list-none space-y-3 p-0">
-            <% @resource.tasks.each do |task| %>
+            <% tasks.each do |task| %>
                 <%= render(LesliView::Items::Task.new(task, scope_key)) %>
             <% end %>
         </ul>

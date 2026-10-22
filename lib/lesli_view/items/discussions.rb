@@ -32,11 +32,35 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Discussions < ViewComponent::Base
-            attr_reader :resource, :path
+            attr_reader :comment, :resource
 
-            def initialize(resource, path=nil)
+            def initialize(resource, comment: nil)
                 @resource = resource
-                @path = path
+                @comment = comment || discussion_class.new
+            end
+
+            def discussion_class
+                resource.class.lesli_discussions_class
+            end
+
+            def discussions
+                resource.public_send(
+                    resource.class.lesli_discussions_association_name
+                )
+            end
+
+            def create_path
+                helpers.polymorphic_path(
+                    [:items, :discussions],
+                    discussable_type: resource.class.name,
+                    discussable_id: resource.id
+                )
+            end
+
+            def scope_key
+                ActiveSupport::Inflector
+                    .underscore(discussion_class.name)
+                    .tr("/", "_")
             end
         end
     end

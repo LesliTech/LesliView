@@ -1,7 +1,11 @@
 <li class="lesli-items-discussions-comments-comment flex flex-col gap-3 border-b border-slate-200 pb-6 last:border-b-0 last:pb-0 sm:flex-row sm:gap-4">
     <div class="shrink-0 text-sm leading-5 text-slate-500 sm:w-40 sm:text-right">
-        <strong class="block font-semibold text-slate-800">Luis Donis</strong>
-        <%= discussion['created_at_string'] || Date2.new.date_time %>
+        <strong class="block font-semibold text-slate-800">
+            <%= author_name %>
+        </strong>
+        <time datetime="<%= created_at_iso8601 %>">
+            <%= created_at_label %>
+        </time>
     </div>
 
     <div class="min-w-0 flex-1 whitespace-pre-wrap break-words text-slate-700"><%= discussion.message %></div>

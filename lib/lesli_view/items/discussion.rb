@@ -37,6 +37,32 @@ module LesliView
             def initialize(discussion)
                 @discussion = discussion
             end
+
+            def author_name
+                author = discussion.author
+                full_name = author.full_name if author.respond_to?(:full_name)
+                name = author.name if author.respond_to?(:name)
+
+                full_name.presence || name.presence || I18n.t(
+                    "lesli.items.discussions.unknown_author",
+                    default: "Unknown user"
+                )
+            end
+
+            def created_at_label
+                return if discussion.created_at.blank?
+
+                I18n.l(
+                    discussion.created_at,
+                    format: "%Y-%m-%d · %H:%M"
+                )
+            end
+
+            def created_at_iso8601
+                return if discussion.created_at.blank?
+
+                discussion.created_at.strftime("%Y-%m-%dT%H:%M:%S%:z")
+            end
         end
     end
 end

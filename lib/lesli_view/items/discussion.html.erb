@@ -4,7 +4,5 @@
         <%= discussion['created_at_string'] || Date2.new.date_time %>
     </div>
 
-    <div class="lexxy-content min-w-0 flex-1 break-words text-slate-700">
-        <%== discussion.message %>
-    </div>
+    <div class="min-w-0 flex-1 whitespace-pre-wrap break-words text-slate-700"><%= discussion.message %></div>
 </li>

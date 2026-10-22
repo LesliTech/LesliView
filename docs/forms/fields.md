@@ -9,7 +9,8 @@ The builder exposes complete field wrappers that combine a label, input, optiona
 | `field_control_password` | Password input |
 | `field_control_checkbox` | Checkbox and label |
 | `field_control_select` / `field_select` | Select menu |
-| `field_control_textarea` / `field_textarea` | Lexxy rich textarea |
+| `field_control_textarea` / `field_textarea` | Plain textarea |
+| `field_control_textarea_rich` | Lexxy rich textarea |
 | `field_control_submit` | Rails submit control |
 | `field_control_button` | Configurable button with optional icon |
 

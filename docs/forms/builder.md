@@ -7,6 +7,7 @@
     <%= form.field_control_text :subject %>
     <%= form.field_control_email :requester_email %>
     <%= form.field_control_textarea :description %>
+    <%= form.field_control_textarea_rich :formatted_notes %>
     <%= form.field_control_submit "Save ticket" %>
 <% end %>
 ```

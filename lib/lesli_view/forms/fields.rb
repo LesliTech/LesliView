@@ -82,6 +82,20 @@ module LesliView
 
             def field_control_textarea(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
                 label_html = label == false ? nil : label(attribute, label)
+                control_html = text_area(attribute, options)
+
+                field_control_builder(
+                    label_html: label_html,
+                    control_html: control_html,
+                    message_text: message,
+                    category: category,
+                    horizontal: horizontal,
+                    icon: icon
+                )
+            end
+
+            def field_control_textarea_rich(attribute, label: nil, message: nil, category: nil, icon: nil, horizontal: false, **options)
+                label_html = label == false ? nil : label(attribute, label)
                 control_html = rich_textarea(attribute, options)
 
                 field_control_builder(

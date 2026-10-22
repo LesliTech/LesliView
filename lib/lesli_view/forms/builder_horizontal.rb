@@ -25,6 +25,10 @@ module LesliView
                 super(attribute, label: label, message: message, category: category, icon: icon, horizontal: true, **options)
             end
 
+            def field_control_textarea_rich(attribute, label: nil, message: nil, category: nil, icon: nil, **options)
+                super(attribute, label: label, message: message, category: category, icon: icon, horizontal: true, **options)
+            end
+
             def field_textarea(attribute, **options)
                 field_control_textarea(attribute, **options)
             end

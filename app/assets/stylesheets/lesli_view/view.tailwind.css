@@ -768,6 +768,9 @@ Building a better future, one line of code at a time.
   .whitespace-nowrap {
     white-space: nowrap;
   }
+  .whitespace-pre-wrap {
+    white-space: pre-wrap;
+  }
   .text-\[var\(--lesli-color-primary\)\] {
     color: var(--lesli-color-primary);
   }

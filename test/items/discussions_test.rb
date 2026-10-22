@@ -9,12 +9,6 @@ require_relative "../../lib/lesli_view/forms/builder"
 require_relative "../../lib/lesli_view/items/discussion"
 require_relative "../../lib/lesli_view/items/discussions"
 
-LesliView::Forms::Builder.class_eval do
-    def rich_textarea(method, options = {})
-        @template.text_area(@object_name, method, options)
-    end
-end
-
 module DiscussionsTestApp
     module Items
         class Discussion
@@ -64,10 +58,14 @@ module LesliView
                 assert_includes html, "list-none space-y-6"
                 assert_includes html, "sm:flex-row"
                 assert_includes html, "sm:text-right"
-                assert_includes html, "lexxy-content min-w-0 flex-1"
-                assert_includes html, "A trusted rich-text comment"
+                assert_includes html, "whitespace-pre-wrap break-words"
+                assert_includes html, "A plain-text comment"
+                assert_includes html, "&lt;strong&gt;markup&lt;/strong&gt;"
+                refute_includes html, "<strong>markup</strong>"
+                refute_includes html, "lexxy-content"
                 assert_includes html, "October 11, 2026"
                 assert_includes html, 'action="/items/discussions"'
+                assert_match(/<textarea[^>]*rows="4"/, html)
                 assert_match(/<ul[^>]*>.*<li.*<\/li>.*<\/ul>/m, html)
                 refute_includes html, "is-flex"
                 refute_includes html, "has-text-right"
@@ -78,7 +76,7 @@ module LesliView
 
             def resource
                 discussion = DiscussionsTestApp::DiscussionRecord.new(
-                    "A trusted rich-text comment",
+                    "A plain-text comment\nwith <strong>markup</strong>",
                     "October 11, 2026"
                 )
 

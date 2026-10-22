@@ -33,8 +33,6 @@ module LesliView
     module Items
         class Discussions < ViewComponent::Base
             attr_reader :resource, :path
-            
-            delegate :lexxy_rich_textarea_tag, to: :helpers
 
             def initialize(resource, path=nil)
                 @resource = resource

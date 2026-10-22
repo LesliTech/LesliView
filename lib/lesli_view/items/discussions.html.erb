@@ -41,7 +41,7 @@ Building a better future, one line of code at a time.
                 discussable_type:@resource.class.name, 
                 discussable_id: @resource.id
             )) do |form| %>
-            <%= form.field_control_textarea(:message) %>
+            <%= form.field_control_textarea(:message, rows: 4) %>
             <%= form.field_control_submit("Add comment") %>
         <% end %>
     </div>

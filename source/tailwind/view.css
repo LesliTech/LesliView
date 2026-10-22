@@ -38,10 +38,10 @@ Building a better future, one line of code at a time.
 /* Import Tailwind */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
-@import "lesli-css/css/colors.css";
 
 
 /* Shared Lesli theme */
+@import "../../../LesliAssets/source/tailwind/settings/colors.css";
 @import "../../../LesliAssets/source/tailwind/settings/variables.css";
 @import "../../../LesliAssets/source/tailwind/settings/theme.css";
 

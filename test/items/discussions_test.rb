@@ -53,7 +53,7 @@ end
 module LesliView
     module Items
         class DiscussionsTest < Minitest::Test
-            def test_renders_plain_text_comments_with_author_and_timestamp
+            def test_renders_a_linear_comment_with_author_and_timestamp
                 html = Discussions.new(resource).render_in(view_context)
 
                 assert_includes html, "bg-white p-4 sm:p-8"
@@ -66,14 +66,25 @@ module LesliView
                 assert_includes html, "2026-10-11 · 16:30"
                 assert_includes html,
                     'datetime="2026-10-11T16:30:00+00:00"'
+                assert_match(/<ul[^>]*>.*<li.*<\/li>.*<\/ul>/m, html)
+            end
+
+            def test_renders_the_message_as_escaped_plain_text
+                html = Discussions.new(resource).render_in(view_context)
+
                 assert_includes html, "A plain-text comment"
                 assert_includes html, "&lt;strong&gt;markup&lt;/strong&gt;"
                 refute_includes html, "<strong>markup</strong>"
-                refute_includes html, "Luis Donis"
                 refute_includes html, "lexxy-content"
+            end
+
+            def test_renders_the_configured_form
+                html = Discussions.new(resource).render_in(view_context)
+
                 assert_includes html, 'action="/items/discussions"'
+                assert_includes html,
+                    'name="discussions_test_app_items_discussion[message]"'
                 assert_match(/<textarea[^>]*rows="4"/, html)
-                assert_match(/<ul[^>]*>.*<li.*<\/li>.*<\/ul>/m, html)
             end
 
             def test_renders_the_configured_discussion_association

@@ -72,6 +72,8 @@ module LesliView
                 assert_includes html,
                     "lesli-items-tasks-task-done border-slate-200 bg-slate-50"
                 assert_includes html, "text-slate-500 line-through"
+                assert_match(/<del[^>]*>\s*Publish release\s*<\/del>/, html)
+                refute_match(/<del[^>]*>\s*Prepare release notes\s*<\/del>/, html)
                 assert_includes html, "Prepare release notes"
                 assert_includes html, "Publish release"
                 assert_equal 2, html.scan(/<li\b/).length

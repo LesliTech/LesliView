@@ -54,9 +54,15 @@ Building a better future, one line of code at a time.
                     aria-hidden="true">
                     <%= @resource.done ? "check_box" : "check_box_outline_blank" %>
                 </span>
-                <span class="min-w-0 break-words <%= "text-slate-500 line-through" if @resource.done %>">
-                    <%= @resource.title %>
-                </span>
+                <% if @resource.done? %>
+                    <del class="min-w-0 break-words text-slate-500 line-through">
+                        <%= @resource.title %>
+                    </del>
+                <% else %>
+                    <span class="min-w-0 break-words">
+                        <%= @resource.title %>
+                    </span>
+                <% end %>
             </span>
         <% end %>
     <% end %>

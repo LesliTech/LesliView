@@ -33,10 +33,11 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Tasks < ViewComponent::Base
-            attr_reader :resource
+            attr_reader :resource, :task
 
-            def initialize(resource)
+            def initialize(resource, task: nil)
                 @resource = resource
+                @task = task || task_class.new
             end
 
             def task_class
@@ -46,6 +47,14 @@ module LesliView
             def tasks
                 resource.public_send(
                     resource.class.lesli_tasks_association_name
+                )
+            end
+
+            def create_path
+                helpers.polymorphic_path(
+                    [:items, :tasks],
+                    taskable_type: resource.class.name,
+                    taskable_id: resource.id
                 )
             end
 

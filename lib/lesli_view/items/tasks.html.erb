@@ -35,25 +35,40 @@ Building a better future, one line of code at a time.
     <div class="lesli-items-tasks-form">
         <%= form_with(
             scope: scope_key,
-            model: task_class.new,
+            model: task,
             builder: LesliView::Forms::Builder,
-            url: helpers.polymorphic_path([:items, :tasks], 
-                taskable_type:@resource.class.name, 
-                taskable_id: @resource.id
-            )) do |form| %>
+            url: create_path
+        ) do |form| %>
             <%= form.field_control_text :title %>
-            <%= form.field_control_submit I18n.t("lesli.items.tasks.add") %>
+            <% if task.errors[:title].any? %>
+                <p class="mt-2 text-sm text-red-600">
+                    <%= task.errors.full_messages_for(:title).to_sentence %>
+                </p>
+            <% end %>
+            <%= form.field_control_submit I18n.t(
+                "lesli.items.tasks.add",
+                default: "Add task"
+            ) %>
         <% end %>
     </div>
     <hr class="my-6 border-0 border-t border-slate-200">
 
     <div class="lesli-items-tasks-container">
-        <ul
-            id="<%= "#{scope_key}-lesli-items-tasks-list" %>"
-            class="m-0 list-none space-y-3 p-0">
-            <% tasks.each do |task| %>
-                <%= render(LesliView::Items::Task.new(task, scope_key)) %>
-            <% end %>
-        </ul>
+        <% if tasks.any? %>
+            <ul
+                id="<%= "#{scope_key}-lesli-items-tasks-list" %>"
+                class="m-0 list-none space-y-3 p-0">
+                <% tasks.each do |item| %>
+                    <%= render(LesliView::Items::Task.new(item, scope_key)) %>
+                <% end %>
+            </ul>
+        <% else %>
+            <p class="py-6 text-center text-sm text-slate-500">
+                <%= I18n.t(
+                    "lesli.items.tasks.empty",
+                    default: "No tasks have been added yet."
+                ) %>
+            </p>
+        <% end %>
     </div>
 </article>

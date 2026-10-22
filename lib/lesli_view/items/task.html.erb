@@ -32,7 +32,7 @@ Building a better future, one line of code at a time.
 
 <li
     id="<%= dom_id(@resource, @scope_key) %>"
-    class="lesli-items-tasks-item rounded-xl border transition-colors <%= @resource.done ? "lesli-items-tasks-task-done cursor-not-allowed border-slate-200 bg-slate-50" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50" %>">
+    class="lesli-items-tasks-item rounded-xl border transition-colors <%= @resource.done ? "lesli-items-tasks-task-done border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-slate-100" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50" %>">
     <%= form_with(
             url: helpers.polymorphic_path(@resource),
             method: :patch,
@@ -42,8 +42,11 @@ Building a better future, one line of code at a time.
         <%= form.hidden_field :id, value: @resource.id %>
         <%= form.button(
             type: "submit",
-            disabled: @resource.done?,
-            class: "flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--lesli-color-primary)] disabled:cursor-not-allowed"
+            aria: {
+                label: toggle_label,
+                pressed: @resource.done?
+            },
+            class: "flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--lesli-color-primary)]"
         ) do %>
             <span class="flex min-w-0 items-center gap-3">
                 <span

@@ -69,12 +69,15 @@ module LesliView
                 assert_includes html, "check_box_outline_blank"
                 assert_includes html, "check_box"
                 assert_includes html, "hover:border-slate-300"
-                assert_includes html, "cursor-not-allowed border-slate-200 bg-slate-50"
+                assert_includes html,
+                    "lesli-items-tasks-task-done border-slate-200 bg-slate-50"
                 assert_includes html, "text-slate-500 line-through"
                 assert_includes html, "Prepare release notes"
                 assert_includes html, "Publish release"
                 assert_equal 2, html.scan(/<li\b/).length
-                assert_equal 1, html.scan(/disabled="disabled"/).length
+                assert_equal 0, html.scan(/disabled="disabled"/).length
+                assert_includes html, 'aria-pressed="true"'
+                assert_includes html, "Mark task as incomplete"
                 refute_includes html, "<style>"
                 refute_includes html, "is-flex"
                 refute_includes html, "icon-text"
@@ -97,6 +100,29 @@ module LesliView
 
                 assert_includes html, "Configured association"
                 assert_equal 1, html.scan(/<li\b/).length
+            end
+
+            def test_renders_a_discreet_empty_state
+                empty_resource = TasksTestApp::Ticket.new(id: 44, tasks: [])
+
+                html = Tasks.new(empty_resource).render_in(view_context)
+
+                assert_includes html, "No tasks have been added yet."
+                assert_includes html, "text-slate-500"
+            end
+
+            def test_preserves_the_form_task_and_displays_its_errors
+                invalid_task = TasksTestApp::Items::Task.new(
+                    title: "Keep this title"
+                )
+                invalid_task.errors.add(:title, "is invalid")
+
+                html = Tasks
+                    .new(resource, task: invalid_task)
+                    .render_in(view_context)
+
+                assert_includes html, 'value="Keep this title"'
+                assert_includes html, "Title is invalid"
             end
 
             private

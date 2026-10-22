@@ -33,12 +33,48 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Attachments < ViewComponent::Base
-            attr_reader :resource, :path_to_create
+            attr_reader :resource, :attachment
 
-            def initialize(resource, path_to_create:nil, path_to_update:nil)
+            def initialize(
+                resource,
+                attachment: nil,
+                path_to_create: nil,
+                path_to_update: nil
+            )
                 @resource = resource
                 @path_to_create = path_to_create
                 @path_to_update = path_to_update
+                @attachment = attachment || attachment_class.new
+            end
+
+            def attachment_class
+                resource.class.lesli_attachments_class
+            end
+
+            def attachments
+                resource.attachments.with_attached_file
+            end
+
+            def create_path
+                @path_to_create || helpers.polymorphic_path(
+                    [:items, :attachments],
+                    attachable_type: resource.class.name,
+                    attachable_id: resource.id
+                )
+            end
+
+            def attachment_path(item)
+                return @path_to_update.call(item) if @path_to_update.respond_to?(:call)
+
+                helpers.polymorphic_path(item)
+            end
+
+            def scope_key
+                ActiveSupport::Inflector.underscore(attachment_class.name).tr("/", "_")
+            end
+
+            def accepted_content_types
+                attachment_class.lesli_attachment_content_types.join(",")
             end
         end
     end

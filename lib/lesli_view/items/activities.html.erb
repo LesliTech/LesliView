@@ -32,5 +32,9 @@ Building a better future, one line of code at a time.
 <article
     class="lesli-items-activities bg-white p-4 sm:p-8"
     id="lesli-items-activities">
-    <%= render(LesliView::Components::Timeline.new(activities: @activities, icons: @icons)) %>
+    <%= render LesliView::Components::Timeline.new(
+        activities: activities,
+        empty_text: empty_text,
+        icons: icons
+    ) %>
 </article>

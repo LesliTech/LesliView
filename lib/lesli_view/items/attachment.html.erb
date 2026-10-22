@@ -1,0 +1,45 @@
+<li
+    id="<%= dom_id(resource) %>"
+    class="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex min-w-0 items-center gap-3">
+        <span
+            class="material-symbols-outlined shrink-0 text-3xl text-[var(--lesli-color-primary)]"
+            aria-hidden="true">
+            attach_file
+        </span>
+
+        <div class="min-w-0">
+            <p class="truncate text-sm font-medium text-slate-900" title="<%= filename %>">
+                <%= display_name %>
+            </p>
+            <p class="mt-1 text-xs text-slate-500">
+                <%= details %>
+            </p>
+        </div>
+    </div>
+
+    <div class="flex shrink-0 items-center gap-2">
+        <%= link_to(
+            I18n.t("lesli.items.attachments.download", default: "Download"),
+            path,
+            class: "inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--lesli-color-primary)]",
+            data: { turbo: false }
+        ) %>
+
+        <%= button_to(
+            I18n.t("lesli.items.attachments.remove", default: "Remove"),
+            path,
+            method: :delete,
+            class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/40",
+            form: {
+                class: "inline-flex",
+                data: {
+                    turbo_confirm: I18n.t(
+                        "lesli.items.attachments.confirm_remove",
+                        default: "Remove this file?"
+                    )
+                }
+            }
+        ) %>
+    </div>
+</li>

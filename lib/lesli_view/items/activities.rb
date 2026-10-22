@@ -32,17 +32,117 @@ Building a better future, one line of code at a time.
 module LesliView
     module Items
         class Activities < ViewComponent::Base
-            attr_reader :activities, :icons
+            DEFAULT_LIMIT = 25
+            I18N_SCOPE = "lesli.items.activities"
+            DATE_FORMAT = "%Y-%m-%d · %H:%M"
 
-            def initialize(resource, icons:{})
-                @icons=icons
-                @activities = resource.activities
-                .select(
-                    :id, 
-                    "description as operation", 
-                    "activity_code as icon",
-                    Date2.new.db_column('created_at', as:'date')
-                ).order(id: :desc).as_json
+            attr_reader :activities, :empty_text, :icons, :i18n_scope
+
+            def initialize(
+                resource,
+                icons: {},
+                i18n_scope: I18N_SCOPE,
+                limit: DEFAULT_LIMIT,
+                empty_text: nil
+            )
+                @icons = icons
+                @i18n_scope = i18n_scope
+                @activities = activity_scope(resource, limit).map do |activity|
+                    activity_to_timeline(activity)
+                end
+                @empty_text = empty_text || I18n.t(
+                    "#{i18n_scope}.empty",
+                    default: "No activities have been recorded yet."
+                )
+            end
+
+            private
+
+            def activity_to_timeline(activity)
+                metadata = activity.metadata.is_a?(Hash) ? activity.metadata : {}
+
+                {
+                    "actor" => actor_name(activity.actor),
+                    "date" => I18n.l(activity.created_at, format: DATE_FORMAT),
+                    "description" => activity_description(activity, metadata),
+                    "icon" => activity.activity_code.to_s,
+                    "operation" => activity_operation(activity)
+                }
+            end
+
+            def activity_description(activity, metadata)
+                I18n.t(
+                    "#{activity_i18n_key(activity)}.#{description_key(metadata)}",
+                    from: snapshot_name(metadata_value(metadata, :from)),
+                    to: snapshot_name(metadata_value(metadata, :to)),
+                    default: activity.description.to_s
+                ).presence
+            end
+
+            def activity_i18n_key(activity)
+                "#{i18n_scope}.events.#{activity.activity_code}"
+            end
+
+            def activity_operation(activity)
+                I18n.t(
+                    "#{activity_i18n_key(activity)}.operation",
+                    default: activity.activity_code.to_s.humanize
+                )
+            end
+
+            def activity_scope(resource, limit)
+                resource.activities
+                    .includes(:actor)
+                    .reorder(created_at: :desc, id: :desc)
+                    .limit(normalize_limit(limit))
+            end
+
+            def actor_name(actor)
+                full_name = actor.full_name if actor.respond_to?(:full_name)
+                name = actor.name if actor.respond_to?(:name)
+
+                full_name.presence || name.presence || I18n.t(
+                    "#{i18n_scope}.unknown_actor",
+                    default: "Unknown user"
+                )
+            end
+
+            def description_key(metadata)
+                has_change = metadata.key?(:from) || metadata.key?("from") ||
+                    metadata.key?(:to) || metadata.key?("to")
+
+                return "description" unless has_change
+                return "set" if metadata_value(metadata, :from).nil?
+                return "removed" if metadata_value(metadata, :to).nil?
+
+                "changed"
+            end
+
+            def metadata_value(metadata, key)
+                return metadata[key] if metadata.key?(key)
+
+                metadata[key.to_s]
+            end
+
+            def normalize_limit(limit)
+                normalized_limit = Integer(limit)
+                return normalized_limit if normalized_limit.positive?
+
+                raise ArgumentError, "limit must be a positive integer"
+            rescue TypeError, ArgumentError
+                raise ArgumentError, "limit must be a positive integer"
+            end
+
+            def snapshot_name(snapshot)
+                return "" if snapshot.nil?
+                return snapshot.to_s unless snapshot.is_a?(Hash)
+
+                [:name, :subject, :uid, :id].each do |key|
+                    value = metadata_value(snapshot, key)
+                    return value.to_s if value.present?
+                end
+
+                ""
             end
         end
     end

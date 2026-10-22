@@ -2,16 +2,22 @@ require "minitest/autorun"
 require "rails/version"
 require "action_view"
 require "view_component"
+require_relative "../../lib/lesli_view/elements/empty"
 require_relative "../../lib/lesli_view/components/timeline"
 require_relative "../../lib/lesli_view/items/activities"
 
-class Date2
-    def db_column(column, as:)
-        "formatted_#{column}_as_#{as}"
-    end
-end unless defined?(Date2)
-
 module ActivitiesTestApp
+    Actor = Struct.new(:full_name)
+    Activity = Struct.new(
+        :activity_code,
+        :activity_type,
+        :actor,
+        :created_at,
+        :description,
+        :metadata,
+        keyword_init: true
+    )
+
     class Resource
         attr_reader :activities
 
@@ -21,24 +27,25 @@ module ActivitiesTestApp
     end
 
     class Association
-        attr_reader :selected_columns, :order_options
+        attr_reader :included_associations, :limit_value, :order_options
 
         def initialize(records)
             @records = records
         end
 
-        def select(*columns)
-            @selected_columns = columns
+        def includes(*associations)
+            @included_associations = associations
             self
         end
 
-        def order(options)
+        def reorder(options)
             @order_options = options
             self
         end
 
-        def as_json
-            @records
+        def limit(value)
+            @limit_value = value
+            @records.first(value)
         end
     end
 end
@@ -46,34 +53,77 @@ end
 module LesliView
     module Items
         class ActivitiesTest < Minitest::Test
-            def test_queries_and_renders_activities_with_tailwind_wrapper
+            def test_queries_a_limited_scope_and_renders_presented_activities
                 association = ActivitiesTestApp::Association.new(activity_records)
                 resource = ActivitiesTestApp::Resource.new(association)
 
-                html = Activities.new(resource, icons: { created: "add_circle" })
-                    .render_in(ActionView::Base.empty)
+                html = Activities.new(
+                    resource,
+                    icons: { account_created: "add_circle" },
+                    limit: 10
+                ).render_in(ActionView::Base.empty)
 
-                assert_includes association.selected_columns, :id
-                assert_includes association.selected_columns, "description as operation"
-                assert_includes association.selected_columns, "activity_code as icon"
-                assert_includes association.selected_columns, "formatted_created_at_as_date"
-                assert_equal({ id: :desc }, association.order_options)
+                assert_equal [:actor], association.included_associations
+                assert_equal({ created_at: :desc, id: :desc }, association.order_options)
+                assert_equal 10, association.limit_value
                 assert_includes html, "lesli-items-activities bg-white p-4 sm:p-8"
                 assert_includes html, "Account created"
+                assert_includes html, "The account is ready."
+                assert_includes html, "Ada Lovelace"
+                assert_includes html, "2026-10-11 · 09:30"
                 assert_includes html, "add_circle"
-                assert_includes html, "grid-cols-[1.5rem_minmax(0,1fr)]"
+            end
+
+            def test_rejects_a_non_positive_limit
+                resource = ActivitiesTestApp::Resource.new(
+                    ActivitiesTestApp::Association.new([])
+                )
+
+                assert_raises(ArgumentError) do
+                    Activities.new(resource, limit: 0)
+                end
+            end
+
+            def test_uses_the_configured_translation_scope
+                I18n.backend.store_translations(:en, {
+                    custom_activity: {
+                        empty: "Nothing happened yet.",
+                        unknown_actor: "System",
+                        events: {
+                            account_created: {
+                                operation: "Custom account event",
+                                description: "Custom event description"
+                            }
+                        }
+                    }
+                })
+                resource = ActivitiesTestApp::Resource.new(
+                    ActivitiesTestApp::Association.new(activity_records)
+                )
+
+                component = Activities.new(
+                    resource,
+                    i18n_scope: "custom_activity"
+                )
+
+                assert_equal "Custom account event",
+                    component.activities.first["operation"]
+                assert_equal "Custom event description",
+                    component.activities.first["description"]
             end
 
             private
 
             def activity_records
                 [
-                    {
-                        "date" => "October 11, 2026",
-                        "icon" => "created",
-                        "operation" => "Account created",
-                        "description" => "The account is ready."
-                    }
+                    ActivitiesTestApp::Activity.new(
+                        activity_code: "account_created",
+                        activity_type: "activity",
+                        actor: ActivitiesTestApp::Actor.new("Ada Lovelace"),
+                        created_at: Time.new(2026, 10, 11, 9, 30, 0, "+00:00"),
+                        description: "The account is ready.",
+                        metadata: {}
+                    )
                 ]
             end
         end

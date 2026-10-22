@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "lesli_view/elements/empty"
+
 =begin 
 
 Lesli
@@ -35,12 +37,23 @@ Building a better future, one line of code at a time.
 module LesliView
     module Components
         class Timeline < ViewComponent::Base
-            attr_reader :activities, :icons
+            DEFAULT_ICON = "radio_button_checked"
 
-            def initialize(activities: nil, icons:{})
-                @icons=icons
-                @activities = activities
+            attr_reader :activities, :empty_text, :icons
+
+            def initialize(
+                activities: [],
+                icons: {},
+                empty_text: "No activities have been recorded yet."
+            )
+                @activities = Array(activities)
+                @icons = icons.transform_keys(&:to_sym)
+                @empty_text = empty_text
             end
-        end  
+
+            def icon_for(activity)
+                icons.fetch(activity["icon"]&.to_sym, DEFAULT_ICON)
+            end
+        end
     end
 end

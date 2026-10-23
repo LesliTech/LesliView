@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
     spec.name        = "lesli_view"
     spec.version     = LesliView::VERSION
     spec.platform    = Gem::Platform::RUBY
-    spec.license     = "GPL-3.0"
+    spec.license     = "GPL-3.0-or-later"
     spec.authors     = ["The Lesli Development Team"]
     spec.email       = ["hello@lesli.tech"]
     spec.homepage    = "https://www.lesli.dev/"

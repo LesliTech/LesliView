@@ -35,7 +35,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in my_engine.gemspec.
 gemspec
 
-#gem "rails"
+gem "rails", "~> 8.1.0"
 
 gem "puma"
 

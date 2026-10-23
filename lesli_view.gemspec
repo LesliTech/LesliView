@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
     spec.email       = ["hello@lesli.tech"]
     spec.homepage    = "https://www.lesli.dev/"
     spec.summary     = "A Rails ViewComponent-based UI library for The Lesli Framework."
+    spec.required_ruby_version = ">= 3.3", "< 4.0"
     spec.description = <<~DESC
         LesliView is a ViewComponent-powered UI library for The Lesli Framework, 
         providing reusable Rails components and form builders to create consistent, 

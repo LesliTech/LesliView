@@ -8,10 +8,10 @@
 <br />
 
 <div align="center">
-    <a target="_blank" href="https://github.com/LesliTech/LesliView/actions/workflows/main.yml">
+    <a target="_blank" href="https://github.com/LesliTech/LesliView/actions/workflows/lesli-ci-gem.yaml">
         <img
             alt="LesliView test status"
-            src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliView/main.yml?branch=main&style=for-the-badge&logo=github&label=tests">
+            src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliView/lesli-ci-gem.yaml?branch=main&style=for-the-badge&logo=github&label=tests">
     </a>
     <a target="_blank" href="https://rubygems.org/gems/lesli_view">
         <img alt="Gem Version" src="https://img.shields.io/gem/v/lesli_view?style=for-the-badge&logo=ruby">
@@ -53,7 +53,7 @@ LesliView provides:
 
 The current development baseline is:
 
-- Ruby 3.2 or newer
+- Ruby 3.3 or newer (the release workflow uses Ruby 3.3.5)
 - Rails 8.1
 - LesliAssets, configured in the host application's asset build
 

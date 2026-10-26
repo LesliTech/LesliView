@@ -35,6 +35,11 @@ Building a better future, one line of code at a time.
 @layer theme, components, utilities;
 
 
+/* Vendor */
+/* Lexxy exposes its stylesheet through the Rails asset pipeline. */
+@import url("../lexxy.css") layer(components);
+
+
 /* Import Tailwind */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
@@ -44,13 +49,6 @@ Building a better future, one line of code at a time.
 @import "../../../LesliAssets/source/tailwind/settings/colors.css";
 @import "../../../LesliAssets/source/tailwind/settings/variables.css";
 @import "../../../LesliAssets/source/tailwind/settings/theme.css";
-
-
-/* Vendor */
-/* Lexxy does not expose its CSS through package.json, so use its local files. */
-@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-variables.css" layer(theme);
-@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-content.css" layer(components);
-@import "../../../LesliAssets/node_modules/@37signals/lexxy/dist/stylesheets/lexxy-editor.css" layer(components);
 
 
 /* Discover utility classes used by every LesliView component. */

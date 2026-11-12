@@ -3,7 +3,9 @@
         <div class="lesli-toolbar__search">
             <%= label_tag(search_name, search_label, class: "sr-only") %>
 
-            <span class="lesli-toolbar__search-icon material-symbols" aria-hidden="true">search</span>
+            <span class="lesli-toolbar__search-icon" aria-hidden="true">
+                <span class="material-symbols">search</span>
+            </span>
 
             <%= text_field_tag(
                 search_name,

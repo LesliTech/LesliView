@@ -1468,34 +1468,25 @@ Building a better future, one line of code at a time.
     margin-bottom: calc(var(--spacing) * 6);
     display: flex;
     width: 100%;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     gap: calc(var(--spacing) * 2);
-    @media (width >= 40rem) {
-      flex-direction: row;
-    }
-    @media (width >= 40rem) {
-      align-items: center;
-    }
   }
   .lesli-toolbar__form {
     display: flex;
     min-width: 0px;
-    flex: 1;
-    flex-direction: column;
+    flex: 1 1 24rem;
+    flex-wrap: wrap;
+    align-items: center;
     gap: calc(var(--spacing) * 2);
-    @media (width >= 40rem) {
-      flex-direction: row;
-    }
-    @media (width >= 40rem) {
-      align-items: center;
-    }
   }
   .lesli-toolbar__search {
     position: relative;
     min-width: 0px;
-    flex: 1;
+    flex: 1 1 14rem;
   }
   .lesli-toolbar__input {
+    display: block;
     height: calc(var(--spacing) * 10);
     width: 100%;
     border-radius: var(--radius-lg);
@@ -1539,15 +1530,17 @@ Building a better future, one line of code at a time.
   .lesli-toolbar__search-icon {
     pointer-events: none;
     position: absolute;
-    top: calc(1 / 2 * 100%);
+    inset-block: 0px;
     left: calc(var(--spacing) * 3);
-    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
+    display: flex;
+    align-items: center;
+    color: var(--color-slate-400);
+  }
+  .lesli-toolbar__search-icon .material-symbols {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
     --tw-leading: 1;
     line-height: 1;
-    color: var(--color-slate-400);
   }
   .lesli-toolbar__clear {
     position: absolute;
@@ -1598,12 +1591,15 @@ Building a better future, one line of code at a time.
   }
   .lesli-toolbar__filters {
     display: flex;
+    max-width: 100%;
     flex-wrap: wrap;
     align-items: center;
     gap: calc(var(--spacing) * 2);
   }
   .lesli-toolbar__filters select, .lesli-toolbar__filters input {
     height: calc(var(--spacing) * 10);
+    max-width: 100%;
+    min-width: 0px;
     border-radius: var(--radius-lg);
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1691,10 +1687,12 @@ Building a better future, one line of code at a time.
     line-height: 1;
   }
   .lesli-toolbar__actions {
+    margin-left: auto;
     display: flex;
-    flex-shrink: 0;
+    max-width: 100%;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-end;
     gap: calc(var(--spacing) * 2);
   }
 }

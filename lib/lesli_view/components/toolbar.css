@@ -2,23 +2,27 @@
 
 @layer components {
     .lesli-toolbar {
-        @apply mb-6 flex w-full flex-col gap-2 sm:flex-row sm:items-center;
+        @apply mb-6 flex w-full flex-wrap items-center gap-2;
     }
 
     .lesli-toolbar__form {
-        @apply flex min-w-0 flex-1 flex-col gap-2 sm:flex-row sm:items-center;
+        @apply flex min-w-0 flex-[1_1_24rem] flex-wrap items-center gap-2;
     }
 
     .lesli-toolbar__search {
-        @apply relative min-w-0 flex-1;
+        @apply relative min-w-0 flex-[1_1_14rem];
     }
 
     .lesli-toolbar__input {
-        @apply h-10 w-full rounded-lg border border-slate-300 bg-white py-2 pl-10 pr-10 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10;
+        @apply block h-10 w-full rounded-lg border border-slate-300 bg-white py-2 pl-10 pr-10 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10;
     }
 
     .lesli-toolbar__search-icon {
-        @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg leading-none text-slate-400;
+        @apply pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400;
+    }
+
+    .lesli-toolbar__search-icon .material-symbols {
+        @apply text-lg leading-none;
     }
 
     .lesli-toolbar__clear {
@@ -30,12 +34,12 @@
     }
 
     .lesli-toolbar__filters {
-        @apply flex flex-wrap items-center gap-2;
+        @apply flex max-w-full flex-wrap items-center gap-2;
     }
 
     .lesli-toolbar__filters select,
     .lesli-toolbar__filters input {
-        @apply h-10 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-700 outline-none transition hover:border-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10;
+        @apply h-10 min-w-0 max-w-full rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-700 outline-none transition hover:border-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10;
     }
 
     .lesli-toolbar__submit {
@@ -47,6 +51,6 @@
     }
 
     .lesli-toolbar__actions {
-        @apply flex shrink-0 flex-wrap items-center gap-2;
+        @apply ml-auto flex max-w-full flex-wrap items-center justify-end gap-2;
     }
 }

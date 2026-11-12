@@ -244,8 +244,8 @@ Building a better future, one line of code at a time.
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
-  .mt-14 {
-    margin-top: calc(var(--spacing) * 14);
+  .mt-16 {
+    margin-top: calc(var(--spacing) * 16);
   }
   .-mr-px {
     margin-right: -1px;
@@ -265,8 +265,8 @@ Building a better future, one line of code at a time.
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
   }
-  .mb-10 {
-    margin-bottom: calc(var(--spacing) * 10);
+  .mb-12 {
+    margin-bottom: calc(var(--spacing) * 12);
   }
   .ml-1\.5 {
     margin-left: calc(var(--spacing) * 1.5);
@@ -386,14 +386,14 @@ Building a better future, one line of code at a time.
   .list-none {
     list-style-type: none;
   }
-  .grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
   .grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
   .grid-cols-\[1\.5rem_minmax\(0\,1fr\)\] {
     grid-template-columns: 1.5rem minmax(0,1fr);
+  }
+  .grid-cols-\[minmax\(0\,1fr\)_auto\] {
+    grid-template-columns: minmax(0,1fr) auto;
   }
   .flex-col {
     flex-direction: column;
@@ -445,6 +445,9 @@ Building a better future, one line of code at a time.
   }
   .gap-x-4 {
     column-gap: calc(var(--spacing) * 4);
+  }
+  .justify-self-end {
+    justify-self: flex-end;
   }
   .truncate {
     overflow: hidden;
@@ -1111,20 +1114,11 @@ Building a better future, one line of code at a time.
     .md\:mb-0 {
       margin-bottom: 0px;
     }
-    .md\:grid-cols-\[minmax\(0\,1fr\)_auto\] {
-      grid-template-columns: minmax(0,1fr) auto;
-    }
     .md\:grid-cols-\[minmax\(8rem\,auto\)_1\.5rem_minmax\(0\,1fr\)\] {
       grid-template-columns: minmax(8rem,auto) 1.5rem minmax(0,1fr);
     }
-    .md\:items-start {
-      align-items: flex-start;
-    }
     .md\:gap-x-6 {
       column-gap: calc(var(--spacing) * 6);
-    }
-    .md\:justify-self-end {
-      justify-self: flex-end;
     }
     .md\:pt-1 {
       padding-top: var(--spacing);

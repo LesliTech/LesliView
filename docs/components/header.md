@@ -23,3 +23,7 @@
 | `new_label:` | Translated `actions.new` or `New` | Create-action label |
 
 Block content is rendered in the page-actions group. The back action targets the top Turbo frame, and visible actions include accessible labels.
+
+The title and actions remain in two top-aligned columns. The title section uses
+the available width while the actions section keeps the width required by its
+content.

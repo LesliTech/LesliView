@@ -44,7 +44,7 @@ module LesliView
                 name = author.name if author.respond_to?(:name)
 
                 full_name.presence || name.presence || I18n.t(
-                    "lesli.items.discussions.unknown_author",
+                    "lesli.items.discussions_unknown_author",
                     default: "Unknown user"
                 )
             end

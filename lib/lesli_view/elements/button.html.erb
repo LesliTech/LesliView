@@ -29,6 +29,8 @@
     <%= content_tag(
         :button,
         type: button_type,
+        name: @name,
+        value: @value,
         disabled: disabled?,
         **common_attributes
     ) do %>

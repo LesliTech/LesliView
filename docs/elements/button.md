@@ -26,3 +26,9 @@
 | `data:` | `{}` | Merged with the default top-level Turbo target |
 
 For an icon-only button, pass `aria_label:` when the humanized icon name does not adequately describe the action. A component block can supply the visible label instead of the first argument.
+
+### Submit values
+
+Use `type: :submit` inside an existing form. Optional `name` and `value`
+identify the clicked submitter, for example `name: "role[active]", value: false`.
+Do not specify `method` inside an existing form: it generates a separate form.

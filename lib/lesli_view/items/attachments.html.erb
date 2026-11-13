@@ -43,7 +43,7 @@ Building a better future, one line of code at a time.
             <div>
                 <%= form.label(
                     :file,
-                    I18n.t("lesli.items.attachments.choose_file", default: "Choose a file"),
+                    I18n.t("lesli.items.attachments_choose_file", default: "Choose a file"),
                     class: "mb-2 block text-sm font-medium text-slate-700"
                 ) %>
                 <%= form.file_field(
@@ -61,16 +61,16 @@ Building a better future, one line of code at a time.
 
             <%= form.field_control_text(
                 :label,
-                label: I18n.t("lesli.items.attachments.label", default: "Label"),
+                label: I18n.t("lesli.items.attachments_label", default: "Label"),
                 maxlength: 255
             ) %>
 
             <%= form.field_control_button(
-                I18n.t("lesli.items.attachments.add", default: "Add file"),
+                I18n.t("lesli.items.attachments_add", default: "Add file"),
                 {
                     data: {
                         turbo_submits_with: I18n.t(
-                            "lesli.items.attachments.uploading",
+                            "lesli.items.attachments_uploading",
                             default: "Uploading..."
                         )
                     }
@@ -94,7 +94,7 @@ Building a better future, one line of code at a time.
     <% else %>
         <p class="py-6 text-center text-sm text-slate-500">
             <%= I18n.t(
-                "lesli.items.attachments.empty",
+                "lesli.items.attachments_empty",
                 default: "No files have been attached yet."
             ) %>
         </p>

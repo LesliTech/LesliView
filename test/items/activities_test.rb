@@ -86,16 +86,10 @@ module LesliView
 
             def test_uses_the_configured_translation_scope
                 I18n.backend.store_translations(:en, {
-                    custom_activity: {
-                        empty: "Nothing happened yet.",
-                        unknown_actor: "System",
-                        events: {
-                            account_created: {
-                                operation: "Custom account event",
-                                description: "Custom event description"
-                            }
-                        }
-                    }
+                    custom_activity_empty: "Nothing happened yet.",
+                    custom_activity_unknown_actor: "System",
+                    custom_activity_events_account_created_operation: "Custom account event",
+                    custom_activity_events_account_created_description: "Custom event description"
                 })
                 resource = ActivitiesTestApp::Resource.new(
                     ActivitiesTestApp::Association.new(activity_records)

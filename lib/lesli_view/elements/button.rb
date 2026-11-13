@@ -59,6 +59,8 @@ module LesliView
                 aria_label: nil,
                 disabled: false,
                 type: :button,
+                name: nil,
+                value: nil,
                 data: {}
             )
                 @label = label
@@ -79,6 +81,8 @@ module LesliView
                 @aria_label = aria_label
                 @disabled = disabled
                 @button_type = type
+                @name = name
+                @value = value
                 @data = data
             end
 

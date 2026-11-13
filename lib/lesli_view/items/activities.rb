@@ -51,7 +51,7 @@ module LesliView
                     activity_to_timeline(activity)
                 end
                 @empty_text = empty_text || I18n.t(
-                    "#{i18n_scope}.empty",
+                    "#{i18n_scope}_empty",
                     default: "No activities have been recorded yet."
                 )
             end
@@ -72,7 +72,7 @@ module LesliView
 
             def activity_description(activity, metadata)
                 I18n.t(
-                    "#{activity_i18n_key(activity)}.#{description_key(metadata)}",
+                    "#{activity_i18n_key(activity)}_#{description_key(metadata)}",
                     from: snapshot_name(metadata_value(metadata, :from)),
                     to: snapshot_name(metadata_value(metadata, :to)),
                     default: activity.description.to_s
@@ -80,12 +80,12 @@ module LesliView
             end
 
             def activity_i18n_key(activity)
-                "#{i18n_scope}.events.#{activity.activity_code}"
+                "#{i18n_scope}_events_#{activity.activity_code}"
             end
 
             def activity_operation(activity)
                 I18n.t(
-                    "#{activity_i18n_key(activity)}.operation",
+                    "#{activity_i18n_key(activity)}_operation",
                     default: activity.activity_code.to_s.humanize
                 )
             end
@@ -102,7 +102,7 @@ module LesliView
                 name = actor.name if actor.respond_to?(:name)
 
                 full_name.presence || name.presence || I18n.t(
-                    "#{i18n_scope}.unknown_actor",
+                    "#{i18n_scope}_unknown_actor",
                     default: "Unknown user"
                 )
             end

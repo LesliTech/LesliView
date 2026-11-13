@@ -20,14 +20,14 @@
 
     <div class="flex shrink-0 items-center gap-2">
         <%= link_to(
-            I18n.t("lesli.items.attachments.download", default: "Download"),
+            I18n.t("lesli.items.attachments_download", default: "Download"),
             path,
             class: "inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--lesli-color-primary)]",
             data: { turbo: false }
         ) %>
 
         <%= button_to(
-            I18n.t("lesli.items.attachments.remove", default: "Remove"),
+            I18n.t("lesli.items.attachments_remove", default: "Remove"),
             path,
             method: :delete,
             class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/40",
@@ -35,7 +35,7 @@
                 class: "inline-flex",
                 data: {
                     turbo_confirm: I18n.t(
-                        "lesli.items.attachments.confirm_remove",
+                        "lesli.items.attachments_confirm_remove",
                         default: "Remove this file?"
                     )
                 }

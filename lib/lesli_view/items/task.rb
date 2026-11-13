@@ -43,12 +43,12 @@ module LesliView
             def toggle_label
                 if resource.done?
                     I18n.t(
-                        "lesli.items.tasks.reopen_action",
+                        "lesli.items.tasks_reopen_action",
                         default: "Mark task as incomplete"
                     )
                 else
                     I18n.t(
-                        "lesli.items.tasks.complete_action",
+                        "lesli.items.tasks_complete_action",
                         default: "Mark task as complete"
                     )
                 end

@@ -61,3 +61,5 @@ Building a better future, one line of code at a time.
 @import "../../lib/lesli_view/elements/button.css";
 @import "../../lib/lesli_view/elements/table.css";
 @import "../../lib/lesli_view/forms/form.css";
+
+@import "../../lib/lesli_view/layout/navigation_sidebar.css";

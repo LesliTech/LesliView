@@ -4,3 +4,5 @@ title: Layout
 
 <!-- The section landing page documents the application container. -->
 <%= partial("container") %>
+
+<%= partial("navigation_sidebar") %>

@@ -1,0 +1,19 @@
+/* Component-owned visibility avoids collisions with engine utility bundles,
+   which load after LesliView and may redefine .hidden or .block. */
+.lesli-navigation-sidebar-mobile {
+    display: block;
+}
+
+.lesli-navigation-sidebar-desktop {
+    display: none;
+}
+
+@media (min-width: 64rem) {
+    .lesli-navigation-sidebar-mobile {
+        display: none;
+    }
+
+    .lesli-navigation-sidebar-desktop {
+        display: block;
+    }
+}

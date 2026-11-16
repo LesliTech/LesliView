@@ -1,0 +1,52 @@
+<%
+selected_icon = items.find { |item| item[:selected] }&.dig(:icon) || "ri-folder-line"
+
+navigation_items = capture do
+    items.each do |item|
+        selected = item[:selected]
+%>
+        <li>
+            <%= link_to item[:path],
+                class: class_names(
+                    "flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/20",
+                    "bg-sky-50 text-sky-700" => selected,
+                    "text-slate-700 hover:bg-slate-100" => !selected
+                ),
+                aria: { current: ("page" if selected) },
+                data: { turbo_frame: "_top" } do %>
+                <span class="<%= item[:icon] || 'ri-folder-line' %> text-lg" aria-hidden="true"></span>
+                <span class="min-w-0 flex-1 truncate"><%= item[:label] %></span>
+                <% if item[:count] %><span class="text-xs text-slate-500"><%= item[:count] %></span><% end %>
+            <% end %>
+        </li>
+<%
+    end
+end
+%>
+
+<details class="lesli-navigation-sidebar-mobile group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <summary
+        class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-slate-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-sky-500/20 [&::-webkit-details-marker]:hidden"
+        aria-label="<%= selected_label %>">
+        <span class="flex min-w-0 items-center gap-3">
+            <span class="<%= selected_icon %> shrink-0 text-lg text-slate-400" aria-hidden="true"></span>
+            <span class="truncate"><%= selected_label %></span>
+        </span>
+        <span class="material-symbols shrink-0 text-xl text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+
+    <nav class="max-h-72 overflow-y-auto border-t border-slate-200 p-2" aria-label="<%= label %>">
+        <ul class="space-y-1">
+            <%= navigation_items %>
+        </ul>
+    </nav>
+</details>
+
+<nav class="lesli-navigation-sidebar-desktop rounded-xl border border-slate-200 bg-white p-3 shadow-sm lg:sticky lg:top-4 lg:w-60 lg:shrink-0" aria-label="<%= label %>">
+    <p class="px-3 pb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <%= label %>
+    </p>
+    <ul class="space-y-1">
+        <%= navigation_items %>
+    </ul>
+</nav>

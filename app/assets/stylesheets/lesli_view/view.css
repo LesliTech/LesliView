@@ -354,6 +354,9 @@ Building a better future, one line of code at a time.
   .h-full {
     height: 100%;
   }
+  .max-h-72 {
+    max-height: calc(var(--spacing) * 72);
+  }
   .max-h-dvh {
     max-height: 100dvh;
   }
@@ -476,6 +479,11 @@ Building a better future, one line of code at a time.
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
+  }
+  :where(.space-y-1 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(var(--spacing) * var(--tw-space-y-reverse));
+    margin-block-end: calc(var(--spacing) * calc(1 - var(--tw-space-y-reverse)));
   }
   :where(.space-y-2 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
@@ -664,6 +672,9 @@ Building a better future, one line of code at a time.
   .p-0 {
     padding: 0px;
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
@@ -705,6 +716,9 @@ Building a better future, one line of code at a time.
   }
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
+  }
+  .pb-2 {
+    padding-bottom: calc(var(--spacing) * 2);
   }
   .pb-3 {
     padding-bottom: calc(var(--spacing) * 3);
@@ -969,6 +983,11 @@ Building a better future, one line of code at a time.
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .duration-100 {
     --tw-duration: 100ms;
     transition-duration: 100ms;
@@ -990,6 +1009,9 @@ Building a better future, one line of code at a time.
   }
   .group-last\:hidden:is(:where(.group):last-child *) {
     display: none;
+  }
+  .group-open\:rotate-180:is(:where(.group):is([open], :popover-open, :open) *) {
+    rotate: 180deg;
   }
   .file\:mr-4::file-selector-button {
     margin-right: calc(var(--spacing) * 4);
@@ -1227,8 +1249,20 @@ Building a better future, one line of code at a time.
     }
   }
   @media (width >= 64rem) {
+    .lg\:sticky {
+      position: sticky;
+    }
+    .lg\:top-4 {
+      top: calc(var(--spacing) * 4);
+    }
+    .lg\:w-60 {
+      width: calc(var(--spacing) * 60);
+    }
     .lg\:max-w-3xl {
       max-width: var(--container-3xl);
+    }
+    .lg\:shrink-0 {
+      flex-shrink: 0;
     }
     .lg\:grid-cols-\[minmax\(0\,1fr\)_minmax\(12rem\,0\.35fr\)_auto\] {
       grid-template-columns: minmax(0,1fr) minmax(12rem,0.35fr) auto;
@@ -1239,6 +1273,9 @@ Building a better future, one line of code at a time.
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
     }
+  }
+  .\[\&\:\:-webkit-details-marker\]\:hidden::-webkit-details-marker {
+    display: none;
   }
 }
 :root {
@@ -2764,6 +2801,20 @@ Building a better future, one line of code at a time.
     .lesli-form-field.is-horizontal > .lesli-form-field-body {
       grid-column-start: 2;
     }
+  }
+}
+.lesli-navigation-sidebar-mobile {
+  display: block;
+}
+.lesli-navigation-sidebar-desktop {
+  display: none;
+}
+@media (min-width: 64rem) {
+  .lesli-navigation-sidebar-mobile {
+    display: none;
+  }
+  .lesli-navigation-sidebar-desktop {
+    display: block;
   }
 }
 @property --tw-translate-x {

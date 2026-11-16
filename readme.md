@@ -178,6 +178,8 @@ Then run `bundle install` from the host application so changes to the local gem 
 
 ## Documentation
 
+For page-level sidebars, follow the [navigation sidebar standard](docs/layout/navigation_sidebar.md).
+
 - [Lesli website](https://www.lesli.dev/)
 - [LesliView documentation](https://www.lesli.dev/gems/view/)
 - [Releases and changelog](https://github.com/LesliTech/LesliView/releases)

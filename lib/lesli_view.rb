@@ -50,6 +50,7 @@ require "lesli_view/items/attachments"
 
 # loading layout
 require "lesli_view/layout/container"
+require "lesli_view/layout/navigation_sidebar"
 
 
 # loading partials

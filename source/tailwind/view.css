@@ -55,12 +55,20 @@ Building a better future, one line of code at a time.
 @source "../../lib/lesli_view/**/*.html.erb";
 
 
-/* Component styles that are not expressed as utility classes. */
+/* Keep responsive property groups in component rules: a later engine's base
+   utility can otherwise override an earlier responsive utility. */
 @import "../../lib/lesli_view/components/header.css";
+@import "../../lib/lesli_view/components/panel.css";
+@import "../../lib/lesli_view/components/timeline.css";
 @import "../../lib/lesli_view/components/toolbar.css";
 @import "../../lib/lesli_view/elements/button.css";
+@import "../../lib/lesli_view/elements/empty.css";
 @import "../../lib/lesli_view/elements/table.css";
 @import "../../lib/lesli_view/forms/form.css";
+@import "../../lib/lesli_view/items/items.css";
 
 @import "../../lib/lesli_view/layout/container.css";
 @import "../../lib/lesli_view/layout/navigation_sidebar.css";
+
+@import "../../lib/lesli_view/widgets/calendar.css";
+@import "../../lib/lesli_view/widgets/count.css";

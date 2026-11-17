@@ -1,0 +1,14 @@
+@layer components {
+    .lesli-items-activities,
+    .lesli-items-discussions {
+        @apply p-4 sm:p-8;
+    }
+
+    .lesli-item-attachment {
+        @apply flex flex-col sm:flex-row sm:items-center sm:justify-between;
+    }
+
+    .lesli-items-discussions-comments-comment {
+        @apply flex flex-col gap-3 sm:flex-row sm:gap-4;
+    }
+}

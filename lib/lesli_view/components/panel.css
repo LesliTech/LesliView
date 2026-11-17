@@ -1,0 +1,9 @@
+@layer components {
+    .lesli-panel-header {
+        @apply px-4 py-3 sm:px-6;
+    }
+
+    .lesli-panel-body {
+        @apply p-4 sm:p-6;
+    }
+}

@@ -1,0 +1,5 @@
+@layer components {
+    .lesli-count-widget-number {
+        @apply text-5xl sm:text-6xl;
+    }
+}

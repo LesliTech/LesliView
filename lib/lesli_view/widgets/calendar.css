@@ -1,0 +1,9 @@
+@layer components {
+    .lesli-calendar-widget {
+        @apply p-3 sm:p-4;
+    }
+
+    .lesli-calendar-widget-day {
+        @apply h-8 sm:h-9;
+    }
+}

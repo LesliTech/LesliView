@@ -14,8 +14,6 @@ module LesliView
                     icons: { created: "add_circle" }
                 ).render_in(ActionView::Base.empty)
 
-                assert_includes html, "grid-cols-[1.5rem_minmax(0,1fr)]"
-                assert_includes html, "md:grid-cols-[minmax(8rem,auto)_1.5rem_minmax(0,1fr)]"
                 assert_includes html, "group-last:hidden"
                 assert_includes html, "add_circle"
                 assert_includes html, "radio_button_checked"

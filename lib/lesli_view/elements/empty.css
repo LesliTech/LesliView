@@ -1,0 +1,9 @@
+@layer components {
+    .lesli-empty-state {
+        @apply px-6 py-10 sm:py-12;
+    }
+
+    .lesli-empty-state-title {
+        @apply text-base sm:text-lg;
+    }
+}

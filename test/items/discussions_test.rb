@@ -56,10 +56,9 @@ module LesliView
             def test_renders_a_linear_comment_with_author_and_timestamp
                 html = Discussions.new(resource).render_in(view_context)
 
-                assert_includes html, "bg-white p-4 sm:p-8"
+                assert_includes html, "lesli-items-discussions bg-white"
                 assert_includes html, "border-t border-slate-200"
                 assert_includes html, "list-none space-y-6"
-                assert_includes html, "sm:flex-row"
                 assert_includes html, "sm:text-right"
                 assert_includes html, "whitespace-pre-wrap break-words"
                 assert_includes html, "Ada Lovelace"

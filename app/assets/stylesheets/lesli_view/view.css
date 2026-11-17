@@ -90,21 +90,6 @@ Building a better future, one line of code at a time.
   .z-50 {
     z-index: 50;
   }
-  .col-start-1 {
-    grid-column-start: 1;
-  }
-  .col-start-2 {
-    grid-column-start: 2;
-  }
-  .row-span-2 {
-    grid-row: span 2 / span 2;
-  }
-  .row-start-1 {
-    grid-row-start: 1;
-  }
-  .row-start-2 {
-    grid-row-start: 2;
-  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -214,9 +199,6 @@ Building a better future, one line of code at a time.
   .h-1 {
     height: var(--spacing, 0.25rem);
   }
-  .h-8 {
-    height: calc(var(--spacing, 0.25rem) * 8);
-  }
   .h-12 {
     height: calc(var(--spacing, 0.25rem) * 12);
   }
@@ -322,9 +304,6 @@ Building a better future, one line of code at a time.
   .grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
-  .grid-cols-\[1\.5rem_minmax\(0\,1fr\)\] {
-    grid-template-columns: 1.5rem minmax(0,1fr);
-  }
   .grid-cols-\[minmax\(0\,1fr\)_auto\] {
     grid-template-columns: minmax(0,1fr) auto;
   }
@@ -383,9 +362,6 @@ Building a better future, one line of code at a time.
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing, 0.25rem) * 6) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing, 0.25rem) * 6) * calc(1 - var(--tw-space-y-reverse)));
-  }
-  .gap-x-4 {
-    column-gap: calc(var(--spacing, 0.25rem) * 4);
   }
   .justify-self-end {
     justify-self: flex-end;
@@ -574,9 +550,6 @@ Building a better future, one line of code at a time.
   .px-4 {
     padding-inline: calc(var(--spacing, 0.25rem) * 4);
   }
-  .px-6 {
-    padding-inline: calc(var(--spacing, 0.25rem) * 6);
-  }
   .py-0\.5 {
     padding-block: calc(var(--spacing, 0.25rem) * 0.5);
   }
@@ -594,9 +567,6 @@ Building a better future, one line of code at a time.
   }
   .py-6 {
     padding-block: calc(var(--spacing, 0.25rem) * 6);
-  }
-  .py-10 {
-    padding-block: calc(var(--spacing, 0.25rem) * 10);
   }
   .pt-5 {
     padding-top: calc(var(--spacing, 0.25rem) * 5);
@@ -1039,9 +1009,6 @@ Building a better future, one line of code at a time.
     .sm\:mx-6 {
       margin-inline: calc(var(--spacing, 0.25rem) * 6);
     }
-    .sm\:h-9 {
-      height: calc(var(--spacing, 0.25rem) * 9);
-    }
     .sm\:h-32 {
       height: calc(var(--spacing, 0.25rem) * 32);
     }
@@ -1057,71 +1024,7 @@ Building a better future, one line of code at a time.
     .sm\:max-w-2xl {
       max-width: var(--container-2xl, 42rem);
     }
-    .sm\:flex-row {
-      flex-direction: row;
-    }
-    .sm\:items-center {
-      align-items: center;
-    }
-    .sm\:justify-between {
-      justify-content: space-between;
-    }
-    .sm\:gap-4 {
-      gap: calc(var(--spacing, 0.25rem) * 4);
-    }
-    .sm\:p-4 {
-      padding: calc(var(--spacing, 0.25rem) * 4);
-    }
-    .sm\:p-6 {
-      padding: calc(var(--spacing, 0.25rem) * 6);
-    }
-    .sm\:p-8 {
-      padding: calc(var(--spacing, 0.25rem) * 8);
-    }
-    .sm\:px-6 {
-      padding-inline: calc(var(--spacing, 0.25rem) * 6);
-    }
-    .sm\:py-12 {
-      padding-block: calc(var(--spacing, 0.25rem) * 12);
-    }
     .sm\:text-right {
-      text-align: right;
-    }
-    .sm\:text-6xl {
-      font-size: var(--text-6xl, 3.75rem);
-      line-height: var(--tw-leading, var(--text-6xl--line-height, 1));
-    }
-    .sm\:text-lg {
-      font-size: var(--text-lg, 1.125rem);
-      line-height: var(--tw-leading, var(--text-lg--line-height, calc(1.75 / 1.125)));
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:col-start-1 {
-      grid-column-start: 1;
-    }
-    .md\:col-start-2 {
-      grid-column-start: 2;
-    }
-    .md\:col-start-3 {
-      grid-column-start: 3;
-    }
-    .md\:row-start-1 {
-      grid-row-start: 1;
-    }
-    .md\:mb-0 {
-      margin-bottom: 0px;
-    }
-    .md\:grid-cols-\[minmax\(8rem\,auto\)_1\.5rem_minmax\(0\,1fr\)\] {
-      grid-template-columns: minmax(8rem,auto) 1.5rem minmax(0,1fr);
-    }
-    .md\:gap-x-6 {
-      column-gap: calc(var(--spacing, 0.25rem) * 6);
-    }
-    .md\:pt-1 {
-      padding-top: var(--spacing, 0.25rem);
-    }
-    .md\:text-right {
       text-align: right;
     }
   }
@@ -1169,6 +1072,67 @@ Building a better future, one line of code at a time.
     @media (width >= 40rem) {
       font-size: var(--text-base, 1rem);
       line-height: var(--tw-leading, var(--text-base--line-height, calc(1.5 / 1)));
+    }
+  }
+  .lesli-panel-header {
+    padding-inline: calc(var(--spacing, 0.25rem) * 4);
+    padding-block: calc(var(--spacing, 0.25rem) * 3);
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing, 0.25rem) * 6);
+    }
+  }
+  .lesli-panel-body {
+    padding: calc(var(--spacing, 0.25rem) * 4);
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing, 0.25rem) * 6);
+    }
+  }
+  .lesli-timeline-entry {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0,1fr);
+    column-gap: calc(var(--spacing, 0.25rem) * 4);
+    @media (width >= 48rem) {
+      grid-template-columns: minmax(8rem,auto) 1.5rem minmax(0,1fr);
+    }
+    @media (width >= 48rem) {
+      column-gap: calc(var(--spacing, 0.25rem) * 6);
+    }
+  }
+  .lesli-timeline-meta {
+    grid-column-start: 2;
+    margin-bottom: calc(var(--spacing, 0.25rem) * 2);
+    @media (width >= 48rem) {
+      grid-column-start: 1;
+    }
+    @media (width >= 48rem) {
+      grid-row-start: 1;
+    }
+    @media (width >= 48rem) {
+      margin-bottom: 0px;
+    }
+    @media (width >= 48rem) {
+      padding-top: var(--spacing, 0.25rem);
+    }
+    @media (width >= 48rem) {
+      text-align: right;
+    }
+  }
+  .lesli-timeline-marker {
+    grid-column-start: 1;
+    grid-row: span 2 / span 2;
+    grid-row-start: 1;
+    @media (width >= 48rem) {
+      grid-column-start: 2;
+    }
+  }
+  .lesli-timeline-content {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    @media (width >= 48rem) {
+      grid-column-start: 3;
+    }
+    @media (width >= 48rem) {
+      grid-row-start: 1;
     }
   }
   .lesli-toolbar {
@@ -1839,6 +1803,21 @@ Building a better future, one line of code at a time.
     width: calc(var(--spacing, 0.25rem) * 4);
     font-size: 1rem;
   }
+  .lesli-empty-state {
+    padding-inline: calc(var(--spacing, 0.25rem) * 6);
+    padding-block: calc(var(--spacing, 0.25rem) * 10);
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing, 0.25rem) * 12);
+    }
+  }
+  .lesli-empty-state-title {
+    font-size: var(--text-base, 1rem);
+    line-height: var(--tw-leading, var(--text-base--line-height, calc(1.5 / 1)));
+    @media (width >= 40rem) {
+      font-size: var(--text-lg, 1.125rem);
+      line-height: var(--tw-leading, var(--text-lg--line-height, calc(1.75 / 1.125)));
+    }
+  }
   .lesli-table-container {
     width: 100%;
     overflow-x: auto;
@@ -2370,6 +2349,36 @@ Building a better future, one line of code at a time.
       grid-column-start: 2;
     }
   }
+  .lesli-items-activities, .lesli-items-discussions {
+    padding: calc(var(--spacing, 0.25rem) * 4);
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing, 0.25rem) * 8);
+    }
+  }
+  .lesli-item-attachment {
+    display: flex;
+    flex-direction: column;
+    @media (width >= 40rem) {
+      flex-direction: row;
+    }
+    @media (width >= 40rem) {
+      align-items: center;
+    }
+    @media (width >= 40rem) {
+      justify-content: space-between;
+    }
+  }
+  .lesli-items-discussions-comments-comment {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing, 0.25rem) * 3);
+    @media (width >= 40rem) {
+      flex-direction: row;
+    }
+    @media (width >= 40rem) {
+      gap: calc(var(--spacing, 0.25rem) * 4);
+    }
+  }
   .lesli-application-container {
     margin-inline: auto;
     display: block;
@@ -2395,6 +2404,28 @@ Building a better future, one line of code at a time.
   }
   .lesli-navigation-sidebar-desktop {
     display: block;
+  }
+}
+@layer components {
+  .lesli-calendar-widget {
+    padding: calc(var(--spacing, 0.25rem) * 3);
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing, 0.25rem) * 4);
+    }
+  }
+  .lesli-calendar-widget-day {
+    height: calc(var(--spacing, 0.25rem) * 8);
+    @media (width >= 40rem) {
+      height: calc(var(--spacing, 0.25rem) * 9);
+    }
+  }
+  .lesli-count-widget-number {
+    font-size: var(--text-5xl, 3rem);
+    line-height: var(--tw-leading, var(--text-5xl--line-height, 1));
+    @media (width >= 40rem) {
+      font-size: var(--text-6xl, 3.75rem);
+      line-height: var(--tw-leading, var(--text-6xl--line-height, 1));
+    }
   }
 }
 @property --tw-translate-x {

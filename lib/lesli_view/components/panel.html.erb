@@ -34,7 +34,7 @@ attributes = {
         x-transition:leave="transform transition ease-in duration-100"
         x-transition:leave-start="translate-x-0 opacity-100"
         x-transition:leave-end="translate-x-8 opacity-0">
-        <div class="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-4 py-3 sm:px-6">
+        <div class="lesli-panel-header sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-slate-200 bg-white">
             <h2 id="<%= panel_title_id %>" class="min-w-0 truncate text-lg font-semibold text-slate-900">
                 <%= title %>
             </h2>
@@ -48,7 +48,7 @@ attributes = {
             </button>
         </div>
 
-        <div class="min-w-0 flex-1 p-4 sm:p-6">
+        <div class="lesli-panel-body min-w-0 flex-1">
             <%= content %>
         </div>
     </div>

@@ -106,6 +106,9 @@ GEM
       reline (>= 0.4.2)
     json (3.1.0)
     language_server-protocol (3.17.0.6)
+    lesli_assets (1.1.7)
+      tailwindcss-ruby (~> 4.0)
+      termline (~> 1.1.0)
     lesli_testing (1.4.2)
       minitest (~> 6.0.0)
       simplecov (~> 1.3.2)
@@ -252,6 +255,8 @@ GEM
       terminal-table
     sqlite3 (2.10.2-x86_64-darwin)
     sqlite3 (2.10.2-x86_64-linux-gnu)
+    tailwindcss-ruby (4.3.4-x86_64-darwin)
+    tailwindcss-ruby (4.3.4-x86_64-linux-gnu)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     termline (1.1.3)
@@ -280,6 +285,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  lesli_assets (~> 1.1.0)
   lesli_testing
   lesli_view!
   propshaft
@@ -319,6 +325,7 @@ CHECKSUMS
   irb (1.19.0) sha256=55ee56acbdd6c9fe06a2e6909f46a24e5c41f45f16906bab04e8049cf46f1d27
   json (3.1.0) sha256=3ce7ccf8fde58960177a3a756c31f292a4c1e1dedee884547096a5b0604e3bd8
   language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
+  lesli_assets (1.1.7) sha256=55ee8b9bf410ec27029c887f3b4bf36d754f6aa1c3e3d3c87ab9cfd319397bb1
   lesli_testing (1.4.2) sha256=961f439a50a8a7174cbf58e51bf83dd4dc41c438d57afa7a976378c7577a66a6
   lesli_view (1.1.7)
   lexxy (1.0.4) sha256=66f9453cf574095bab1e2020961e586821bf2861df0dac88e1c49b2f0efc939a
@@ -371,6 +378,8 @@ CHECKSUMS
   simplecov-console (0.9.5) sha256=b1108bcfff5f210143e2b8301698c367b01586f20d25a73e95475a5df6fc6ff6
   sqlite3 (2.10.2-x86_64-darwin) sha256=fd2c67b49d313031af112e172c83ab321681a2b4996bf882eefac50be7bea08f
   sqlite3 (2.10.2-x86_64-linux-gnu) sha256=ca92731ab464df9cae503fa1a439a549e2724f6953c8c05a7769b59366e38f15
+  tailwindcss-ruby (4.3.4-x86_64-darwin) sha256=1d0c718597ae57988ceda20e72abfe42e7bf948b44e1d5b6966f0af18810fe70
+  tailwindcss-ruby (4.3.4-x86_64-linux-gnu) sha256=d6654344039ef34114e100c7abbfbecf213956a18676801e3c92d3d98c00fc56
   terminal-table (4.0.0) sha256=f504793203f8251b2ea7c7068333053f0beeea26093ec9962e62ea79f94301d2
   termline (1.1.3) sha256=0290ed3de2e1944bb977f0bbf56edbff6cadb93673b0742209a890792112b280
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73

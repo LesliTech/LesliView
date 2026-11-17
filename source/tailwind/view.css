@@ -41,14 +41,13 @@ Building a better future, one line of code at a time.
 
 
 /* Import Tailwind */
-@import "tailwindcss/theme.css" layer(theme);
+/* Theme values are loaded once by LesliAssets. */
+@reference "tailwindcss/theme.css";
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 
 
-/* Shared Lesli theme */
-@import "../../../LesliAssets/source/tailwind/settings/colors.css";
-@import "../../../LesliAssets/source/tailwind/settings/variables.css";
-@import "../../../LesliAssets/source/tailwind/settings/theme.css";
+/* Compile utilities against the shared theme. LesliAssets supplies runtime variables. */
+@reference "../../../LesliAssets/source/tailwind/settings/theme.css";
 
 
 /* Discover utility classes used by every LesliView component. */
@@ -57,9 +56,11 @@ Building a better future, one line of code at a time.
 
 
 /* Component styles that are not expressed as utility classes. */
+@import "../../lib/lesli_view/components/header.css";
 @import "../../lib/lesli_view/components/toolbar.css";
 @import "../../lib/lesli_view/elements/button.css";
 @import "../../lib/lesli_view/elements/table.css";
 @import "../../lib/lesli_view/forms/form.css";
 
+@import "../../lib/lesli_view/layout/container.css";
 @import "../../lib/lesli_view/layout/navigation_sidebar.css";

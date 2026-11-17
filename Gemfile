@@ -43,6 +43,9 @@ gem "sqlite3"
 
 gem "propshaft"
 
+# The dummy host loads the same shared theme as a Lesli application.
+gem "lesli_assets", "~> 1.1.0"
+
 gem "rubocop-rails-omakase", require: false
 
 gem "lesli_testing"

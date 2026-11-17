@@ -1,0 +1,10 @@
+@layer components {
+    /* A later package's base text utility must not replace these responsive sizes. */
+    .lesli-header-title {
+        @apply text-3xl sm:text-4xl;
+    }
+
+    .lesli-header-subtitle {
+        @apply text-sm leading-6 sm:text-base;
+    }
+}

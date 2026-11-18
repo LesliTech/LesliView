@@ -4,7 +4,7 @@
     }
 
     .lesli-panel-overlay {
-        @apply fixed inset-0 z-40 bg-slate-950/25;
+        @apply fixed inset-0 z-40 bg-neutral-900/25;
     }
 
     .lesli-panel-dialog {
@@ -28,15 +28,15 @@
     }
 
     .lesli-panel-header {
-        @apply px-4 py-3 sm:px-6 sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-slate-200 bg-white;
+        @apply px-4 py-3 sm:px-6 sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-neutral-200 bg-white;
     }
 
     .lesli-panel-title {
-        @apply min-w-0 truncate text-lg font-semibold text-slate-900;
+        @apply min-w-0 truncate text-lg font-semibold text-neutral-900;
     }
 
     .lesli-panel-close {
-        @apply inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/20;
+        @apply inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20;
     }
 
     .lesli-panel-icon {

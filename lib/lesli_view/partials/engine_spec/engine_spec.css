@@ -1,14 +1,14 @@
 @layer components {
     .lesli-engine-spec-header {
-        @apply mb-4 border-b border-slate-300 pb-3;
+        @apply mb-4 border-b border-neutral-300 pb-3;
     }
 
     .lesli-engine-spec-title {
-        @apply text-xl font-semibold text-slate-800;
+        @apply text-xl font-semibold text-neutral-800;
     }
 
     .lesli-engine-spec-summary {
-        @apply mt-1 text-xl leading-7 text-slate-600;
+        @apply mt-1 text-xl leading-7 text-neutral-600;
     }
 
     .lesli-engine-spec-list {
@@ -16,15 +16,15 @@
     }
 
     .lesli-engine-spec-item {
-        @apply ml-1.5 flex items-center gap-2 text-[1.1rem] text-slate-600;
+        @apply ml-1.5 flex items-center gap-2 text-[1.1rem] text-neutral-600;
     }
 
     .lesli-engine-spec-icon {
-        @apply shrink-0 text-2xl leading-none text-slate-400;
+        @apply shrink-0 text-2xl leading-none text-neutral-400;
     }
 
     .lesli-engine-spec-details {
-        @apply ml-1.5 flex min-w-0 items-center gap-2 text-[1.1rem] text-slate-600;
+        @apply ml-1.5 flex min-w-0 items-center gap-2 text-[1.1rem] text-neutral-600;
     }
 
     .lesli-engine-spec-value {

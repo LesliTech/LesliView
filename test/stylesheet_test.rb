@@ -7,6 +7,12 @@ class StylesheetTest < Minitest::Test
         # Component rules use LesliAssets tokens without redefining the global theme.
         refute_includes css, "var(--lesliview-"
         refute_match(/--(?:lesliview-|color-|text-|spacing|lesli-)[\w-]*\s*:/, css)
+        assert_includes css, "var(--lesli-color-primary)"
+        assert_includes css, "var(--lesli-color-primary-soft)"
+        assert_includes css, "var(--lesli-color-primary-strong)"
+        assert_includes css, "var(--lesli-color-info-500)"
+        refute_includes css, "var(--color-sky-"
+        refute_includes css, "var(--color-blue-"
         assert_includes css, ".lesli-panel-dialog"
         refute_includes css, ".lesliview"
         refute_match(/\.(?:flex|grid|hidden|text-sm)\s*\{/, css)

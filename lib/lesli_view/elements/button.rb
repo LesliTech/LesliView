@@ -47,7 +47,7 @@ module LesliView
                 loading: false,
                 solid: true,
                 light: false,
-                info: true,
+                info: false,
                 success: false,
                 warning: false,
                 danger: false,

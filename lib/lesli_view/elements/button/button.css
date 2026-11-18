@@ -101,52 +101,52 @@ Building a better future, one line of code at a time.
 
     .lesli-button.is-primary {
         @apply
-            border-blue-600
-            bg-blue-600
+            border-primary
+            bg-primary
             text-white
-            hover:border-blue-700
-            hover:bg-blue-700
-            focus-visible:ring-blue-500;
+            hover:border-primary-strong
+            hover:bg-primary-strong
+            focus-visible:ring-primary;
     }
 
     .lesli-button.is-info {
         @apply
-            border-sky-600
-            bg-sky-600
+            border-info-500
+            bg-info-500
             text-white
-            hover:border-sky-700
-            hover:bg-sky-700
-            focus-visible:ring-sky-500;
+            hover:border-info-600
+            hover:bg-info-600
+            focus-visible:ring-info-500;
     }
 
     .lesli-button.is-success {
         @apply
-            border-emerald-600
-            bg-emerald-600
+            border-success-500
+            bg-success-500
             text-white
-            hover:border-emerald-700
-            hover:bg-emerald-700
-            focus-visible:ring-emerald-500;
+            hover:border-success-600
+            hover:bg-success-600
+            focus-visible:ring-success-500;
     }
 
     .lesli-button.is-warning {
         @apply
-            border-amber-500
-            bg-amber-500
-            text-amber-950
-            hover:border-amber-600
-            hover:bg-amber-600
-            focus-visible:ring-amber-500;
+            border-warning-500
+            bg-warning-500
+            text-warning-900
+            hover:border-warning-600
+            hover:bg-warning-600
+            focus-visible:ring-warning-500;
     }
 
     .lesli-button.is-danger {
         @apply
-            border-rose-600
-            bg-rose-600
+            border-danger-500
+            bg-danger-500
             text-white
-            hover:border-rose-700
-            hover:bg-rose-700
-            focus-visible:ring-rose-500;
+            hover:border-danger-600
+            hover:bg-danger-600
+            focus-visible:ring-danger-500;
     }
 
     /*
@@ -157,52 +157,52 @@ Building a better future, one line of code at a time.
 
     .lesli-button.is-primary.is-light {
         @apply
-            border-blue-100
-            bg-blue-50
-            text-blue-700
-            hover:border-blue-200
-            hover:bg-blue-100
-            focus-visible:ring-blue-500;
+            border-primary-soft
+            bg-primary-soft
+            text-primary-strong
+            hover:border-primary-muted
+            hover:bg-primary-soft
+            focus-visible:ring-primary;
     }
 
     .lesli-button.is-info.is-light {
         @apply
-            border-sky-100
-            bg-sky-50
-            text-sky-700
-            hover:border-sky-200
-            hover:bg-sky-100
-            focus-visible:ring-sky-500;
+            border-info-100
+            bg-info-50
+            text-info-700
+            hover:border-info-200
+            hover:bg-info-100
+            focus-visible:ring-info-500;
     }
 
     .lesli-button.is-success.is-light {
         @apply
-            border-emerald-100
-            bg-emerald-50
-            text-emerald-700
-            hover:border-emerald-200
-            hover:bg-emerald-100
-            focus-visible:ring-emerald-500;
+            border-success-100
+            bg-success-50
+            text-success-700
+            hover:border-success-200
+            hover:bg-success-100
+            focus-visible:ring-success-500;
     }
 
     .lesli-button.is-warning.is-light {
         @apply
-            border-amber-100
-            bg-amber-50
-            text-amber-700
-            hover:border-amber-200
-            hover:bg-amber-100
-            focus-visible:ring-amber-500;
+            border-warning-100
+            bg-warning-50
+            text-warning-700
+            hover:border-warning-200
+            hover:bg-warning-100
+            focus-visible:ring-warning-500;
     }
 
     .lesli-button.is-danger.is-light {
         @apply
-            border-rose-100
-            bg-rose-50
-            text-rose-700
-            hover:border-rose-200
-            hover:bg-rose-100
-            focus-visible:ring-rose-500;
+            border-danger-100
+            bg-danger-50
+            text-danger-700
+            hover:border-danger-200
+            hover:bg-danger-100
+            focus-visible:ring-danger-500;
     }
 
     /*
@@ -213,52 +213,52 @@ Building a better future, one line of code at a time.
 
     .lesli-button.is-primary.is-outlined {
         @apply
-            border-blue-300
+            border-primary-muted
             bg-transparent
-            text-blue-700
-            hover:border-blue-400
-            hover:bg-blue-50
-            focus-visible:ring-blue-500;
+            text-primary-strong
+            hover:border-primary
+            hover:bg-primary-soft
+            focus-visible:ring-primary;
     }
 
     .lesli-button.is-info.is-outlined {
         @apply
-            border-sky-300
+            border-info-300
             bg-transparent
-            text-sky-700
-            hover:border-sky-400
-            hover:bg-sky-50
-            focus-visible:ring-sky-500;
+            text-info-700
+            hover:border-info-400
+            hover:bg-info-50
+            focus-visible:ring-info-500;
     }
 
     .lesli-button.is-success.is-outlined {
         @apply
-            border-emerald-300
+            border-success-300
             bg-transparent
-            text-emerald-700
-            hover:border-emerald-400
-            hover:bg-emerald-50
-            focus-visible:ring-emerald-500;
+            text-success-700
+            hover:border-success-400
+            hover:bg-success-50
+            focus-visible:ring-success-500;
     }
 
     .lesli-button.is-warning.is-outlined {
         @apply
-            border-amber-300
+            border-warning-300
             bg-transparent
-            text-amber-700
-            hover:border-amber-400
-            hover:bg-amber-50
-            focus-visible:ring-amber-500;
+            text-warning-700
+            hover:border-warning-400
+            hover:bg-warning-50
+            focus-visible:ring-warning-500;
     }
 
     .lesli-button.is-danger.is-outlined {
         @apply
-            border-rose-300
+            border-danger-300
             bg-transparent
-            text-rose-700
-            hover:border-rose-400
-            hover:bg-rose-50
-            focus-visible:ring-rose-500;
+            text-danger-700
+            hover:border-danger-400
+            hover:bg-danger-50
+            focus-visible:ring-danger-500;
     }
 
     /*

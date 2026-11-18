@@ -8,11 +8,11 @@
     }
 
     .lesli-items-discussions-error {
-        @apply mt-2 text-sm text-red-600;
+        @apply mt-2 text-sm text-danger-600;
     }
 
     .lesli-items-discussions-divider {
-        @apply my-6 border-0 border-t border-slate-200;
+        @apply my-6 border-0 border-t border-neutral-200;
     }
 
     .lesli-items-discussions-list {
@@ -20,6 +20,6 @@
     }
 
     .lesli-items-discussions-empty {
-        @apply py-6 text-center text-sm text-slate-500;
+        @apply py-6 text-center text-sm text-neutral-500;
     }
 }

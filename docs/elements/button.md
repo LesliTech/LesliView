@@ -36,8 +36,7 @@ component selectors are published; runtime theme values remain in LesliAssets.
 <%= render LesliView::Elements::Button.new(
     "Create ticket",
     url: new_ticket_path,
-    icon: "add",
-    success: true
+    icon: "add"
 ) %>
 ```
 
@@ -54,7 +53,7 @@ The optional first positional argument is the visible label. A block can provide
 | `solid:` | `true` | Set to `false` for an outlined button |
 | `light:` | `false` | Use a light background variant |
 | `small:` | `false` | Use a compact button |
-| `info:` | `true` | Info variant |
+| `info:` | `false` | Explicit informational variant |
 | `success:` | `false` | Success variant |
 | `warning:` | `false` | Warning variant |
 | `danger:` | `false` | Danger variant |
@@ -68,9 +67,58 @@ The optional first positional argument is the visible label. A block can provide
 | `name:` | `nil` | Submitter name for a plain button |
 | `value:` | `nil` | Submitter value for a plain button |
 
-Variant precedence is `warning`, `success`, `danger`, then `info`. Set `info: false` with no other variant enabled to use the primary style. Enabling `success`, `warning` or `danger` does not require disabling `info`. Prefer selecting one semantic variant at a time.
+Buttons use the account-customizable primary color by default. Solid, light and
+outlined buttons all follow this default; no extra option is required. Use
+`solid: false` for secondary actions instead of changing their meaning to `info`.
+
+Enable `info: true` only for an explicitly informational action. Variant
+precedence is `warning`, `success`, `danger`, then `info`; otherwise the button
+uses `primary`. Prefer selecting one semantic variant at a time. Form-builder
+buttons also default to `category: "primary"`.
 
 The component uses LesliView's button styles and Material Symbols. The host must load those assets. `loading:` is an explicit rendering state; the component does not automatically toggle it around requests.
+
+## Choosing a color
+
+| Variant | Use it for | Example label |
+| --- | --- | --- |
+| Default primary | Main actions; follows the account color | Create ticket, Save changes |
+| `info: true` | An explicitly informational action | Explain this status |
+| `success: true` | Acceptance or a positive state transition | Accept invitation |
+| `warning: true` | An action that requires attention | Review warnings |
+| `danger: true` | A destructive action | Delete event |
+
+A normal Save button stays primary; the notification after a successful save
+uses success. Secondary actions can use `solid: false` without changing their
+meaning to info. There is no `primary: true` option: omit the semantic flags.
+
+```erb
+<%= render LesliView::Elements::Button.new("Save changes", type: :submit) %>
+<%= render LesliView::Elements::Button.new("Explain this status", info: true) %>
+<%= render LesliView::Elements::Button.new("Accept invitation", success: true) %>
+<%= render LesliView::Elements::Button.new("Review warnings", warning: true) %>
+<%= render LesliView::Elements::Button.new("Delete event", danger: true) %>
+```
+
+These examples demonstrate appearance. Connect each action with `url:`,
+`method:` or `dispatch:` as appropriate, and translate application labels.
+
+### Final palette
+
+| Solid variant | Background | Text | Contrast |
+| --- | --- | --- | --- |
+| Default primary (700) | `#194A99` | White | 8.46:1 |
+| Info | `#087EAE` (500) | White | 4.56:1 |
+| Success | `#09855E` (500) | White | 4.64:1 |
+| Warning | `#F0A51B` (500) | `#452B08` (900) | 6.31:1 |
+| Danger | `#D73554` (500) | White | 4.64:1 |
+
+LesliAssets supplies these tokens from `lesli-css`; do not copy hex values into
+component styles. Info, success and danger hover at 600; warning hovers at 600
+and retains dark text. These opaque solid and hover pairs exceed 4.5:1.
+The primary ratio describes the official fallback only: check white-text contrast
+when choosing a custom account color. Light, outlined and translucent variants
+must be evaluated using their actual foreground and background.
 
 ## Forms and destructive actions
 

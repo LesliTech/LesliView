@@ -8,15 +8,15 @@
     }
 
     .lesli-chart-heading {
-        @apply text-center text-xs font-medium text-slate-500;
+        @apply text-center text-xs font-medium text-neutral-500;
     }
 
     .lesli-chart-title {
-        @apply text-base font-semibold text-slate-700;
+        @apply text-base font-semibold text-neutral-700;
     }
 
     .lesli-chart-subtitle {
-        @apply mt-1 text-sm leading-5 text-slate-500;
+        @apply mt-1 text-sm leading-5 text-neutral-500;
     }
 
     .lesli-chart-canvas {

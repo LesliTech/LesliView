@@ -1,6 +1,6 @@
 @layer components {
     .lesli-calendar-widget {
-        @apply p-3 sm:p-4 h-full rounded-2xl border border-slate-200 bg-white shadow-sm;
+        @apply p-3 sm:p-4 h-full rounded-2xl border border-neutral-200 bg-white shadow-sm;
     }
 
     .lesli-calendar-widget-weekdays {
@@ -8,7 +8,7 @@
     }
 
     .lesli-calendar-widget-weekday {
-        @apply py-0.5 text-center text-[11px] font-semibold uppercase tracking-wide text-slate-400;
+        @apply py-0.5 text-center text-[11px] font-semibold uppercase tracking-wide text-neutral-400;
     }
 
     .lesli-calendar-widget-weekday-label {
@@ -28,15 +28,15 @@
     }
 
     .lesli-calendar-widget-selected {
-        @apply bg-sky-600 text-white shadow-sm;
+        @apply bg-primary text-white shadow-sm;
     }
 
     .lesli-calendar-widget-today {
-        @apply bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200;
+        @apply bg-primary-soft text-primary-strong ring-1 ring-inset ring-primary-muted;
     }
 
     .lesli-calendar-widget-regular {
-        @apply text-slate-600;
+        @apply text-neutral-600;
     }
 
     .lesli-calendar-widget-indicator {
@@ -48,7 +48,7 @@
     }
 
     .lesli-calendar-widget-event-indicator {
-        @apply bg-rose-400;
+        @apply bg-primary;
     }
 
     .lesli-calendar-widget-accessible-label {

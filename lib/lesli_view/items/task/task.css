@@ -4,15 +4,15 @@
     }
 
     .lesli-task-done {
-        @apply border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-slate-100;
+        @apply border-neutral-200 bg-neutral-50 hover:border-neutral-300 hover:bg-neutral-100;
     }
 
     .lesli-task-pending {
-        @apply border-slate-200 hover:border-slate-300 hover:bg-slate-50;
+        @apply border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50;
     }
 
     .lesli-task-button {
-        @apply flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--lesli-color-primary)];
+        @apply flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-medium text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--lesli-color-primary)];
     }
 
     .lesli-task-content {
@@ -24,7 +24,7 @@
     }
 
     .lesli-task-done-icon {
-        @apply text-slate-400;
+        @apply text-neutral-400;
     }
 
     .lesli-task-pending-icon {
@@ -32,7 +32,7 @@
     }
 
     .lesli-task-done-title {
-        @apply min-w-0 break-words text-slate-500 line-through;
+        @apply min-w-0 break-words text-neutral-500 line-through;
     }
 
     .lesli-task-title {

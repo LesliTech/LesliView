@@ -20,4 +20,4 @@ Use `LesliView::Forms::BuilderHorizontal` when every supported control should us
 <% end %>
 ```
 
-Semantic categories become `is-*` CSS classes. `alert` and `error` normalize to `danger`; `notice` normalizes to `info`. Caller CSS classes are merged with the required Lesli classes rather than replacing them.
+Semantic categories become `is-*` CSS classes. `alert` and `error` normalize to `danger`; `notice` normalizes to `success`, matching notifications. Caller CSS classes are merged with the required Lesli classes rather than replacing them.

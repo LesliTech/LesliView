@@ -38,7 +38,7 @@ module LesliView
             CATEGORY_ALIASES = {
                 alert: :danger,
                 error: :danger,
-                notice: :info
+                notice: :success
             }.freeze
 
             def css_category(category = nil)

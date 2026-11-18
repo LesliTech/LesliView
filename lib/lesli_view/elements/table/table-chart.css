@@ -4,6 +4,6 @@
     }
 
     .lesli-table-chart-heading {
-        @apply font-semibold text-slate-400;
+        @apply font-semibold text-neutral-400;
     }
 }

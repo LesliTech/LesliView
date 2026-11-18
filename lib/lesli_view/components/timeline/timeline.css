@@ -12,11 +12,11 @@
     }
 
     .lesli-timeline-date {
-        @apply col-start-2 mb-2 md:col-start-1 md:row-start-1 md:mb-0 md:pt-1 md:text-right min-w-0 text-xs font-bold uppercase tracking-[0.2em] text-slate-500;
+        @apply col-start-2 mb-2 md:col-start-1 md:row-start-1 md:mb-0 md:pt-1 md:text-right min-w-0 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500;
     }
 
     .lesli-timeline-actor {
-        @apply mt-1 block font-normal normal-case tracking-normal text-slate-400;
+        @apply mt-1 block font-normal normal-case tracking-normal text-neutral-400;
     }
 
     .lesli-timeline-marker {
@@ -28,7 +28,7 @@
     }
 
     .lesli-timeline-connector {
-        @apply absolute top-7 bottom-0 left-1/2 w-px -translate-x-1/2 bg-slate-300;
+        @apply absolute top-7 bottom-0 left-1/2 w-px -translate-x-1/2 bg-neutral-300;
     }
 
     .lesli-timeline-content {
@@ -36,11 +36,11 @@
     }
 
     .lesli-timeline-title {
-        @apply text-base font-semibold text-slate-800;
+        @apply text-base font-semibold text-neutral-800;
     }
 
     .lesli-timeline-description {
-        @apply mt-1 text-sm leading-6 text-slate-600;
+        @apply mt-1 text-sm leading-6 text-neutral-600;
     }
     .lesli-timeline-entry:last-child .lesli-timeline-connector {
         @apply hidden;

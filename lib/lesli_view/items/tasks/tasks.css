@@ -1,14 +1,14 @@
 @layer components {
     .lesli-items-tasks {
-        @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+        @apply rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm;
     }
 
     .lesli-items-tasks-error {
-        @apply mt-2 text-sm text-red-600;
+        @apply mt-2 text-sm text-danger-600;
     }
 
     .lesli-items-tasks-divider {
-        @apply my-6 border-0 border-t border-slate-200;
+        @apply my-6 border-0 border-t border-neutral-200;
     }
 
     .lesli-items-tasks-list {
@@ -16,6 +16,6 @@
     }
 
     .lesli-items-tasks-empty {
-        @apply py-6 text-center text-sm text-slate-500;
+        @apply py-6 text-center text-sm text-neutral-500;
     }
 }

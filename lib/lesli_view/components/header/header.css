@@ -12,7 +12,7 @@
     }
 
     .lesli-header-back {
-        @apply inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-sky-600 bg-white text-sky-700 shadow-sm transition hover:bg-sky-50 hover:text-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500/30;
+        @apply inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-primary bg-white text-primary-strong shadow-sm transition hover:bg-primary-soft hover:text-primary-strong focus:outline-none focus:ring-2 focus:ring-primary/30;
     }
 
     .lesli-header-back-icon {
@@ -20,11 +20,11 @@
     }
 
     .lesli-header-title {
-        @apply text-3xl sm:text-4xl tracking-tight text-slate-700;
+        @apply text-3xl sm:text-4xl tracking-tight text-neutral-700;
     }
 
     .lesli-header-subtitle {
-        @apply text-sm leading-6 sm:text-base mt-2 max-w-2xl text-slate-500;
+        @apply text-sm leading-6 sm:text-base mt-2 max-w-2xl text-neutral-500;
     }
 
     .lesli-header-actions {

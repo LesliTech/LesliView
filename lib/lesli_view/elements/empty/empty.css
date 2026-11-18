@@ -4,19 +4,19 @@
     }
 
     .lesli-empty-state-illustration {
-        @apply mb-5 flex h-36 w-36 items-center justify-center rounded-full bg-slate-100/80 sm:h-40 sm:w-40;
+        @apply mb-5 flex h-36 w-36 items-center justify-center rounded-full bg-neutral-100/80 sm:h-40 sm:w-40;
     }
 
     .lesli-empty-state-icon {
-        @apply h-28 w-28 text-slate-300 sm:h-32 sm:w-32;
+        @apply h-28 w-28 text-neutral-300 sm:h-32 sm:w-32;
     }
 
     .lesli-empty-state-title {
-        @apply text-base sm:text-lg font-semibold text-slate-700;
+        @apply text-base sm:text-lg font-semibold text-neutral-700;
     }
 
     .lesli-empty-state-description {
-        @apply mt-2 max-w-md text-sm leading-6 text-slate-500;
+        @apply mt-2 max-w-md text-sm leading-6 text-neutral-500;
     }
 
     .lesli-empty-state-actions {

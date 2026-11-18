@@ -16,7 +16,7 @@
     }
 
     .lesli-error-title {
-        @apply mb-4 text-[2rem] font-semibold leading-tight text-[#3d211b];
+        @apply mb-4 text-[2rem] font-semibold leading-tight text-foreground;
     }
 
     .lesli-error.is-danger .lesli-error-title,

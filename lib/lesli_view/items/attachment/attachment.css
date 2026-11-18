@@ -1,6 +1,6 @@
 @layer components {
     .lesli-attachment {
-        @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-slate-200 bg-white p-4;
+        @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-neutral-200 bg-white p-4;
     }
 
     .lesli-attachment-details {
@@ -16,11 +16,11 @@
     }
 
     .lesli-attachment-name {
-        @apply truncate text-sm font-medium text-slate-900;
+        @apply truncate text-sm font-medium text-neutral-900;
     }
 
     .lesli-attachment-metadata {
-        @apply mt-1 text-xs text-slate-500;
+        @apply mt-1 text-xs text-neutral-500;
     }
 
     .lesli-attachment-actions {
@@ -28,11 +28,11 @@
     }
 
     .lesli-attachment-download {
-        @apply inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--lesli-color-primary)];
+        @apply inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--lesli-color-primary)];
     }
 
     .lesli-attachment-remove {
-        @apply inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/40;
+        @apply inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-danger-600 transition-colors hover:bg-danger-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger-500/40;
     }
 
     .lesli-attachment-remove-form {

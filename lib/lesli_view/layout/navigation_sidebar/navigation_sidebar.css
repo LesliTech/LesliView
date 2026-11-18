@@ -1,14 +1,14 @@
 @layer components {
     .lesli-navigation-sidebar-link {
-        @apply flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/20;
+        @apply flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20;
     }
 
     .lesli-navigation-sidebar-active {
-        @apply bg-sky-50 text-sky-700;
+        @apply bg-primary-soft text-primary-strong;
     }
 
     .lesli-navigation-sidebar-inactive {
-        @apply text-slate-700 hover:bg-slate-100;
+        @apply text-neutral-700 hover:bg-neutral-100;
     }
 
     .lesli-navigation-sidebar-icon {
@@ -20,15 +20,15 @@
     }
 
     .lesli-navigation-sidebar-description {
-        @apply text-xs text-slate-500;
+        @apply text-xs text-neutral-500;
     }
 
     .lesli-navigation-sidebar-mobile {
-        @apply block lg:hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm;
+        @apply block lg:hidden overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm;
     }
 
     .lesli-navigation-sidebar-summary {
-        @apply flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-slate-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-sky-500/20 [&::-webkit-details-marker]:hidden;
+        @apply flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-neutral-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-primary/20 [&::-webkit-details-marker]:hidden;
     }
 
     .lesli-navigation-sidebar-selected {
@@ -36,7 +36,7 @@
     }
 
     .lesli-navigation-sidebar-selected-icon {
-        @apply shrink-0 text-lg text-slate-400;
+        @apply shrink-0 text-lg text-neutral-400;
     }
 
     .lesli-navigation-sidebar-selected-label {
@@ -44,11 +44,11 @@
     }
 
     .lesli-navigation-sidebar-chevron {
-        @apply shrink-0 text-xl text-slate-400 transition-transform;
+        @apply shrink-0 text-xl text-neutral-400 transition-transform;
     }
 
     .lesli-navigation-sidebar-mobile-content {
-        @apply max-h-72 overflow-y-auto border-t border-slate-200 p-2;
+        @apply max-h-72 overflow-y-auto border-t border-neutral-200 p-2;
     }
 
     .lesli-navigation-sidebar-list {
@@ -56,11 +56,11 @@
     }
 
     .lesli-navigation-sidebar-desktop {
-        @apply hidden lg:block rounded-xl border border-slate-200 bg-white p-3 shadow-sm lg:sticky lg:top-4 lg:w-60 lg:shrink-0;
+        @apply hidden lg:block rounded-xl border border-neutral-200 bg-white p-3 shadow-sm lg:sticky lg:top-4 lg:w-60 lg:shrink-0;
     }
 
     .lesli-navigation-sidebar-heading {
-        @apply px-3 pb-2 text-xs font-semibold uppercase tracking-wide text-slate-500;
+        @apply px-3 pb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500;
     }
     .lesli-navigation-sidebar-mobile[open] .lesli-navigation-sidebar-chevron {
         @apply rotate-180;

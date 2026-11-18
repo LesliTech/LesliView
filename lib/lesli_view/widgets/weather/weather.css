@@ -1,38 +1,38 @@
 @layer components {
     .lesli-weather-widget {
-        @apply h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+        @apply h-full rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm;
     }
 
     .lesli-weather-widget-sunny {
-        @apply from-amber-50 to-yellow-100 text-amber-500 shadow-amber-100;
+        @apply from-maize-100 to-maize-100 text-maize-500 shadow-maize-100;
     }
 
     .lesli-weather-widget-sunny-halo {
-        @apply bg-amber-200;
+        @apply bg-maize-100;
     }
 
     .lesli-weather-widget-cloudy {
-        @apply from-slate-50 to-slate-200 text-slate-500 shadow-slate-200;
+        @apply from-neutral-50 to-neutral-200 text-neutral-500 shadow-neutral-200;
     }
 
     .lesli-weather-widget-cloudy-halo {
-        @apply bg-slate-300;
+        @apply bg-neutral-300;
     }
 
     .lesli-weather-widget-rainy {
-        @apply from-cyan-50 to-sky-100 text-cyan-500 shadow-cyan-100;
+        @apply from-cenote-100 to-cenote-100 text-cenote-500 shadow-cenote-100;
     }
 
     .lesli-weather-widget-rainy-halo {
-        @apply bg-cyan-200;
+        @apply bg-cenote-100;
     }
 
     .lesli-weather-widget-default {
-        @apply from-sky-50 to-blue-100 text-sky-600 shadow-sky-100;
+        @apply from-cenote-100 to-cenote-100 text-cenote-500 shadow-cenote-100;
     }
 
     .lesli-weather-widget-default-halo {
-        @apply bg-sky-200;
+        @apply bg-cenote-100;
     }
 
     .lesli-weather-widget-body {
@@ -40,11 +40,11 @@
     }
 
     .lesli-weather-widget-temperature {
-        @apply shrink-0 text-6xl font-light leading-none tracking-tight text-sky-600;
+        @apply shrink-0 text-6xl font-light leading-none tracking-tight text-primary;
     }
 
     .lesli-weather-widget-divider {
-        @apply mx-5 h-20 w-px shrink-0 bg-slate-200 sm:mx-6;
+        @apply mx-5 h-20 w-px shrink-0 bg-neutral-200 sm:mx-6;
     }
 
     .lesli-weather-widget-details {
@@ -72,10 +72,10 @@
     }
 
     .lesli-weather-widget-condition {
-        @apply truncate text-lg font-semibold tracking-tight text-slate-700;
+        @apply truncate text-lg font-semibold tracking-tight text-neutral-700;
     }
 
     .lesli-weather-widget-description {
-        @apply mt-1 truncate text-sm font-medium text-slate-400;
+        @apply mt-1 truncate text-sm font-medium text-neutral-400;
     }
 }

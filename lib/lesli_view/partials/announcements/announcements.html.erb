@@ -1,0 +1,23 @@
+<section id="application-lesli-announcements" class="lesli-announcements" aria-label="<%= label %>">
+    <% announcements.each do |announcement| %>
+        <% category = category_for(announcement) %>
+        <div id="announcement-<%= announcement.fetch(:id) %>" class="lesli-announcements-banner is-<%= category %>">
+            <span class="material-symbols lesli-announcements-icon" aria-hidden="true"><%= ICONS.fetch(category) %></span>
+            <div class="lesli-announcements-content">
+                <span class="lesli-announcements-category"><%= announcement.fetch(:category_label) %></span>
+                <p id="announcement-<%= announcement.fetch(:id) %>-message" class="lesli-announcements-message"><%= announcement.fetch(:message) %></p>
+                <% if announcement[:url].present? %>
+                    <%= link_to link_label, announcement[:url],
+                        class: "lesli-announcements-link", data: { turbo_frame: "_top" } %>
+                <% end %>
+            </div>
+            <% if announcement[:dismiss_url].present? %>
+                <%= button_to announcement[:dismiss_url], method: :post,
+                    class: "lesli-announcements-dismiss",
+                    aria: { label: dismiss_label, describedby: "announcement-#{announcement.fetch(:id)}-message" } do %>
+                    <span class="material-symbols" aria-hidden="true">close</span>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</section>

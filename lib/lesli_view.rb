@@ -54,6 +54,10 @@ require "lesli_view/layout/navigation_sidebar"
 
 
 # loading partials
+require "lesli_view/partials/error"
+require "lesli_view/partials/announcements"
+require "lesli_view/partials/header"
+require "lesli_view/partials/notifications"
 require "lesli_view/partials/engine_spec"
 
 

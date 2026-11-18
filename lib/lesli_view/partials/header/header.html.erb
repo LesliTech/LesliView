@@ -1,0 +1,31 @@
+<header class="lesli-application-header">
+    <div class="lesli-application-header-container">
+        <%= link_to home_url, class: "lesli-application-header-logo-link",
+            aria: { label: home_label }, data: { turbo_frame: "_top" } do %>
+            <div class="lesli-application-header-logo"><%= logo %></div>
+        <% end %>
+        <nav class="lesli-application-header-actions" aria-label="<%= actions_label %>">
+            <% actions.each do |action| %>
+                <%= link_to action.fetch(:url),
+                    class: class_names("lesli-application-header-action",
+                        "is-active": action[:active], "is-danger": action[:danger]),
+                    aria: { label: action.fetch(:label), current: action[:active] ? "page" : nil },
+                    title: action.fetch(:label), data: action[:data] do %>
+                    <i class="<%= class_names(action.fetch(:icon), "lesli-application-header-icon", "is-highlighted": action[:highlighted]) %>" aria-hidden="true"></i>
+                    <% if action[:count].to_i.positive? %>
+                        <span class="lesli-application-header-count" aria-hidden="true">
+                            <%= action[:count] > 99 ? "99+" : action[:count] %>
+                        </span>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </nav>
+    </div>
+</header>
+<% if navigation? %>
+    <nav class="lesli-application-header-navigation" aria-label="<%= navigation_label %>">
+        <div class="lesli-application-header-navigation-container">
+            <ul class="lesli-application-header-links"><%= navigation %></ul>
+        </div>
+    </nav>
+<% end %>

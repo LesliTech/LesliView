@@ -1,0 +1,54 @@
+@layer components {
+    .lesli-application-header, .lesli-application-header-navigation {
+        @apply border-b border-slate-200/80 bg-white;
+    }
+
+    .lesli-application-header-container {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between;
+    }
+
+    .lesli-application-header-logo-link {
+        @apply flex items-center;
+    }
+
+    .lesli-application-header-logo {
+        @apply flex items-center [&_img]:h-12 [&_img]:w-auto;
+    }
+
+    .lesli-application-header-actions {
+        @apply flex items-center gap-2;
+    }
+
+    .lesli-application-header-action {
+        @apply relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40;
+    }
+
+    .lesli-application-header-action.is-active {
+        @apply text-sky-700;
+    }
+
+    .lesli-application-header-action.is-danger {
+        @apply hover:bg-red-50 hover:text-red-600 focus-visible:ring-red-500/30;
+    }
+
+    .lesli-application-header-icon {
+        @apply text-[24px] leading-none;
+    }
+
+    .lesli-application-header-icon.is-highlighted {
+        @apply text-sky-600;
+    }
+
+    .lesli-application-header-count {
+        @apply absolute right-0 top-0 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-sky-600 px-1 text-[9px] font-semibold leading-none text-white ring-2 ring-white;
+    }
+
+    .lesli-application-header-navigation-container {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 overflow-x-auto;
+    }
+
+    .lesli-application-header-links {
+        @apply flex min-h-14 w-max min-w-full items-center justify-start gap-1 py-2 sm:justify-center;
+    }
+
+}

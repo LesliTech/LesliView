@@ -42,7 +42,7 @@ LesliView provides:
 - Composable, testable components built with ViewComponent
 - Rails-native form builders with consistent labels, controls, messages, and actions
 - Reusable views for common product concepts such as activities, attachments, discussions, and tasks
-- Responsive presentation based on Tailwind CSS utility classes
+- Responsive presentation through component classes compiled with Tailwind CSS
 - Accessible defaults for labels, button states, navigation, and page actions
 
 <br />

@@ -2,5 +2,8 @@
 title: Partials
 ---
 
-<!-- The section landing page documents the engine metadata partial. -->
+<%= partial("error") %>
+<%= partial("header") %>
+<%= partial("announcements") %>
+<%= partial("notifications") %>
 <%= partial("engine_spec") %>

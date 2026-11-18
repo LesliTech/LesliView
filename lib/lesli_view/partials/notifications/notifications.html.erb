@@ -1,0 +1,7 @@
+<section id="application-lesli-notifications" class="lesli-notifications" aria-live="polite" aria-atomic="true">
+    <% messages.each do |type, message| %>
+        <div class="lesli-notifications-message is-<%= category_for(type) %>">
+            <%= message %>
+        </div>
+    <% end %>
+</section>

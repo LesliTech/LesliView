@@ -14,6 +14,6 @@ class StylesheetTest < Minitest::Test
         assert_includes css, ".lesli-timeline-entry:last-child .lesli-timeline-connector"
         assert_includes css, ".lesli-navigation-sidebar-mobile[open] .lesli-navigation-sidebar-chevron"
         assert_includes css, "@media (width >= 40rem)"
-        assert_includes css, "max-width: var(--container-2xl)"
+        assert_match(/max-width: var\(--container-2xl(?:,|\))/, css)
     end
 end

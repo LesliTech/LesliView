@@ -1,0 +1,38 @@
+@layer components {
+    .lesli-error {
+        @apply px-4 py-24 sm:px-6 sm:py-36;
+    }
+
+    .lesli-error-content {
+        @apply mx-auto max-w-2xl text-center;
+    }
+
+    .lesli-error-illustration {
+        @apply mb-6;
+    }
+
+    .lesli-error-icon {
+        @apply text-[8rem]! leading-none;
+    }
+
+    .lesli-error-title {
+        @apply mb-4 text-[2rem] font-semibold leading-tight text-[#3d211b];
+    }
+
+    .lesli-error.is-danger .lesli-error-title,
+    .lesli-error.is-danger .lesli-error-icon {
+        @apply text-danger-800;
+    }
+
+    .lesli-error-message {
+        @apply text-[1.4rem] font-light leading-relaxed text-neutral-700;
+    }
+
+    .lesli-error-details {
+        @apply mx-auto mt-6 max-w-xl rounded-lg border border-neutral-200 bg-white p-5 text-sm text-neutral-600 shadow-sm;
+    }
+
+    .lesli-error-details ul {
+        @apply space-y-1;
+    }
+}

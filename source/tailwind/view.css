@@ -41,12 +41,8 @@ Building a better future, one line of code at a time.
 
 /* Theme values are loaded once by LesliAssets. */
 @import "tailwindcss/theme.css" theme(reference);
-@import "tailwindcss/utilities.css" layer(utilities) source(none);
-
-
-/* Compile utilities against the shared theme. LesliAssets supplies runtime variables. */
 @reference "../../../LesliAssets/source/tailwind/settings/theme.css";
-@reference "../../../LesliAssets/source/tailwind/settings/shared-theme.css";
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
 
 
 /* Compile semantic component classes only; do not emit global utilities. */
@@ -78,3 +74,7 @@ Building a better future, one line of code at a time.
 @import "../../lib/lesli_view/widgets/count/count.css";
 @import "../../lib/lesli_view/widgets/date/date.css";
 @import "../../lib/lesli_view/widgets/weather/weather.css";
+@import "../../lib/lesli_view/partials/announcements/announcements.css";
+@import "../../lib/lesli_view/partials/header/header.css";
+@import "../../lib/lesli_view/partials/notifications/notifications.css";
+@import "../../lib/lesli_view/partials/error/error.css";

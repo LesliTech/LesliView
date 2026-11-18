@@ -1,0 +1,50 @@
+@layer components {
+    .lesli-announcements {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 space-y-3;
+    }
+
+    .lesli-announcements-banner {
+        @apply flex items-center gap-3 rounded-lg border-2 p-4 shadow-sm;
+    }
+
+    .lesli-announcements-icon {
+        @apply shrink-0;
+    }
+
+    .lesli-announcements-content {
+        @apply min-w-0 flex-1;
+    }
+
+    .lesli-announcements-category {
+        @apply sr-only;
+    }
+
+    .lesli-announcements-message {
+        @apply whitespace-pre-wrap break-words font-medium;
+    }
+
+    .lesli-announcements-link {
+        @apply mt-2 inline-block rounded underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2;
+    }
+
+    .lesli-announcements-dismiss {
+        @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2;
+    }
+
+    .lesli-announcements-banner.is-info {
+        @apply border-info-300 bg-info-50 text-info-900;
+    }
+
+    .lesli-announcements-banner.is-success {
+        @apply border-success-300 bg-success-50 text-success-900;
+    }
+
+    .lesli-announcements-banner.is-warning {
+        @apply border-warning-300 bg-warning-50 text-warning-900;
+    }
+
+    .lesli-announcements-banner.is-danger {
+        @apply border-danger-300 bg-danger-50 text-danger-900;
+    }
+
+}

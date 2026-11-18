@@ -30,7 +30,7 @@ Load the shared stylesheet before the component stylesheet in the layout's `<hea
 
 LesliAssets defines the global Lesli palette and the complete Tailwind theme,
 including spacing, typography, radii, and animations. LesliView uses `@reference`
-to compile utilities without emitting those variables again. The standard Lesli
+to compile component styles without emitting those variables again. The standard Lesli
 layout already loads these stylesheets in this order. Public layouts can load
 `lesli_assets/public` instead of `lesli_assets/application`; both provide the
 complete theme. A custom host must update LesliAssets alongside LesliView when
@@ -67,16 +67,41 @@ does not isolate CSS.
 Theme values remain global in LesliAssets. LesliView references that theme at
 build time and compiles independently into `lesli_view/view.css`.
 
+### Component file structure
+
+Keep the Ruby class next to a directory containing its template and stylesheet:
+
+```text
+lib/lesli_view/
+    partials/
+        error.rb
+        error/
+            error.html.erb
+            error.css
+```
+
+This convention applies to `components`, `elements`, `items`, `layout`,
+`partials`, `widgets` and `charts`. Register new component CSS with an explicit
+import in `source/tailwind/view.css`.
+
+Only create a directory when a component has presentation files. For example,
+`Charts::Bar` and `Charts::Line` share `General`'s template and stylesheet.
+
+Forms keep their current Ruby files and shared `forms/form.css`. Do not create
+individual directories or duplicate styles for builders and field helpers.
+
+The files under `app/assets/stylesheets/lesli_view/` are generated output.
+Edit component CSS and rebuild instead of editing the compiled stylesheet.
+
 ### Upgrading
 
-Publish templates and compiled CSS together. The former `lesliview:` utilities
-are no longer generated. Use component classes or data attributes for JavaScript
-selectors.
+Publish templates and compiled CSS together. Use component classes or data
+attributes for JavaScript selectors. Do not add a Tailwind package prefix.
 
 Engines may keep passing their own classes through `css_class:`, `class_name:`,
 or form options. Those classes must be compiled by the calling engine, as must
-styles used by content supplied in component blocks. Engines keep their own
-Tailwind prefixes.
+styles used by content supplied in component blocks. Engines compile their own
+unprefixed Tailwind utilities against the shared LesliAssets theme.
 
 Load `lesli_view/view` in public authentication layouts as well. Engines should
 load this stylesheet instead of recompiling component CSS. The standard Lesli

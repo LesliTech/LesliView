@@ -1,0 +1,14 @@
+<section class="<%= class_names("lesli-error", "is-danger": tone.to_s == "danger") %>" aria-labelledby="<%= title_id %>">
+    <div class="lesli-error-content">
+        <% if illustration? %>
+            <div class="lesli-error-illustration" aria-hidden="true">
+                <%= illustration %>
+            </div>
+        <% end %>
+        <h2 id="<%= title_id %>" class="lesli-error-title"><%= title %></h2>
+        <p class="lesli-error-message"><%= message %></p>
+        <% if details? %>
+            <div class="lesli-error-details"><%= details %></div>
+        <% end %>
+    </div>
+</section>

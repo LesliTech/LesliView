@@ -6,4 +6,4 @@
 <%= navigation_for_folder("gems", "view", "charts", order:["general", "bar", "line"]) %>
 <%= navigation_for_folder("gems", "view", "widgets", order:["count", "date", "calendar", "chart", "weather"]) %>
 <%= navigation_for_folder("gems", "view", "items", order:["discussion", "tasks", "actions", "activities", "attachments"]) %>
-<%= navigation_for_folder("gems", "view", "partials", order:["engine_spec"]) %>
+<%= navigation_for_folder("gems", "view", "partials", order:["error", "header", "announcements", "notifications", "engine_spec"]) %>

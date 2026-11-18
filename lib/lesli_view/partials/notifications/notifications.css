@@ -1,0 +1,38 @@
+@layer components {
+    .lesli-notifications {
+        @apply fixed inset-x-0 z-[999] mx-auto w-[90%] max-w-[600px];
+    }
+
+    .lesli-notifications-message {
+        @apply my-1 break-words rounded-lg border-2 px-4 py-3 text-center text-sm font-medium shadow-sm;
+    }
+
+    .lesli-notifications-message.is-info {
+        @apply border-info-300 bg-info-50 text-info-900;
+    }
+
+    .lesli-notifications-message.is-success {
+        @apply border-success-300 bg-success-50 text-success-900;
+    }
+
+    .lesli-notifications-message.is-warning {
+        @apply border-warning-300 bg-warning-50 text-warning-900;
+    }
+
+    .lesli-notifications-message.is-danger {
+        @apply border-danger-300 bg-danger-50 text-danger-900;
+    }
+
+    .lesli-notifications-message.is-neutral {
+        @apply border-neutral-300 bg-neutral-50 text-neutral-900;
+    }
+
+    .lesli-notifications-message {
+        animation: lesli-view-notification-fade-out 5s forwards;
+    }
+}
+
+@keyframes lesli-view-notification-fade-out {
+    0%, 80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}

@@ -1,0 +1,33 @@
+@layer components {
+    .lesli-items-attachments {
+        @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+    }
+
+    .lesli-items-attachments-form {
+        @apply grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(12rem,0.35fr)_auto] lg:items-end;
+    }
+
+    .lesli-items-attachments-label {
+        @apply mb-2 block text-sm font-medium text-slate-700;
+    }
+
+    .lesli-items-attachments-input {
+        @apply block w-full cursor-pointer rounded-lg border border-slate-300 bg-white text-sm text-slate-700 file:mr-4 file:border-0 file:bg-slate-100 file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-[var(--lesli-color-primary)];
+    }
+
+    .lesli-items-attachments-error {
+        @apply mt-2 text-sm text-red-600;
+    }
+
+    .lesli-items-attachments-divider {
+        @apply my-6 border-0 border-t border-slate-200;
+    }
+
+    .lesli-items-attachments-list {
+        @apply m-0 list-none space-y-3 p-0;
+    }
+
+    .lesli-items-attachments-empty {
+        @apply py-6 text-center text-sm text-slate-500;
+    }
+}

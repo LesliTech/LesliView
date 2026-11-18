@@ -1,0 +1,13 @@
+
+<%
+    container_class = class_names(
+        "lesli-application-container lesli-container",
+        dashboard ? "lesli-container-responsive" : "lesli-container-wide"
+    )
+%>
+
+<turbo-frame
+    id="<%= turbo_frame_id %>"
+    class="<%= container_class %>">
+    <%= content %>
+</turbo-frame>

@@ -21,3 +21,17 @@
 Each activity should provide string keys for `date`, `operation`, `actor`, and optional `description` and `icon`. The value of `icon` is an event code; `icons:` maps that code to a Material Symbol dynamically. Unmapped events use `radio_button_checked`. When the collection is empty, the component renders the shared empty-state element with `empty_text`.
 
 The actor is displayed as secondary metadata below the date so the event and description remain the visual focus.
+
+## Component files
+
+```text
+lib/lesli_view/components/
+    timeline.rb
+    timeline/
+        timeline.html.erb
+        timeline.css
+```
+
+The Ruby API is unchanged. The sidecar stylesheet uses semantic classes and
+unprefixed `@apply`, and is imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.

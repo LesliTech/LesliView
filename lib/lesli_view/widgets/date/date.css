@@ -1,0 +1,29 @@
+@layer components {
+    .lesli-date-widget {
+        @apply h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+    }
+
+    .lesli-date-widget-body {
+        @apply flex h-full min-h-40 items-center justify-center;
+    }
+
+    .lesli-date-widget-day {
+        @apply text-6xl font-light leading-none tracking-tight text-sky-600;
+    }
+
+    .lesli-date-widget-divider {
+        @apply mx-5 h-20 w-px shrink-0 bg-slate-200 sm:mx-6;
+    }
+
+    .lesli-date-widget-details {
+        @apply min-w-0 text-left;
+    }
+
+    .lesli-date-widget-month {
+        @apply block text-lg font-semibold capitalize tracking-tight text-slate-700;
+    }
+
+    .lesli-date-widget-weekday {
+        @apply mt-1 block text-base font-medium capitalize text-slate-400;
+    }
+}

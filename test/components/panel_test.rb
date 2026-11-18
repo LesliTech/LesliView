@@ -18,16 +18,12 @@ module LesliView
                 assert_includes html, 'aria-modal="true"'
                 assert_includes html, 'aria-labelledby="translation-panel-title"'
                 assert_includes html, 'aria-label="Close panel"'
-                assert_includes html, "translate-x-8 opacity-0"
-                assert_includes html, "duration-150"
-                assert_includes html, "duration-100"
+                assert_includes html, "lesli-panel-hidden"
+                assert_includes html, "lesli-panel-entering"
+                assert_includes html, "lesli-panel-leaving"
                 refute_includes html, "duration-300"
-                assert_includes html, "w-full"
-                assert_includes html, "h-dvh"
-                assert_includes html, "max-h-dvh"
-                assert_includes html, "overscroll-contain"
-                assert_includes html, "size-11"
-                assert_includes html, "sm:max-w-2xl"
+                assert_includes html, "lesli-panel-dialog"
+                assert_includes html, "lesli-panel-close"
                 assert_includes html, "Editor content"
             end
 
@@ -35,8 +31,7 @@ module LesliView
                 html = Panel.new("Details", "details-panel", overlay: false)
                     .render_in(ActionView::Base.empty)
 
-                refute_includes html, "bg-slate-950/25"
-                assert_includes html, 'role="dialog"'
+                refute_includes html, "lesli-panel-overlay"
                 assert_includes html, 'aria-modal="false"'
             end
         end

@@ -1,0 +1,44 @@
+<section
+    class="lesli-calendar-widget"
+    aria-label="<%= calendar_title %>">
+
+    <div class="lesli-calendar-widget-weekdays">
+        <% weekdays.each do |abbreviated_name, full_name| %>
+            <div class="lesli-calendar-widget-weekday">
+                <abbr class="lesli-calendar-widget-weekday-label" title="<%= full_name %>"><%= abbreviated_name %></abbr>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="lesli-calendar-widget-days">
+        <% calendar_days.each do |day| %>
+            <% if day.nil? %>
+                <span class="lesli-calendar-widget-placeholder" aria-hidden="true"></span>
+            <% else %>
+                <% day_date = date_for(day) %>
+                <div
+                    class="lesli-calendar-widget-day
+                        <%= if selected?(day)
+                            "lesli-calendar-widget-selected"
+                        elsif today?(day)
+                            "lesli-calendar-widget-today"
+                        else
+                            "lesli-calendar-widget-regular"
+                        end %>">
+
+                    <time
+                        datetime="<%= day_date.iso8601 %>"
+                        aria-label="<%= I18n.l(day_date, format: :long) %>"
+                        <% if today?(day) %>aria-current="date"<% end %>><%= day %></time>
+
+                    <% if event?(day) %>
+                        <span
+                            class="lesli-calendar-widget-indicator <%= selected?(day) ? 'lesli-calendar-widget-selected-indicator' : 'lesli-calendar-widget-event-indicator' %>"
+                            aria-hidden="true"></span>
+                        <span class="lesli-calendar-widget-accessible-label"><%= I18n.t("date.has_events", default: "Has events") %></span>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</section>

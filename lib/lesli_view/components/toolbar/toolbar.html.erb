@@ -1,0 +1,42 @@
+<section class="lesli-toolbar" aria-label="<%= search_label %>">
+    <%= form_with(url: form_url, method: :get, local: true, class: "lesli-toolbar__form", role: "search") do %>
+        <div class="lesli-toolbar__search">
+            <%= label_tag(search_name, search_label, class: "lesli-toolbar-accessible-label") %>
+
+            <span class="lesli-toolbar__search-icon" aria-hidden="true">
+                <span class="material-symbols">search</span>
+            </span>
+
+            <%= text_field_tag(
+                search_name,
+                search_value,
+                placeholder: placeholder,
+                class: "lesli-toolbar__input",
+                autocomplete: "off"
+            ) %>
+
+            <% if searching? %>
+                <%= link_to(clear_url, class: "lesli-toolbar__clear", aria: { label: clear_label }, title: clear_label) do %>
+                    <span class="material-symbols" aria-hidden="true">close</span>
+                <% end %>
+            <% end %>
+        </div>
+
+        <% if filters? %>
+            <div class="lesli-toolbar__filters">
+                <%= filters %>
+            </div>
+        <% end %>
+
+        <button class="lesli-toolbar__submit" type="submit">
+            <span class="material-symbols" aria-hidden="true">search</span>
+            <span class="lesli-toolbar-accessible-label"><%= search_label %></span>
+        </button>
+    <% end %>
+
+    <% if actions? %>
+        <div class="lesli-toolbar__actions" role="group" aria-label="<%= I18n.t('lesli_view.toolbar.actions', default: 'Toolbar actions') %>">
+            <%= actions %>
+        </div>
+    <% end %>
+</section>

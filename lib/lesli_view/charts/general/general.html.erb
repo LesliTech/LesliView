@@ -1,0 +1,41 @@
+<div
+    class="lesli-chart-<%= type %> lesli-chart"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% end %>>
+
+    <% if title.present? || subtitle.present? %>
+        <div class="lesli-chart-header">
+            <% if title.present? %>
+                <h3
+                    id="<%= title_id %>"
+                    class="<%= compact ? 'lesli-chart-heading' : 'lesli-chart-title' %>">
+                    <%= title %>
+                </h3>
+            <% end %>
+
+            <% if subtitle.present? %>
+                <p class="lesli-chart-subtitle"><%= subtitle %></p>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div
+        id="<%= id %>"
+        class="lesli-chart-canvas"
+        style="min-height: <%= height %>"></div>
+</div>
+
+<script data-lesli-chart-config="<%= chart_config.to_json %>">
+(() => {
+    const script = document.currentScript;
+    const renderChart = () => {
+        if (!window.LesliChart || !script) return;
+        new window.LesliChart(JSON.parse(script.dataset.lesliChartConfig));
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("turbo:load", renderChart, { once: true });
+    } else {
+        renderChart();
+    }
+})();
+</script>

@@ -1,0 +1,17 @@
+@layer components {
+    .lesli-discussion {
+        @apply flex flex-col gap-3 sm:flex-row sm:gap-4 border-b border-slate-200 pb-6 last:border-b-0 last:pb-0;
+    }
+
+    .lesli-discussion-metadata {
+        @apply shrink-0 text-sm leading-5 text-slate-500 sm:w-40 sm:text-right;
+    }
+
+    .lesli-discussion-author {
+        @apply block font-semibold text-slate-800;
+    }
+
+    .lesli-discussion-message {
+        @apply min-w-0 flex-1 whitespace-pre-wrap break-words text-slate-700;
+    }
+}

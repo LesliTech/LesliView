@@ -57,21 +57,21 @@ end
 module LesliView
     module Items
         class TasksTest < Minitest::Test
-            def test_renders_create_form_and_task_states_with_tailwind_classes
+            def test_renders_create_form_and_task_states_with_component_classes
                 html = Tasks.new(resource).render_in(view_context)
 
-                assert_includes html, "rounded-2xl border border-slate-200 bg-white"
-                assert_includes html, "border-t border-slate-200"
-                assert_includes html, "list-none space-y-3"
+                assert_includes html, "lesli-items-tasks"
+                assert_includes html, "lesli-items-tasks-divider"
+                assert_includes html, "lesli-items-tasks-list"
                 assert_includes html, 'action="/items/tasks"'
                 assert_includes html, 'action="/items/tasks/1"'
                 assert_includes html, 'action="/items/tasks/2"'
                 assert_includes html, "check_box_outline_blank"
                 assert_includes html, "check_box"
-                assert_includes html, "hover:border-slate-300"
+                assert_includes html, "lesli-task-done"
                 assert_includes html,
-                    "lesli-items-tasks-task-done border-slate-200 bg-slate-50"
-                assert_includes html, "text-slate-500 line-through"
+                    "lesli-items-tasks-task-done lesli-task-done"
+                assert_includes html, "lesli-task-done-title"
                 assert_match(/<del[^>]*>\s*Publish release\s*<\/del>/, html)
                 refute_match(/<del[^>]*>\s*Prepare release notes\s*<\/del>/, html)
                 assert_includes html, "Prepare release notes"
@@ -110,7 +110,6 @@ module LesliView
                 html = Tasks.new(empty_resource).render_in(view_context)
 
                 assert_includes html, "No tasks have been added yet."
-                assert_includes html, "text-slate-500"
             end
 
             def test_preserves_the_form_task_and_displays_its_errors

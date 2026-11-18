@@ -1,0 +1,57 @@
+@layer components {
+    .lesli-calendar-widget {
+        @apply p-3 sm:p-4 h-full rounded-2xl border border-slate-200 bg-white shadow-sm;
+    }
+
+    .lesli-calendar-widget-weekdays {
+        @apply grid grid-cols-7 gap-0.5;
+    }
+
+    .lesli-calendar-widget-weekday {
+        @apply py-0.5 text-center text-[11px] font-semibold uppercase tracking-wide text-slate-400;
+    }
+
+    .lesli-calendar-widget-weekday-label {
+        @apply no-underline;
+    }
+
+    .lesli-calendar-widget-days {
+        @apply mt-0.5 grid grid-cols-7 gap-0.5;
+    }
+
+    .lesli-calendar-widget-placeholder {
+        @apply h-8 sm:h-9;
+    }
+
+    .lesli-calendar-widget-day {
+        @apply h-8 sm:h-9 relative flex items-center justify-center rounded-lg text-sm font-medium;
+    }
+
+    .lesli-calendar-widget-selected {
+        @apply bg-sky-600 text-white shadow-sm;
+    }
+
+    .lesli-calendar-widget-today {
+        @apply bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200;
+    }
+
+    .lesli-calendar-widget-regular {
+        @apply text-slate-600;
+    }
+
+    .lesli-calendar-widget-indicator {
+        @apply absolute bottom-1 h-1 w-1 rounded-full;
+    }
+
+    .lesli-calendar-widget-selected-indicator {
+        @apply bg-white;
+    }
+
+    .lesli-calendar-widget-event-indicator {
+        @apply bg-rose-400;
+    }
+
+    .lesli-calendar-widget-accessible-label {
+        @apply sr-only;
+    }
+}

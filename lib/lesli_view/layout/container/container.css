@@ -1,0 +1,13 @@
+@layer components {
+    .lesli-container {
+        @apply mx-auto block w-full px-4 sm:px-6 lg:px-8;
+    }
+
+    .lesli-container-responsive {
+        @apply container;
+    }
+
+    .lesli-container-wide {
+        @apply max-w-7xl;
+    }
+}

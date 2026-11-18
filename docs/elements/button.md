@@ -2,6 +2,26 @@
 
 `LesliView::Elements::Button` renders a button, a navigation link, or a Rails `button_to` form. Use this component for page actions so styling, icons and Turbo behavior remain consistent.
 
+## Component files
+
+Button uses ViewComponent's sidecar layout:
+
+```text
+lib/lesli_view/elements/
+    button.rb
+    button/
+        button.html.erb
+        button.css
+```
+
+The template and Ruby class render semantic classes such as `lesli-button`,
+`lesli-icon`, and the existing `is-*` modifiers. Presentation belongs to the
+sidecar stylesheet, imported by `source/tailwind/view.css` and compiled into the
+same LesliView stylesheet. No additional stylesheet request is needed.
+
+The stylesheet uses unprefixed Tailwind utilities inside `@apply`. Only the
+component selectors are published; runtime theme values remain in LesliAssets.
+
 ## Rendering modes
 
 | Options | Output | Use |

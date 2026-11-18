@@ -1,0 +1,42 @@
+<div class="lesli-timelines lesli-timeline">
+    <% if activities.any? %>
+        <ul class="lesli-timeline-list">
+            <% activities.each do |activity| %>
+                <li class="lesli-timeline-entry">
+                    <div class="lesli-timeline-date">
+                        <time><%= activity["date"] %></time>
+
+                        <% if activity["actor"].present? %>
+                            <span class="lesli-timeline-actor">
+                                <%= activity["actor"] %>
+                            </span>
+                        <% end %>
+                    </div>
+
+                    <div class="lesli-timeline-marker">
+                        <span
+                            class="material-symbols-outlined lesli-timeline-icon"
+                            aria-hidden="true">
+                            <%= icon_for(activity) %>
+                        </span>
+                        <span class="lesli-timeline-connector" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="lesli-timeline-content">
+                        <h6 class="lesli-timeline-title">
+                            <%= activity["operation"] %>
+                        </h6>
+
+                        <% if activity["description"].present? %>
+                            <p class="lesli-timeline-description">
+                                <%= activity["description"] %>
+                            </p>
+                        <% end %>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <%= render LesliView::Elements::Empty.new(text: empty_text) %>
+    <% end %>
+</div>

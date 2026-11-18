@@ -1,0 +1,7 @@
+<figure class="lesli-element-avatar <%= avatar_size %> lesli-avatar">
+    <% if image %>
+        <img class="lesli-avatar-image" src="<%= image %>" alt="Avatar image">
+    <% else %>
+        <span class="lesli-avatar-initials <%= font_size %>"><%= letter %></span>
+    <% end %>
+</figure>

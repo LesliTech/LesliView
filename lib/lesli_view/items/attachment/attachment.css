@@ -1,0 +1,41 @@
+@layer components {
+    .lesli-attachment {
+        @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-slate-200 bg-white p-4;
+    }
+
+    .lesli-attachment-details {
+        @apply flex min-w-0 items-center gap-3;
+    }
+
+    .lesli-attachment-icon {
+        @apply shrink-0 text-3xl text-[var(--lesli-color-primary)];
+    }
+
+    .lesli-attachment-text {
+        @apply min-w-0;
+    }
+
+    .lesli-attachment-name {
+        @apply truncate text-sm font-medium text-slate-900;
+    }
+
+    .lesli-attachment-metadata {
+        @apply mt-1 text-xs text-slate-500;
+    }
+
+    .lesli-attachment-actions {
+        @apply flex shrink-0 items-center gap-2;
+    }
+
+    .lesli-attachment-download {
+        @apply inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--lesli-color-primary)];
+    }
+
+    .lesli-attachment-remove {
+        @apply inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/40;
+    }
+
+    .lesli-attachment-remove-form {
+        @apply inline-flex;
+    }
+}

@@ -1,0 +1,54 @@
+
+<section
+    class="lesli-header"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% end %>>
+
+    <div class="lesli-header-text">
+        <div class="lesli-header-heading">
+
+            <% if back? %>
+                <%= link_to(
+                    back_path,
+                    class: "lesli-header-back",
+                    aria: { label: I18n.t("actions.back", default: "Go back") },
+                    data: { turbo_frame: "_top" }
+                ) do %>
+                    <span class="material-symbols lesli-header-back-icon" aria-hidden="true">arrow_back</span>
+                <% end %>
+            <% end %>
+
+            <div class="lesli-header-text">
+                <% if title.present? %>
+                    <h1 id="<%= title_id %>" class="lesli-header-title">
+                        <%= title %>
+                    </h1>
+                <% end %>
+
+                <% if subtitle.present? %>
+                    <p class="lesli-header-subtitle">
+                        <%= subtitle %>
+                    </p>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+
+    <% if actions? %>
+        <div
+            class="lesli-header-actions"
+            role="group"
+            aria-label="<%= I18n.t('actions.label', default: 'Page actions') %>">
+            <% if new_path.present? %>
+                <%= render ::LesliView::Elements::Button.new(
+                    new_button_label,
+                    url: new_path,
+                    icon: "add",
+                    solid: true
+                ) %>
+            <% end %>
+
+            <%= content if content? %>
+        </div>
+    <% end %>
+</section>

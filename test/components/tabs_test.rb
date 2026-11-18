@@ -7,7 +7,7 @@ require_relative "../../lib/lesli_view/components/tabs"
 module LesliView
     module Components
         class TabsTest < Minitest::Test
-            def test_renders_accessible_horizontal_tabs_with_tailwind_classes
+            def test_renders_accessible_horizontal_tabs_with_component_classes
                 html = render_tabs
 
                 assert_includes html, 'role="tablist"'
@@ -16,9 +16,9 @@ module LesliView
                 assert_includes html, 'id="activity-tab"'
                 assert_includes html, 'aria-controls="activity"'
                 assert_includes html, 'role="tabpanel"'
-                assert_includes html, "border-slate-200"
-                assert_includes html, "border-blue-600 text-blue-700"
-                assert_includes html, "cursor-pointer"
+                assert_includes html, "lesli-tabs-horizontal-list"
+                assert_includes html, "lesli-tabs-active"
+                assert_includes html, "lesli-tabs-tab"
                 refute_includes html, "bg-blue-50"
                 refute_includes html, "hover:bg-slate-50"
                 refute_includes html, "is-active"
@@ -28,10 +28,9 @@ module LesliView
             def test_renders_the_vertical_presentation
                 html = render_tabs(vertical: true)
 
-                assert_includes html, "lesli-tabs min-w-0 flex items-start gap-6"
+                assert_includes html, "lesli-tabs lesli-tabs-vertical"
                 assert_includes html, 'aria-orientation="vertical"'
-                assert_includes html, "flex w-full flex-col border-r"
-                assert_includes html, "w-full border-r-2 text-left"
+                assert_includes html, "lesli-tabs-vertical-tab"
             end
 
             private

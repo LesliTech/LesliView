@@ -1,0 +1,21 @@
+@layer components {
+    .lesli-chart-widget {
+        @apply h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+    }
+
+    .lesli-chart-widget-body {
+        @apply flex h-full min-h-40 flex-col;
+    }
+
+    .lesli-chart-widget-title {
+        @apply mb-3 text-sm font-medium leading-5 text-slate-500;
+    }
+
+    .lesli-chart-widget-content {
+        @apply min-h-0 flex-1;
+    }
+
+    .lesli-chart-widget-empty {
+        @apply flex flex-1 items-center justify-center text-sm text-slate-400;
+    }
+}

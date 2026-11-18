@@ -1,0 +1,37 @@
+@layer components {
+    .lesli-engine-spec-header {
+        @apply mb-4 border-b border-slate-300 pb-3;
+    }
+
+    .lesli-engine-spec-title {
+        @apply text-xl font-semibold text-slate-800;
+    }
+
+    .lesli-engine-spec-summary {
+        @apply mt-1 text-xl leading-7 text-slate-600;
+    }
+
+    .lesli-engine-spec-list {
+        @apply m-0 list-none space-y-2 p-0;
+    }
+
+    .lesli-engine-spec-item {
+        @apply ml-1.5 flex items-center gap-2 text-[1.1rem] text-slate-600;
+    }
+
+    .lesli-engine-spec-icon {
+        @apply shrink-0 text-2xl leading-none text-slate-400;
+    }
+
+    .lesli-engine-spec-details {
+        @apply ml-1.5 flex min-w-0 items-center gap-2 text-[1.1rem] text-slate-600;
+    }
+
+    .lesli-engine-spec-value {
+        @apply min-w-0 break-all;
+    }
+
+    .lesli-engine-spec-link {
+        @apply font-sans text-[var(--lesli-color-primary)] underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--lesli-color-primary)];
+    }
+}

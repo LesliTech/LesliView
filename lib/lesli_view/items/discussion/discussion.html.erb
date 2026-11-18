@@ -1,0 +1,12 @@
+<li class="lesli-items-discussions-comments-comment lesli-discussion">
+    <div class="lesli-discussion-metadata">
+        <strong class="lesli-discussion-author">
+            <%= author_name %>
+        </strong>
+        <time datetime="<%= created_at_iso8601 %>">
+            <%= created_at_label %>
+        </time>
+    </div>
+
+    <div class="lesli-discussion-message"><%= discussion.message %></div>
+</li>

@@ -13,3 +13,18 @@
 The resource must expose an `actions` association whose records provide `id`, `title`, `done`, and `done?`. `path_to_create:` is used by the new-action form. `path_to_update:` must be callable with an action ID and return the PATCH URL.
 
 Both paths are required by the current template even though the initializer accepts `nil`. Completed actions render disabled and cannot be toggled again through this component.
+
+## Component files
+
+```text
+lib/lesli_view/items/
+    actions.rb
+    actions/
+        actions.html.erb
+        actions.css
+```
+
+Ruby classes retain their public API. Each template and stylesheet lives in
+the adjacent component directory. The stylesheets use semantic classes and
+unprefixed `@apply`, and are imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.

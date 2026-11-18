@@ -35,40 +35,46 @@ Building a better future, one line of code at a time.
 @layer theme, components, utilities;
 
 
-/* Vendor */
 /* Lexxy exposes its stylesheet through the Rails asset pipeline. */
 @import url("../lexxy.css") layer(components);
 
 
-/* Import Tailwind */
 /* Theme values are loaded once by LesliAssets. */
-@reference "tailwindcss/theme.css";
+@import "tailwindcss/theme.css" theme(reference);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 
 
 /* Compile utilities against the shared theme. LesliAssets supplies runtime variables. */
 @reference "../../../LesliAssets/source/tailwind/settings/theme.css";
+@reference "../../../LesliAssets/source/tailwind/settings/shared-theme.css";
 
 
-/* Discover utility classes used by every LesliView component. */
-@source "../../lib/lesli_view/**/*.rb";
-@source "../../lib/lesli_view/**/*.html.erb";
-
-
-/* Keep responsive property groups in component rules: a later engine's base
-   utility can otherwise override an earlier responsive utility. */
-@import "../../lib/lesli_view/components/header.css";
-@import "../../lib/lesli_view/components/panel.css";
-@import "../../lib/lesli_view/components/timeline.css";
-@import "../../lib/lesli_view/components/toolbar.css";
-@import "../../lib/lesli_view/elements/button.css";
-@import "../../lib/lesli_view/elements/empty.css";
-@import "../../lib/lesli_view/elements/table.css";
+/* Compile semantic component classes only; do not emit global utilities. */
+@import "../../lib/lesli_view/components/toolbar/toolbar.css";
+@import "../../lib/lesli_view/elements/button/button.css";
+@import "../../lib/lesli_view/elements/table/table.css";
 @import "../../lib/lesli_view/forms/form.css";
-@import "../../lib/lesli_view/items/items.css";
-
-@import "../../lib/lesli_view/layout/container.css";
-@import "../../lib/lesli_view/layout/navigation_sidebar.css";
-
-@import "../../lib/lesli_view/widgets/calendar.css";
-@import "../../lib/lesli_view/widgets/count.css";
+@import "../../lib/lesli_view/charts/general/general.css";
+@import "../../lib/lesli_view/components/header/header.css";
+@import "../../lib/lesli_view/components/panel/panel.css";
+@import "../../lib/lesli_view/components/tabs/tabs.css";
+@import "../../lib/lesli_view/components/timeline/timeline.css";
+@import "../../lib/lesli_view/elements/avatar/avatar.css";
+@import "../../lib/lesli_view/elements/empty/empty.css";
+@import "../../lib/lesli_view/elements/table/table-chart.css";
+@import "../../lib/lesli_view/items/actions/actions.css";
+@import "../../lib/lesli_view/items/activities/activities.css";
+@import "../../lib/lesli_view/items/attachment/attachment.css";
+@import "../../lib/lesli_view/items/attachments/attachments.css";
+@import "../../lib/lesli_view/items/discussion/discussion.css";
+@import "../../lib/lesli_view/items/discussions/discussions.css";
+@import "../../lib/lesli_view/items/task/task.css";
+@import "../../lib/lesli_view/items/tasks/tasks.css";
+@import "../../lib/lesli_view/layout/container/container.css";
+@import "../../lib/lesli_view/layout/navigation_sidebar/navigation_sidebar.css";
+@import "../../lib/lesli_view/partials/engine_spec/engine_spec.css";
+@import "../../lib/lesli_view/widgets/calendar/calendar.css";
+@import "../../lib/lesli_view/widgets/chart/chart.css";
+@import "../../lib/lesli_view/widgets/count/count.css";
+@import "../../lib/lesli_view/widgets/date/date.css";
+@import "../../lib/lesli_view/widgets/weather/weather.css";

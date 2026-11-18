@@ -1,0 +1,46 @@
+<section
+    class="lesli-weather-widget"
+    aria-label="<%= accessible_label %>">
+
+    <%
+    # Give each common weather family its own restrained accent color.
+    icon_colors, halo_color = case icon.to_s
+    when /sun|clear/
+        ["lesli-weather-widget-sunny", "lesli-weather-widget-sunny-halo"]
+    when /cloud|fog/
+        ["lesli-weather-widget-cloudy", "lesli-weather-widget-cloudy-halo"]
+    when /snow/
+        ["lesli-weather-widget-rainy", "lesli-weather-widget-rainy-halo"]
+    else
+        ["lesli-weather-widget-default", "lesli-weather-widget-default-halo"]
+    end
+    %>
+
+    <div class="lesli-weather-widget-body">
+        <div class="lesli-weather-widget-temperature">
+            <%= display_temperature %>
+        </div>
+
+        <div class="lesli-weather-widget-divider" aria-hidden="true"></div>
+
+        <div class="lesli-weather-widget-details">
+            <div class="lesli-weather-widget-illustration">
+                <span
+                    class="lesli-weather-widget-halo <%= halo_color %>"
+                    aria-hidden="true"></span>
+                <span class="lesli-weather-widget-symbol <%= icon_colors %>">
+                    <span class="material-symbols lesli-weather-widget-icon" aria-hidden="true"><%= icon %></span>
+                </span>
+            </div>
+
+            <div class="lesli-weather-widget-text">
+                <p class="lesli-weather-widget-condition">
+                    <%= location %>
+                </p>
+                <p class="lesli-weather-widget-description">
+                    <%= condition_text %> · °<%= unit %>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

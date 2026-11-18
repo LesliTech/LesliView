@@ -1,0 +1,18 @@
+<section
+    class="lesli-count-widget"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% else %>aria-label="<%= I18n.t('metrics.count', default: 'Count') %>"<% end %>>
+
+    <div class="lesli-count-widget-body">
+        <% if title.present? %>
+            <h2 id="<%= title_id %>" class="lesli-count-widget-title">
+                <%= title %>
+            </h2>
+        <% end %>
+
+        <div class="lesli-count-widget-content">
+            <p class="lesli-count-widget-value">
+                <%= display_number %>
+            </p>
+        </div>
+    </div>
+</section>

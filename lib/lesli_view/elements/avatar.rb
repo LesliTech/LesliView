@@ -51,14 +51,14 @@ module LesliView
             def calculate_size
                 case size
                 when "small"
-                    @font_size = "text-xl"
-                    @avatar_size = "size-[60px]"
+                    @font_size = "lesli-avatar-small-text"
+                    @avatar_size = "lesli-avatar-small"
                 when "medium"
-                    @font_size = "text-[2rem]"
-                    @avatar_size = "size-[120px]"
+                    @font_size = "lesli-avatar-medium-text"
+                    @avatar_size = "lesli-avatar-medium"
                 when "large"
-                    @font_size = "text-5xl"
-                    @avatar_size = "size-[180px]"
+                    @font_size = "lesli-avatar-large-text"
+                    @avatar_size = "lesli-avatar-large"
                 else
                     raise ArgumentError, "Invalid size: #{size}"
                 end

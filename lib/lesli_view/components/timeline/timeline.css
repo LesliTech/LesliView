@@ -1,0 +1,48 @@
+@layer components {
+    .lesli-timeline {
+        @apply py-6;
+    }
+
+    .lesli-timeline-list {
+        @apply m-0 w-full list-none p-0;
+    }
+
+    .lesli-timeline-entry {
+        @apply grid grid-cols-[1.5rem_minmax(0,1fr)] gap-x-4 md:grid-cols-[minmax(8rem,auto)_1.5rem_minmax(0,1fr)] md:gap-x-6;
+    }
+
+    .lesli-timeline-date {
+        @apply col-start-2 mb-2 md:col-start-1 md:row-start-1 md:mb-0 md:pt-1 md:text-right min-w-0 text-xs font-bold uppercase tracking-[0.2em] text-slate-500;
+    }
+
+    .lesli-timeline-actor {
+        @apply mt-1 block font-normal normal-case tracking-normal text-slate-400;
+    }
+
+    .lesli-timeline-marker {
+        @apply col-start-1 row-span-2 row-start-1 md:col-start-2 relative flex justify-center;
+    }
+
+    .lesli-timeline-icon {
+        @apply relative z-10 bg-white text-xl leading-none text-[var(--lesli-color-primary)];
+    }
+
+    .lesli-timeline-connector {
+        @apply absolute top-7 bottom-0 left-1/2 w-px -translate-x-1/2 bg-slate-300;
+    }
+
+    .lesli-timeline-content {
+        @apply col-start-2 row-start-2 md:col-start-3 md:row-start-1 min-w-0 pb-10;
+    }
+
+    .lesli-timeline-title {
+        @apply text-base font-semibold text-slate-800;
+    }
+
+    .lesli-timeline-description {
+        @apply mt-1 text-sm leading-6 text-slate-600;
+    }
+    .lesli-timeline-entry:last-child .lesli-timeline-connector {
+        @apply hidden;
+    }
+}

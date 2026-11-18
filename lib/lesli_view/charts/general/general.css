@@ -1,0 +1,25 @@
+@layer components {
+    .lesli-chart {
+        @apply flex h-full min-w-0 flex-col;
+    }
+
+    .lesli-chart-header {
+        @apply mb-3;
+    }
+
+    .lesli-chart-heading {
+        @apply text-center text-xs font-medium text-slate-500;
+    }
+
+    .lesli-chart-title {
+        @apply text-base font-semibold text-slate-700;
+    }
+
+    .lesli-chart-subtitle {
+        @apply mt-1 text-sm leading-5 text-slate-500;
+    }
+
+    .lesli-chart-canvas {
+        @apply min-w-0 flex-1;
+    }
+}

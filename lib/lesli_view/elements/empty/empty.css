@@ -1,0 +1,25 @@
+@layer components {
+    .lesli-empty-state {
+        @apply px-6 py-10 sm:py-12 flex w-full flex-col items-center justify-center text-center;
+    }
+
+    .lesli-empty-state-illustration {
+        @apply mb-5 flex h-36 w-36 items-center justify-center rounded-full bg-slate-100/80 sm:h-40 sm:w-40;
+    }
+
+    .lesli-empty-state-icon {
+        @apply h-28 w-28 text-slate-300 sm:h-32 sm:w-32;
+    }
+
+    .lesli-empty-state-title {
+        @apply text-base sm:text-lg font-semibold text-slate-700;
+    }
+
+    .lesli-empty-state-description {
+        @apply mt-2 max-w-md text-sm leading-6 text-slate-500;
+    }
+
+    .lesli-empty-state-actions {
+        @apply mt-6 flex flex-wrap items-center justify-center gap-3;
+    }
+}

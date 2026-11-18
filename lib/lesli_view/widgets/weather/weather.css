@@ -1,0 +1,81 @@
+@layer components {
+    .lesli-weather-widget {
+        @apply h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+    }
+
+    .lesli-weather-widget-sunny {
+        @apply from-amber-50 to-yellow-100 text-amber-500 shadow-amber-100;
+    }
+
+    .lesli-weather-widget-sunny-halo {
+        @apply bg-amber-200;
+    }
+
+    .lesli-weather-widget-cloudy {
+        @apply from-slate-50 to-slate-200 text-slate-500 shadow-slate-200;
+    }
+
+    .lesli-weather-widget-cloudy-halo {
+        @apply bg-slate-300;
+    }
+
+    .lesli-weather-widget-rainy {
+        @apply from-cyan-50 to-sky-100 text-cyan-500 shadow-cyan-100;
+    }
+
+    .lesli-weather-widget-rainy-halo {
+        @apply bg-cyan-200;
+    }
+
+    .lesli-weather-widget-default {
+        @apply from-sky-50 to-blue-100 text-sky-600 shadow-sky-100;
+    }
+
+    .lesli-weather-widget-default-halo {
+        @apply bg-sky-200;
+    }
+
+    .lesli-weather-widget-body {
+        @apply flex h-full min-h-40 items-center justify-center;
+    }
+
+    .lesli-weather-widget-temperature {
+        @apply shrink-0 text-6xl font-light leading-none tracking-tight text-sky-600;
+    }
+
+    .lesli-weather-widget-divider {
+        @apply mx-5 h-20 w-px shrink-0 bg-slate-200 sm:mx-6;
+    }
+
+    .lesli-weather-widget-details {
+        @apply flex min-w-0 items-center gap-3;
+    }
+
+    .lesli-weather-widget-illustration {
+        @apply relative flex h-14 w-14 shrink-0 items-center justify-center;
+    }
+
+    .lesli-weather-widget-halo {
+        @apply absolute inset-0 rounded-full opacity-30 blur-sm motion-safe:animate-pulse;
+    }
+
+    .lesli-weather-widget-symbol {
+        @apply relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br shadow-lg;
+    }
+
+    .lesli-weather-widget-icon {
+        @apply text-3xl leading-none;
+    }
+
+    .lesli-weather-widget-text {
+        @apply min-w-0;
+    }
+
+    .lesli-weather-widget-condition {
+        @apply truncate text-lg font-semibold tracking-tight text-slate-700;
+    }
+
+    .lesli-weather-widget-description {
+        @apply mt-1 truncate text-sm font-medium text-slate-400;
+    }
+}

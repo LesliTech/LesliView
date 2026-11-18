@@ -43,3 +43,43 @@ Verify the installation in an ERB view:
 ```
 
 Use the fully qualified constants shown in these guides. Most components accept a block through ViewComponent, while components with named slots document those slots explicitly.
+
+## Component styles
+
+LesliView renders semantic classes such as `lesli-button`, `lesli-header`, and
+`lesli-panel-dialog`. Component stylesheets use unprefixed Tailwind utilities
+inside `@apply`, including responsive and interaction variants:
+
+```css
+@layer components {
+    .lesli-panel-dialog {
+        @apply fixed w-full bg-white sm:max-w-2xl lg:max-w-3xl;
+    }
+}
+```
+
+The entrypoint imports each component stylesheet explicitly and disables utility
+discovery. It emits component rules, not global utility selectors such as
+`.flex` or `.text-sm`. Alpine bindings and transitions also use component classes.
+Keep modifiers scoped to their component; a Ruby class or sidecar directory alone
+does not isolate CSS.
+
+Theme values remain global in LesliAssets. LesliView references that theme at
+build time and compiles independently into `lesli_view/view.css`.
+
+### Upgrading
+
+Publish templates and compiled CSS together. The former `lesliview:` utilities
+are no longer generated. Use component classes or data attributes for JavaScript
+selectors.
+
+Engines may keep passing their own classes through `css_class:`, `class_name:`,
+or form options. Those classes must be compiled by the calling engine, as must
+styles used by content supplied in component blocks. Engines keep their own
+Tailwind prefixes.
+
+Load `lesli_view/view` in public authentication layouts as well. Engines should
+load this stylesheet instead of recompiling component CSS. The standard Lesli
+Devise layout follows this arrangement.
+
+The documentation website continues to use Bulma for its previews and layout.

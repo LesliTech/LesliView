@@ -1,0 +1,103 @@
+<%#
+
+Lesli
+
+Copyright (c) 2025, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
+<article
+    class="lesli-items-attachments"
+    id="<%= dom_id(resource, :attachments) %>">
+    <%= form_with(
+        scope: scope_key,
+        model: attachment,
+        builder: LesliView::Forms::Builder,
+        url: create_path,
+        multipart: true
+    ) do |form| %>
+        <div class="lesli-items-attachments-form">
+            <div>
+                <%= form.label(
+                    :file,
+                    I18n.t("lesli.items.attachments_choose_file", default: "Choose a file"),
+                    class: "lesli-items-attachments-label"
+                ) %>
+                <%= form.file_field(
+                    :file,
+                    required: true,
+                    accept: accepted_content_types,
+                    class: "lesli-items-attachments-input"
+                ) %>
+                <% if attachment.errors[:file].any? %>
+                    <p class="lesli-items-attachments-error">
+                        <%= attachment.errors[:file].to_sentence %>
+                    </p>
+                <% end %>
+            </div>
+
+            <%= form.field_control_text(
+                :label,
+                label: I18n.t("lesli.items.attachments_label", default: "Label"),
+                maxlength: 255
+            ) %>
+
+            <%= form.field_control_button(
+                I18n.t("lesli.items.attachments_add", default: "Add file"),
+                {
+                    data: {
+                        turbo_submits_with: I18n.t(
+                            "lesli.items.attachments_uploading",
+                            default: "Uploading..."
+                        )
+                    }
+                },
+                icon: "upload_file"
+            ) %>
+        </div>
+    <% end %>
+
+    <hr class="lesli-items-attachments-divider">
+
+    <% if attachments.any? %>
+        <ul class="lesli-items-attachments-list">
+            <% attachments.each do |item| %>
+                <%= render LesliView::Items::Attachment.new(
+                    item,
+                    path: attachment_path(item)
+                ) %>
+            <% end %>
+        </ul>
+    <% else %>
+        <p class="lesli-items-attachments-empty">
+            <%= I18n.t(
+                "lesli.items.attachments_empty",
+                default: "No files have been attached yet."
+            ) %>
+        </p>
+    <% end %>
+</article>
+

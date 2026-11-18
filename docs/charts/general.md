@@ -30,3 +30,22 @@
 If several data inputs are supplied, later conversion options take precedence over `datasets` and `dataset`. Database conversion helpers are also available as `database_to_dataset` and `database_to_datasets` for compatibility.
 
 The rendered page requires the `window.LesliChart` JavaScript provided by the Lesli frontend assets. Rendering waits for Turbo when the document is still loading.
+
+## Component files
+
+```text
+lib/lesli_view/charts/
+    bar.rb
+    line.rb
+    general.rb
+    general/
+        general.html.erb
+        general.css
+```
+
+`Bar` and `Line` inherit the template from `General`, so they do not need
+separate directories or duplicated presentation files. Their Ruby API is unchanged.
+
+The sidecar stylesheet uses semantic classes and unprefixed `@apply`, and is
+imported by `source/tailwind/view.css` into the existing LesliView stylesheet.
+Global theme variables remain in LesliAssets.

@@ -133,3 +133,17 @@ On success, redirect to a detail response containing the same frame, or return T
 Use `type: :submit` inside an existing form and override the button’s default `_top` target when submitting within the panel. A button with `method:` creates its own Rails form and belongs outside another form.
 
 Panel only controls visibility. It does not fetch data itself, clear previous content, handle request errors, close automatically after saving, or refresh the underlying list or calendar. Implement those behaviors in the owning page when needed. For example, Calendar refetches its entries after a successful Turbo submission while retaining the visible period.
+
+## Component files
+
+```text
+lib/lesli_view/components/
+    panel.rb
+    panel/
+        panel.html.erb
+        panel.css
+```
+
+The Ruby API is unchanged. The sidecar stylesheet uses semantic classes and
+unprefixed `@apply`, and is imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.

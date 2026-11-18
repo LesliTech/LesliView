@@ -1,0 +1,52 @@
+<%
+selected_icon = items.find { |item| item[:selected] }&.dig(:icon) || "ri-folder-line"
+
+navigation_items = capture do
+    items.each do |item|
+        selected = item[:selected]
+%>
+        <li>
+            <%= link_to item[:path],
+                class: class_names(
+                    "lesli-navigation-sidebar-link",
+                    "lesli-navigation-sidebar-active" => selected,
+                    "lesli-navigation-sidebar-inactive" => !selected
+                ),
+                aria: { current: ("page" if selected) },
+                data: { turbo_frame: "_top" } do %>
+                <span class="<%= item[:icon] || 'ri-folder-line' %> lesli-navigation-sidebar-icon" aria-hidden="true"></span>
+                <span class="lesli-navigation-sidebar-label"><%= item[:label] %></span>
+                <% if item[:count] %><span class="lesli-navigation-sidebar-description"><%= item[:count] %></span><% end %>
+            <% end %>
+        </li>
+<%
+    end
+end
+%>
+
+<details class="lesli-navigation-sidebar-mobile lesli-navigation-sidebar-mobile">
+    <summary
+        class="lesli-navigation-sidebar-summary"
+        aria-label="<%= selected_label %>">
+        <span class="lesli-navigation-sidebar-selected">
+            <span class="<%= selected_icon %> lesli-navigation-sidebar-selected-icon" aria-hidden="true"></span>
+            <span class="lesli-navigation-sidebar-selected-label"><%= selected_label %></span>
+        </span>
+        <span class="material-symbols lesli-navigation-sidebar-chevron" aria-hidden="true">expand_more</span>
+    </summary>
+
+    <nav class="lesli-navigation-sidebar-mobile-content" aria-label="<%= label %>">
+        <ul class="lesli-navigation-sidebar-list">
+            <%= navigation_items %>
+        </ul>
+    </nav>
+</details>
+
+<nav class="lesli-navigation-sidebar-desktop lesli-navigation-sidebar-desktop" aria-label="<%= label %>">
+    <p class="lesli-navigation-sidebar-heading">
+        <%= label %>
+    </p>
+    <ul class="lesli-navigation-sidebar-list">
+        <%= navigation_items %>
+    </ul>
+</nav>

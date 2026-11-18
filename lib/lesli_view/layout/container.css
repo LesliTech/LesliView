@@ -1,6 +1,0 @@
-@layer components {
-    /* Keep responsive padding on the component so another package's px-* utilities cannot override it. */
-    .lesli-application-container {
-        @apply mx-auto block w-full px-4 sm:px-6 lg:px-8;
-    }
-}

@@ -27,3 +27,22 @@ The PATCH action toggles completion, so a finished task can be marked as
 pending again after an accidental click.
 
 Use `LesliView::Items::Task.new(task, scope_key)` only when rendering an individual list item; the collection component supplies the required form scope automatically.
+
+## Component files
+
+```text
+lib/lesli_view/items/
+    tasks.rb
+    tasks/
+        tasks.html.erb
+        tasks.css
+    task.rb
+    task/
+        task.html.erb
+        task.css
+```
+
+Ruby classes retain their public API. Each template and stylesheet lives in
+the adjacent component directory. The stylesheets use semantic classes and
+unprefixed `@apply`, and are imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.

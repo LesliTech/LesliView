@@ -14,3 +14,18 @@
 ```
 
 `unit:` accepts `C` or `F` case-insensitively and falls back to `C`. A missing temperature renders an em dash. A missing condition uses the translated showers label, and a missing icon falls back to `rainy`. The positional date is retained by the API but is not currently displayed.
+
+## Component files
+
+```text
+lib/lesli_view/widgets/
+    weather.rb
+    weather/
+        weather.html.erb
+        weather.css
+```
+
+The Ruby API is unchanged. The sidecar stylesheet is imported by
+`source/tailwind/view.css` and compiled into the existing LesliView stylesheet.
+It uses semantic classes and unprefixed `@apply`, with global theme variables
+provided by LesliAssets.

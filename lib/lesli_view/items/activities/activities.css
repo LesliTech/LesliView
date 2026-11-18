@@ -1,0 +1,5 @@
+@layer components {
+    .lesli-item-activities {
+        @apply p-4 sm:p-8 bg-white;
+    }
+}

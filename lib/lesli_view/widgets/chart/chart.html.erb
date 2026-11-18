@@ -1,0 +1,27 @@
+<section
+    class="lesli-chart-widget"
+    <% if title.present? %>aria-labelledby="<%= title_id %>"<% else %>aria-label="<%= I18n.t('charts.chart', default: 'Chart') %>"<% end %>>
+
+    <div class="lesli-chart-widget-body">
+        <% if title.present? %>
+            <h2 id="<%= title_id %>" class="lesli-chart-widget-title">
+                <%= title %>
+            </h2>
+        <% end %>
+
+        <% if data? %>
+            <div class="lesli-chart-widget-content">
+                <%= render(chart_component.new(
+                    labels: labels,
+                    datasets: [{ label: title, data: dataset }],
+                    height: "10rem",
+                    compact: true
+                )) %>
+            </div>
+        <% else %>
+            <div class="lesli-chart-widget-empty">
+                <%= I18n.t("charts.empty", default: "No chart data") %>
+            </div>
+        <% end %>
+    </div>
+</section>

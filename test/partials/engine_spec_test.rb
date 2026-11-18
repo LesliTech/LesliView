@@ -18,13 +18,13 @@ end
 module LesliView
     module Partials
         class EngineSpecTest < Minitest::Test
-            def test_renders_engine_metadata_with_tailwind_classes
+            def test_renders_engine_metadata_with_component_classes
                 html = EngineSpec.new(engine).render_in(ActionView::Base.empty)
 
-                assert_includes html, "border-b border-slate-300"
-                assert_includes html, "text-xl font-semibold"
-                assert_includes html, "list-none space-y-2"
-                assert_includes html, "flex items-center gap-2"
+                assert_includes html, "lesli-engine-spec-header"
+                assert_includes html, "lesli-engine-spec-title"
+                assert_includes html, "lesli-engine-spec-list"
+                assert_includes html, "lesli-engine-spec-item"
                 assert_includes html, "LesliShield"
                 assert_includes html, "Version: 1.2.3"
                 assert_includes html, "Build: October 9, 2026 10:30"

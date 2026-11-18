@@ -66,7 +66,7 @@ module LesliView
                 assert_equal [:actor], association.included_associations
                 assert_equal({ created_at: :desc, id: :desc }, association.order_options)
                 assert_equal 10, association.limit_value
-                assert_includes html, "lesli-items-activities bg-white"
+                assert_includes html, 'id="lesli-items-activities"'
                 assert_includes html, "Account created"
                 assert_includes html, "The account is ready."
                 assert_includes html, "Ada Lovelace"

@@ -14,7 +14,7 @@ module LesliView
                     icons: { created: "add_circle" }
                 ).render_in(ActionView::Base.empty)
 
-                assert_includes html, "group-last:hidden"
+                assert_includes html, "lesli-timeline-connector"
                 assert_includes html, "add_circle"
                 assert_includes html, "radio_button_checked"
                 assert_includes html, "Account created"

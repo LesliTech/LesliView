@@ -14,8 +14,6 @@ class NavigationSidebarTest < Minitest::Test
         assert_equal 2, html.scan('aria-current="page"').size
         assert_equal 2, html.scan('data-turbo-frame="_top"').size
         assert_includes html, "/roles/2/actions?search=show"
-        assert_includes html, "lg:w-60"
-        assert_includes html, "lg:sticky"
         assert_includes html, "lesli-navigation-sidebar-desktop"
         assert_includes html, "lesli-navigation-sidebar-mobile"
         refute_match(/class="hidden /, html)

@@ -1,0 +1,45 @@
+<li
+    id="<%= dom_id(resource) %>"
+    class="lesli-attachment">
+    <div class="lesli-attachment-details">
+        <span
+            class="material-symbols-outlined lesli-attachment-icon"
+            aria-hidden="true">
+            attach_file
+        </span>
+
+        <div class="lesli-attachment-text">
+            <p class="lesli-attachment-name" title="<%= filename %>">
+                <%= display_name %>
+            </p>
+            <p class="lesli-attachment-metadata">
+                <%= details %>
+            </p>
+        </div>
+    </div>
+
+    <div class="lesli-attachment-actions">
+        <%= link_to(
+            I18n.t("lesli.items.attachments_download", default: "Download"),
+            path,
+            class: "lesli-attachment-download",
+            data: { turbo: false }
+        ) %>
+
+        <%= button_to(
+            I18n.t("lesli.items.attachments_remove", default: "Remove"),
+            path,
+            method: :delete,
+            class: "lesli-attachment-remove",
+            form: {
+                class: "lesli-attachment-remove-form",
+                data: {
+                    turbo_confirm: I18n.t(
+                        "lesli.items.attachments_confirm_remove",
+                        default: "Remove this file?"
+                    )
+                }
+            }
+        ) %>
+    </div>
+</li>

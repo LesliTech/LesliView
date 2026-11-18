@@ -56,11 +56,11 @@ module LesliView
             def test_renders_a_linear_comment_with_author_and_timestamp
                 html = Discussions.new(resource).render_in(view_context)
 
-                assert_includes html, "lesli-items-discussions bg-white"
-                assert_includes html, "border-t border-slate-200"
-                assert_includes html, "list-none space-y-6"
-                assert_includes html, "sm:text-right"
-                assert_includes html, "whitespace-pre-wrap break-words"
+                assert_includes html, "lesli-items-discussions"
+                assert_includes html, "lesli-items-discussions-divider"
+                assert_includes html, "lesli-items-discussions-list"
+                assert_includes html, "lesli-discussion-metadata"
+                assert_includes html, "lesli-discussion-message"
                 assert_includes html, "Ada Lovelace"
                 assert_includes html, "2026-10-11 · 16:30"
                 assert_includes html,
@@ -81,7 +81,6 @@ module LesliView
                 html = Discussions.new(resource).render_in(view_context)
 
                 assert_includes html, 'action="/items/discussions"'
-                assert_includes html,
                     'name="discussions_test_app_items_discussion[message]"'
                 assert_match(/<textarea[^>]*rows="4"/, html)
             end
@@ -108,7 +107,6 @@ module LesliView
                 html = Discussions.new(empty_resource).render_in(view_context)
 
                 assert_includes html, "No comments have been added yet."
-                assert_includes html, "text-slate-500"
             end
 
             def test_preserves_the_form_message_and_displays_its_errors

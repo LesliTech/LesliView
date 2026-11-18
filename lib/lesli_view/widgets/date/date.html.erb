@@ -1,0 +1,24 @@
+<section
+    class="lesli-date-widget"
+    aria-label="<%= accessible_date %>">
+
+    <time
+        class="lesli-date-widget-body"
+        datetime="<%= date.iso8601 %>">
+
+        <span class="lesli-date-widget-day">
+            <%= date.day %>
+        </span>
+
+        <span class="lesli-date-widget-divider" aria-hidden="true"></span>
+
+        <span class="lesli-date-widget-details">
+            <span class="lesli-date-widget-month">
+                <%= weekday_name %>
+            </span>
+            <span class="lesli-date-widget-weekday">
+                <%= month_name %> <%= date.year %>
+            </span>
+        </span>
+    </time>
+</section>

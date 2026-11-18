@@ -1,0 +1,25 @@
+@layer components {
+    .lesli-items-discussions {
+        @apply p-4 sm:p-8 bg-white;
+    }
+
+    .lesli-items-discussions-form {
+        @apply p-4;
+    }
+
+    .lesli-items-discussions-error {
+        @apply mt-2 text-sm text-red-600;
+    }
+
+    .lesli-items-discussions-divider {
+        @apply my-6 border-0 border-t border-slate-200;
+    }
+
+    .lesli-items-discussions-list {
+        @apply m-0 list-none space-y-6 p-0;
+    }
+
+    .lesli-items-discussions-empty {
+        @apply py-6 text-center text-sm text-slate-500;
+    }
+}

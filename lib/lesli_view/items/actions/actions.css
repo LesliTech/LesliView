@@ -1,0 +1,13 @@
+@layer components {
+    .lesli-item-actions {
+        @apply p-6;
+    }
+
+    .lesli-item-actions-form {
+        @apply mt-5;
+    }
+
+    .lesli-item-actions-field {
+        @apply mt-3 mb-3;
+    }
+}

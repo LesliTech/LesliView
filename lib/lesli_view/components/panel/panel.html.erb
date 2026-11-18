@@ -1,0 +1,55 @@
+
+<%
+panel_title_id = "#{id}-title"
+attributes = {
+    id: "#{id}-panel",
+    class: "lesli-panel",
+    "x-data": "{ open: false, trigger: null, openPanel() { this.trigger = document.activeElement; this.open = true; this.$nextTick(() => this.$refs.closeButton.focus()) }, closePanel() { this.open = false; this.$nextTick(() => this.trigger?.focus()) } }",
+    "x-cloak": true,
+    "@#{id}.window": "openPanel()",
+    "@keydown.escape.window": "if (open) closePanel()"
+}
+%>
+
+<%= content_tag(:section, **attributes) do %>
+    <% if overlay %>
+        <div
+            class="lesli-panel-overlay"
+            aria-hidden="true"
+            x-show="open"
+            x-transition.opacity
+            @click="closePanel()">
+        </div>
+    <% end %>
+
+    <div
+        class="lesli-panel-dialog"
+        role="dialog"
+        aria-modal="<%= overlay %>"
+        aria-labelledby="<%= panel_title_id %>"
+        x-show="open"
+        x-transition:enter="lesli-panel-entering"
+        x-transition:enter-start="lesli-panel-hidden"
+        x-transition:enter-end="lesli-panel-visible"
+        x-transition:leave="lesli-panel-leaving"
+        x-transition:leave-start="lesli-panel-visible"
+        x-transition:leave-end="lesli-panel-hidden">
+        <div class="lesli-panel-header">
+            <h2 id="<%= panel_title_id %>" class="lesli-panel-title">
+                <%= title %>
+            </h2>
+            <button
+                type="button"
+                class="lesli-panel-close"
+                aria-label="Close panel"
+                x-ref="closeButton"
+                @click="closePanel()">
+                <span class="material-symbols lesli-panel-icon" aria-hidden="true">arrow_forward_ios</span>
+            </button>
+        </div>
+
+        <div class="lesli-panel-content">
+            <%= content %>
+        </div>
+    </div>
+<% end %>

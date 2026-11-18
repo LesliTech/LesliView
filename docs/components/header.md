@@ -27,3 +27,17 @@ Block content is rendered in the page-actions group. The back action targets the
 The title and actions remain in two top-aligned columns. The title section uses
 the available width while the actions section keeps the width required by its
 content.
+
+## Component files
+
+```text
+lib/lesli_view/components/
+    header.rb
+    header/
+        header.html.erb
+        header.css
+```
+
+The Ruby API is unchanged. The sidecar stylesheet uses semantic classes and
+unprefixed `@apply`, and is imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.

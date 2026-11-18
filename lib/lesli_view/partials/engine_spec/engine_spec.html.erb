@@ -1,0 +1,38 @@
+<div class="partial-engine-spec">
+    <div class="lesli-engine-spec-header">
+        <h5 class="lesli-engine-spec-title"><%= engine[:name] %></h5>
+        <p class="lesli-engine-spec-summary"><%= engine[:summary] %></p>
+    </div>
+
+    <ul class="lesli-engine-spec-list">
+        <li class="lesli-engine-spec-item">
+            <span class="material-symbols lesli-engine-spec-icon" aria-hidden="true">
+                pest_control
+            </span>
+            <span>Version: <%= engine[:version] %></span>
+        </li>
+
+        <li class="lesli-engine-spec-item">
+            <span class="material-symbols lesli-engine-spec-icon" aria-hidden="true">
+                schedule
+            </span>
+            <span>Build: <%= LesliDate::Formatter.new(Time.at(engine[:build].to_i)).date_time %></span>
+        </li>
+
+        <li class="lesli-engine-spec-details">
+            <span class="material-symbols lesli-engine-spec-icon" aria-hidden="true">
+                library_books
+            </span>
+            <span class="lesli-engine-spec-value">
+                <%= link_to_if(
+                    engine.dig(:metadata, "documentation_uri"),
+                    engine.dig(:metadata, "documentation_uri"),
+                    engine.dig(:metadata, "documentation_uri"),
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    class: "lesli-engine-spec-link"
+                ) %>
+            </span>
+        </li>
+    </ul>
+</div>

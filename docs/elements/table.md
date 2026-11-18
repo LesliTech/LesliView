@@ -29,3 +29,20 @@ For custom cell content, use row and cell slots:
 ```
 
 `headless:`, `striped:`, `compact:`, `id:`, and `class_name:` control presentation. `empty:` customizes the empty message. Row status accepts `danger`, `info`, `success`, or `warning`. Add `caption:` whenever surrounding text does not already identify the table.
+
+## Component files
+
+```text
+lib/lesli_view/elements/
+    table.rb
+    table/
+        table.html.erb
+        table.css
+```
+
+The Ruby API is unchanged. The sidecar stylesheet uses semantic classes and
+unprefixed `@apply`, and is imported by `source/tailwind/view.css` into the
+existing LesliView stylesheet. Global theme variables remain in LesliAssets.
+
+The existing `table-chart.html.erb` example and its CSS also live in `table/`.
+They are supporting files, not a separate ViewComponent class.

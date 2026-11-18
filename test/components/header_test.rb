@@ -11,9 +11,9 @@ module LesliView
                 html = Header.new("Users", "Manage user accounts")
                     .render_in(ActionView::Base.empty) { "Export" }
 
-                assert_includes html, "grid w-full grid-cols-[minmax(0,1fr)_auto] items-start"
-                assert_includes html, 'class="min-w-0"'
-                assert_includes html, "items-start justify-self-end"
+                assert_includes html, "lesli-header"
+                assert_includes html, 'class="lesli-header-text"'
+                assert_includes html, "lesli-header-actions"
                 assert_operator html.index("Users"), :<, html.index("Export")
             end
         end

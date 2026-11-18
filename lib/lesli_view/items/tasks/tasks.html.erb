@@ -1,0 +1,74 @@
+<%#
+
+Lesli
+
+Copyright (c) 2026, Lesli Technologies, S. A.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses/.
+
+Lesli · Ruby on Rails SaaS Development Framework.
+
+Made with ♥ by LesliTech
+Building a better future, one line of code at a time.
+
+@contact  hello@lesli.tech
+@website  https://www.lesli.tech
+@license  GPLv3 http://www.gnu.org/licenses/gpl-3.0.en.html
+
+// · ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~     ~·~
+// · 
+%>
+<article
+    class="lesli-items-tasks"
+    id="<%= dom_id(@resource, :tasks) %>">
+    <div class="lesli-items-tasks-form">
+        <%= form_with(
+            scope: scope_key,
+            model: task,
+            builder: LesliView::Forms::Builder,
+            url: create_path
+        ) do |form| %>
+            <%= form.field_control_text :title %>
+            <% if task.errors[:title].any? %>
+                <p class="lesli-items-tasks-error">
+                    <%= task.errors.full_messages_for(:title).to_sentence %>
+                </p>
+            <% end %>
+            <%= form.field_control_submit I18n.t(
+                "lesli.items.tasks_add",
+                default: "Add task"
+            ) %>
+        <% end %>
+    </div>
+    <hr class="lesli-items-tasks-divider">
+
+    <div class="lesli-items-tasks-container">
+        <% if tasks.any? %>
+            <ul
+                id="<%= "#{scope_key}-lesli-items-tasks-list" %>"
+                class="lesli-items-tasks-list">
+                <% tasks.each do |item| %>
+                    <%= render(LesliView::Items::Task.new(item, scope_key)) %>
+                <% end %>
+            </ul>
+        <% else %>
+            <p class="lesli-items-tasks-empty">
+                <%= I18n.t(
+                    "lesli.items.tasks_empty",
+                    default: "No tasks have been added yet."
+                ) %>
+            </p>
+        <% end %>
+    </div>
+</article>

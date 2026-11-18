@@ -1,0 +1,33 @@
+@layer components {
+    .lesli-header {
+        @apply mx-auto mt-16 mb-12 grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-5;
+    }
+
+    .lesli-header-text {
+        @apply min-w-0;
+    }
+
+    .lesli-header-heading {
+        @apply flex items-center gap-4;
+    }
+
+    .lesli-header-back {
+        @apply inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-sky-600 bg-white text-sky-700 shadow-sm transition hover:bg-sky-50 hover:text-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500/30;
+    }
+
+    .lesli-header-back-icon {
+        @apply text-[26px] leading-none;
+    }
+
+    .lesli-header-title {
+        @apply text-3xl sm:text-4xl tracking-tight text-slate-700;
+    }
+
+    .lesli-header-subtitle {
+        @apply text-sm leading-6 sm:text-base mt-2 max-w-2xl text-slate-500;
+    }
+
+    .lesli-header-actions {
+        @apply flex flex-wrap items-start justify-self-end gap-3;
+    }
+}

@@ -1,0 +1,36 @@
+@layer components {
+    .lesli-avatar {
+        @apply flex shrink-0 items-center justify-center overflow-hidden rounded-full border-[0.1px] border-slate-400 bg-slate-100;
+    }
+
+    .lesli-avatar-image {
+        @apply h-full w-full object-cover;
+    }
+
+    .lesli-avatar-initials {
+        @apply font-bold text-slate-700;
+    }
+    .lesli-avatar-small-text {
+        @apply text-xl;
+    }
+
+    .lesli-avatar-small {
+        @apply size-[60px];
+    }
+
+    .lesli-avatar-medium-text {
+        @apply text-[2rem];
+    }
+
+    .lesli-avatar-medium {
+        @apply size-[120px];
+    }
+
+    .lesli-avatar-large-text {
+        @apply text-5xl;
+    }
+
+    .lesli-avatar-large {
+        @apply size-[180px];
+    }
+}
